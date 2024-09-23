@@ -1,0 +1,1 @@
+PBX SHOPPINGCART variable must not be exceed 99

@@ -1,0 +1,1132 @@
+# Copyright (C) 2024 Up2pay e-Transactions
+# This file is distributed under the same license as the Up2pay e-Transactions plugin.
+msgid ""
+msgstr ""
+"Project-Id-Version: Up2pay e-Transactions 3.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/e-transactions-"
+"wc\n"
+"Last-Translator: \n"
+"Language-Team: French (France)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2024-03-08T10:07:35+00:00\n"
+"PO-Revision-Date: 2024-08-22 09:28+0000\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Domain: wc-etransactions\n"
+"Language: fr_FR\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Loco-Version: 2.6.6; wp-6.6.1"
+
+#: templates/admin/page-settings/intro.php:55
+msgid "%sAccept CB, VISA, Mastercard cards and also Paypal.%s"
+msgstr "%sAccepte les cartes CB, VISA, Mastercard ainsi que Paypal.%s"
+
+#: templates/admin/page-settings/intro.php:64
+msgid ""
+"%sAccept more payment methods%s as Amex, Titres Restaurant, e-Chèques "
+"Vacances (ANCV)."
+msgstr ""
+"%sAcceptez plus de moyens de paiement%s parmi lesquels Amex, Titres "
+"Restaurant, e-Chèques Vacances (ANCV)."
+
+#: templates/admin/page-settings/intro.php:65
+msgid ""
+"%sActivate more features:%s One-click payment, subscription, instalment "
+"payment, capture on shipment and refund from PrestaShop Back-Office."
+msgstr ""
+"%sActivez plus de fonctionnalités :%s paiement 1 clic, abonnement, n fois, à "
+"l’expédition et remboursement depuis le Back-Office Prestashop."
+
+#: templates/admin/page-settings/payment.php:33
+msgid "%sAdvanced:%s display one button for each means of payment activated."
+msgstr "%sAvancé :%s affiche un bouton pour chaque moyen de paiement activé."
+
+#: templates/admin/page-settings/intro.php:56
+msgid "%sAvailable features:%s immediate or deferred payments."
+msgstr ""
+"%sFonctionnalités disponibles :%s paiement immédiat et paiement différé."
+
+#: templates/admin/page-settings/intro.php:66
+msgid "%sCustomize%s your payment page using your graphic charter."
+msgstr "%sPersonnalisez%s la page de paiement à vos couleurs."
+
+#: templates/admin/page-settings/payment.php:82
+msgid ""
+"%sDeferred:%s you can set number of days to wait before remittance to bank."
+msgstr ""
+"%sDifféré:%s vous pouvez indiquer un nombre de jours ou un évènement (avec "
+"l’offre Premium) pour déclencher l'envoi en banque."
+
+#: templates/admin/page-settings/payment.php:102
+msgid "%sDelay:%s automatically triggered after a delay."
+msgstr "%sNombre de jours :%s déclenchement automatique après un délai."
+
+#: templates/admin/page-settings/payment.php:32
+msgid "%sGrouped:%s display only one payment button for all means of payment."
+msgstr ""
+"%sRegroupé :%s affiche un seul bouton pour l'ensemble des moyens de paiement."
+
+#: templates/admin/page-settings/payment.php:81
+msgid "%sImmediate:%s debit is done the day of the order."
+msgstr ""
+"%sImmédiat :%s la transaction est envoyée en banque le jour de l'achat."
+
+#: templates/admin/page-settings/payment.php:103
+msgid "%sOrder Status:%s automatically triggered on order status changed."
+msgstr ""
+"%sEtat de commande :%s déclenchement automatique au changement d'état de la "
+"commande."
+
+#: templates/admin/page-settings/instalment.php:55
+msgid "%sx payment"
+msgstr "PAIEMENT EN %s FOIS"
+
+#: templates/admin/page-settings/popup/support.php:27
+msgid ""
+"(click inside the box to automatically copy the information to the clipboard)"
+msgstr ""
+"(cliquez à l'intérieur de la zone pour copier automatiquement les "
+"informations dans le presse-papier)"
+
+#: templates/admin/page-settings/payment.php:153
+msgid "1-Click"
+msgstr "1 clic"
+
+#: templates/admin/page-settings/account.php:75
+#: templates/admin/page-settings/account.php:119
+msgid "1-digit to 9-digit number"
+msgstr "1 à 9 chiffres"
+
+#: templates/admin/page-settings/account.php:67
+#: templates/admin/page-settings/account.php:111
+msgid "2 or 3-digit number"
+msgstr "2 à 3 chiffres"
+
+#: templates/admin/order/payment-info.php:57
+msgid "3D-Secure garantee"
+msgstr "Garantie 3D Secure"
+
+#: templates/admin/page-settings/account.php:59
+#: templates/admin/page-settings/account.php:103
+msgid "7-digit number - Informations founded in you welcome email."
+msgstr "7 chiffres - Informations présentes dans votre mail de bienvenue."
+
+#: templates/admin/page-settings/intro.php:62
+msgid ""
+"A complete offer to optimize your activity and improve customer experience"
+msgstr ""
+"UNE OFFRE COMPLÈTE POUR OPTIMISER VOTRE ACTIVITÉ ET AMÉLIORER L’EXPÉRIENCE "
+"CLIENT"
+
+#: templates/admin/page-settings/intro.php:53
+msgid "A simple offer with the basics to accept online payments"
+msgstr ""
+"UNE OFFRE SIMPLE AVEC LES INDISPENSABLES POUR ENCAISSER LES PAIEMENTS EN "
+"LIGNE"
+
+#: templates/admin/page-settings/account.php:140
+msgid "Access"
+msgstr "Access"
+
+#: templates/admin/page-settings/intro.php:52
+msgid "Access Offer"
+msgstr "OFFRE ACCESS"
+
+#: templates/admin/page-settings/payment.php:150
+msgid "Active"
+msgstr "Activer"
+
+#: classes/wc-etransactions-settings.php:343
+msgid "Active plugins"
+msgstr "Extensions activé"
+
+#: templates/admin/page-settings/payment.php:253
+msgid "Add a means of payment"
+msgstr "Ajouter un moyen de paiement"
+
+#: templates/admin/page-settings/payment.php:30
+msgid "Advanced"
+msgstr "Avancé"
+
+#: templates/admin/order/payment-info.php:182
+msgid "Amount"
+msgstr "Montant"
+
+#: templates/admin/order/payment-info.php:71
+#: templates/admin/order/payment-info.php:93
+msgid "Amount captured"
+msgstr "Montant capturé"
+
+#: templates/admin/order/payment-info.php:106
+msgid "Amount refunded"
+msgstr "Montant remboursé"
+
+#: templates/admin/order/payment-info.php:75
+msgid "Amount that can be captured"
+msgstr "Montant restant à capturer"
+
+#: templates/admin/order/payment-info.php:110
+msgid "Amount that can be refunded"
+msgstr "Montant pouvant être remboursé"
+
+#: templates/admin/page-settings/popup/support.php:10
+msgid "Availability of services"
+msgstr "Disponibilité des services"
+
+#: payment-methods/wc-etransactions-abstract-gateway-instalments.php:197
+#: payment-methods/wc-etransactions-abstract-gateway.php:245
+msgid "Back..."
+msgstr "Retour..."
+
+#: templates/admin/page-settings/account.php:170
+msgid ""
+"Be aware that for order without 3DS challenge, bank remittance is not "
+"garantied if chargeback asked by payer."
+msgstr ""
+"Sachez que pour une commande sans challenge 3DS, le virement bancaire n'est "
+"pas garanti en cas de rétrofacturation demandée par le payeur."
+
+#: templates/admin/page-settings/popup/support.php:15
+msgid ""
+"Before contacting support, please check service availability via this link:"
+msgstr ""
+"Avant de contacter le support, veuillez vérifier la disponibilité des "
+"services via ce lien :"
+
+#: templates/admin/deactivate-popup.php:22
+msgid "Cancel"
+msgstr "Annuler"
+
+#: templates/admin/order/payment-info.php:193
+msgid "Cancelled"
+msgstr "Annulé"
+
+#: classes/wc-etransactions-order.php:32 classes/wc-etransactions-order.php:45
+#: templates/admin/order/payment-info.php:67
+#: templates/admin/order/payment-info.php:160
+msgid "Capture"
+msgstr "Remise en banque"
+
+#: templates/admin/order/payment-info.php:193
+msgid "Captured"
+msgstr "Capturé"
+
+#: templates/admin/page-settings/header.php:38
+#: templates/admin/page-settings/popup/config.php:5
+msgid "Check my configuration"
+msgstr "Vérifier ma configuration"
+
+#: templates/admin/page-settings/payment.php:255
+msgid "Choose a means of payment"
+msgstr "Choisissez un moyen de paiement"
+
+#: templates/admin/page-settings/intro.php:39
+msgid "Choose a solution already used by thousands of merchants."
+msgstr "Optez pour une solution utilisée par des milliers de commerçants."
+
+#: templates/admin/page-settings/popup/config.php:69
+msgid "Click %shere to download%s the last log file."
+msgstr "Cliquez %sici pour télécharger%s le dernier fichier de logs."
+
+#: templates/admin/order/payment-info.php:154
+msgid "Code returned"
+msgstr "Code retourné"
+
+#: classes/wc-etransactions-settings.php:339
+msgid "Configuring payment in X times"
+msgstr "Configuration du paiment en Xfois"
+
+#: templates/admin/page-settings/popup/support.php:41
+msgid "Contact support"
+msgstr "Contactez le support"
+
+#: templates/admin/page-settings/popup/support.php:5
+msgid "Contact us"
+msgstr "Contactez-nous"
+
+#: templates/admin/page-settings/header.php:24
+msgid "Contact us using"
+msgstr "Contactez-nous grâce à"
+
+#: payment-methods/wc-etransactions-abstract-gateway-instalments.php:177
+#: payment-methods/wc-etransactions-abstract-gateway.php:224
+msgid "Continue..."
+msgstr "Continuer..."
+
+#: classes/wc-etransactions-settings.php:317
+#: templates/admin/page-settings/popup/config.php:25
+msgid "Contract configuration"
+msgstr "Configuration du contrat"
+
+#: templates/admin/page-settings/popup/support.php:34
+msgid "Copied"
+msgstr "Copié"
+
+#: classes/wc-etransactions-settings.php:284
+#: classes/wc-etransactions-settings.php:285
+msgid "cURL installed but unable to retrieve version."
+msgstr "cURL installé mais impossible de récupérer la version."
+
+#: classes/wc-etransactions-settings.php:287
+#: classes/wc-etransactions-settings.php:288
+msgid "cURL not installed."
+msgstr "cURL n'est pas installé."
+
+#: classes/wc-etransactions-settings.php:298
+msgid "cURL version"
+msgstr "Version cURL"
+
+#: templates/admin/page-settings/instalment.php:124
+msgid "Days between each instalment"
+msgstr "Nombre de jours entre chaque échéance"
+
+#: templates/admin/deactivate-popup.php:17
+#: templates/admin/deactivate-popup.php:23
+msgid "Deactivate"
+msgstr "Désactiver"
+
+#: templates/admin/deactivate-popup.php:25
+msgid "Deactivate and Reset"
+msgstr "Désactiver et réinitialiser"
+
+#: templates/admin/deactivate-popup.php:18
+msgid "Deactivate, and remove all data"
+msgstr "Désactiver et supprimer toutes les données"
+
+#: templates/admin/page-settings/payment.php:70
+msgid "Debit type"
+msgstr "Type de débit"
+
+#: templates/admin/page-settings/payment.php:79
+msgid "Deferred"
+msgstr "Différé"
+
+#: classes/wc-etransactions-order.php:33 classes/wc-etransactions-order.php:53
+msgid "Deferred payment"
+msgstr "Paiement différé"
+
+#: templates/admin/page-settings/payment.php:130
+msgid ""
+"Define order statuses that trigger automatically the capture  for the "
+"remittance to bank of the transaction."
+msgstr ""
+"Définissez le ou les états de la commande qui déclenchent automatiquement la "
+"demande d'envoi en banque."
+
+#: templates/admin/page-settings/payment.php:95
+msgid "Delay"
+msgstr "Nombre de jours"
+
+#: templates/admin/page-settings/payment.php:109
+msgid "Delay (days) before remittance to bank"
+msgstr "Nombre de jours avant l'envoi en banque"
+
+#: templates/admin/page-settings/payment.php:184
+msgid "Display a generic payment option for all payment methods subscribed"
+msgstr "Ajouter un bouton unique pour tous les moyens de paiement souscrits"
+
+#: templates/admin/page-settings/payment.php:21
+msgid "Display of payment methods"
+msgstr "Affichage des moyens de paiement"
+
+#: templates/admin/page-settings/payment.php:155
+msgid "Display text"
+msgstr "Libellé"
+
+#: templates/admin/page-settings/header.php:22
+msgid "Do you have a question?"
+msgstr "Vous avez une question ?"
+
+#: templates/admin/page-settings/intro.php:22
+msgid "Don't show this again"
+msgstr "Ne plus afficher"
+
+#: templates/admin/page-settings/intro.php:42
+msgid "Easily manage your order from you Prestashop Back-Office."
+msgstr "Gérez simplement vos commandes depuis votre Back-Office PrestaShop."
+
+#: templates/admin/page-settings/instalment.php:84
+msgid "Enable %sx instalment payment"
+msgstr "Activer le paiement en %sx fois"
+
+#: templates/admin/page-settings/instalment.php:21
+msgid "Enable instalment"
+msgstr "Activer le paiement en plusieurs fois"
+
+#: templates/admin/page-settings/popup/config.php:88
+msgid "Enable this option only if the Support Team asks you to do it."
+msgstr "Activez cette option, uniquement à la demande du support."
+
+#: templates/admin/page-settings/popup/config.php:76
+msgid "Enable verbose logs"
+msgstr "Activer les logs étendues"
+
+#: templates/admin/page-settings/account.php:41
+msgid "Environment"
+msgstr "Environnement"
+
+#: templates/admin/page-settings/popup/config.php:37
+msgid "Error checking configuration."
+msgstr "Erreur lors du contrôle de la configuration."
+
+#: classes/wc-etransactions-settings.php:436
+msgid "EURO currency installed"
+msgstr "Monnaie EURO installée"
+
+#: templates/admin/page-settings/payment.php:91
+msgid "Event that will trigger remittance to bank"
+msgstr "Déclenchement de l'envoi en banque"
+
+#: templates/admin/page-settings/payment.php:141
+msgid "File types accepted for logos are: .png .gif .jpg only"
+msgstr ""
+"Vous pouvez charger des nouveaux logos au format .png, .jpg ou .gif "
+"uniquement."
+
+#: templates/admin/page-settings/instalment.php:95
+msgid ""
+"First instalment correspond to the day of the payment of order. You will be "
+"credited at every instalment."
+msgstr ""
+"La 1ère échéance correspond au jour du paiement - Vous serez crédité au fur "
+"et à mesure des dates d'échéances."
+
+#: templates/admin/page-settings/changelog.php:30
+msgid ""
+"Fixed : Restored the original HMAC key from V2 if the new one is empty or "
+"invalid"
+msgstr ""
+"Corrigé : restauration de la clé HMAC d'origine à partir de la version 2 si "
+"la nouvelle est vide ou non valide"
+
+#: templates/admin/page-settings/changelog.php:29
+msgid "Fixed : V2 to V3 data migration, problem with the HMAC key"
+msgstr "Corrigé : Migration des données V2 vers V3, problème avec la clé HMAC"
+
+#: templates/admin/page-settings/payment.php:157
+msgid "From"
+msgstr "A partir de"
+
+#: templates/admin/order/payment-info.php:21
+msgid "Funds have been captured successfully."
+msgstr "Montant capturé avec succès"
+
+#: templates/admin/page-settings/account.php:91
+msgid ""
+"Generate your HMAC secret key in you Vision Back-Office in Production "
+"environment"
+msgstr ""
+"Clé secrète HMAC à générer depuis votre Back-office Vision en environnement "
+"de Production."
+
+#: templates/admin/page-settings/account.php:83
+msgid ""
+"Generate your HMAC secret key in you Vision Back-Office in Test environment"
+msgstr ""
+"Clé secrète HMAC à générer depuis votre Back-Office Vision en environnement "
+"de Test."
+
+#: templates/admin/page-settings/payment.php:25
+msgid "Grouped"
+msgstr "Regroupé"
+
+#: templates/admin/page-settings/account.php:124
+msgid "HMAC key"
+msgstr "Clé HMAC"
+
+#. Author URI of the plugin
+msgid ""
+"https://www.ca-moncommerce.com/espace-client-mon-commerce/up2pay-e-"
+"transactions/"
+msgstr ""
+"https://www.ca-moncommerce.com/espace-client-mon-commerce/up2pay-e-"
+"transactions/"
+
+#: templates/admin/page-settings/intro.php:82
+msgid "I already have an account"
+msgstr "J'ai reçu mes identifiants"
+
+#: templates/admin/page-settings/account.php:157
+msgid "I want to request frictionless transactions 3DS"
+msgstr "Je souhaite demander du frictionless sur les transactions 3DS"
+
+#: templates/admin/page-settings/account.php:72
+#: templates/admin/page-settings/account.php:116
+msgid "ID"
+msgstr "Identifiant"
+
+#: templates/admin/page-settings/popup/config.php:39
+msgid ""
+"If you have any problems, please do not hesitate to contact e-Transactions "
+"support."
+msgstr ""
+"Si vous avez des problèmes, n'hésitez pas à contacter le support e-"
+"Transactions."
+
+#: templates/admin/page-settings/payment.php:74
+msgid "Immediate"
+msgstr "Immédiat"
+
+#: classes/wc-etransactions-settings.php:348
+msgid "Inactive plugins"
+msgstr "Extensions inactifs"
+
+#: templates/admin/page-settings/instalment.php:13
+msgid "Instalment configuration"
+msgstr "CONFIGURATION DU PAIEMENT EN PLUSIEURS FOIS"
+
+#: templates/admin/order/payment-info.php:176
+msgid "Instalment details"
+msgstr "Détails du versement"
+
+#: templates/admin/page-settings/payment.php:208
+msgid "Integrated"
+msgstr "Intégré"
+
+#: templates/admin/order/payment-info.php:128
+msgid ""
+"It is only possible to refund the first installment, for the other cash "
+"functions, it is necessary to perform the actions on the Vision back-office."
+msgstr ""
+"il n'est possible de rembourser que la première échéance, pour les autres "
+"fonctionnalités de caisse, il est nécessaire d'effectuer les actions sur le "
+"back-office Vision."
+
+#: templates/admin/page-settings/payment.php:156
+msgid "Logo"
+msgstr "Logo"
+
+#: templates/admin/page-settings/instalment.php:108
+#: templates/admin/page-settings/payment.php:50
+msgid "Logo displayed on your payment page"
+msgstr "Logo affiché sur votre page de paiement"
+
+#: templates/admin/page-settings/popup/config.php:64
+msgid "Logs"
+msgstr "Logs"
+
+#: classes/wc-etransactions-settings.php:306
+msgid "Main configuration"
+msgstr "Configuration principale"
+
+#: templates/admin/order/payment-info.php:119
+msgid "Make refund"
+msgstr "Rembourser"
+
+#: templates/admin/page-settings/instalment.php:156
+msgid "Maximum amount of order to display payment option"
+msgstr "Montant maximum pour afficher l'option de paiement"
+
+#: templates/admin/page-settings/account.php:171
+msgid "Maximum amount requested can't exceed %d %s"
+msgstr "Le montant maximum demandé ne peut pas dépasser %d %s"
+
+#: templates/admin/order/payment-info.php:53
+msgid "Means of payment"
+msgstr "Type de carte"
+
+#: templates/admin/page-settings/instalment.php:148
+msgid "Minimum amount of order to display payment option"
+msgstr "Montant minimum pour afficher l'option de paiement"
+
+#: templates/admin/page-settings/changelog.php:11
+msgid "Module version v%s"
+msgstr "Version du module v%s"
+
+#: templates/admin/page-settings/account.php:13
+msgid "My Account"
+msgstr "Mon contrat"
+
+#: classes/wc-etransactions-settings.php:300
+#: classes/wc-etransactions-settings.php:301
+#: templates/admin/order/payment-info.php:58
+#: templates/admin/page-settings/account.php:29
+#: templates/admin/page-settings/instalment.php:29
+#: templates/admin/page-settings/instalment.php:92
+#: templates/admin/page-settings/payment.php:202
+#: templates/admin/page-settings/payment.php:221
+#: templates/admin/page-settings/popup/config.php:57
+#: templates/admin/page-settings/popup/config.php:84
+msgid "No"
+msgstr "Non"
+
+#: classes/wc-etransactions-settings.php:478
+msgid "No log files found!"
+msgstr "Aucun fichier journal trouvé !"
+
+#: classes/wc-etransactions-settings.php:46
+msgid "No results found"
+msgstr "Aucun résultat trouvé"
+
+#: templates/admin/page-settings/payment.php:116
+msgid ""
+"Number of days before integration of your transaction in remittance to bank "
+"treatment."
+msgstr ""
+"Nombre de jours d'attente avant prise en compte de votre transaction lors du "
+"prochain traitement d'envoi en banque."
+
+#: templates/admin/page-settings/instalment.php:131
+msgid ""
+"Number of days between each instalment. Delay between the first payment on "
+"the last instalment can't exceed 90 days."
+msgstr ""
+"Nombre de jours entre chaque échéance. Le délai entre le 1er paiement et la "
+"dernière échéance ne doit pas excéder 90 jours."
+
+#: templates/admin/page-settings/intro.php:40
+msgid ""
+"Offer your customer a shop integrated payment form or a hosted payment page."
+msgstr ""
+"Choisissez une page de paiement intégrée à votre boutique ou en redirection."
+
+#: templates/admin/page-settings/popup/config.php:70
+msgid "Older files can be accessed on your server, in %s directory."
+msgstr ""
+"Les fichiers plus anciens sont accessibles sur votre serveur, dans le "
+"répertoire %s."
+
+#: classes/wc-etransactions-settings.php:299
+msgid "OpenSSL version"
+msgstr "Version OpenSSL"
+
+#: templates/admin/order/payment-info.php:152
+msgid "Operation amount"
+msgstr "Montant"
+
+#: templates/admin/order/payment-info.php:153
+msgid "Operation date"
+msgstr "Date"
+
+#: templates/admin/order/payment-info.php:151
+msgid "Operation type"
+msgstr "Type d'opération"
+
+#: templates/admin/order/payment-info.php:146
+msgid "Operations history"
+msgstr "Historique des opérations"
+
+#: templates/admin/page-settings/payment.php:100
+msgid "Order status"
+msgstr "Etat commande"
+
+#: templates/admin/page-settings/payment.php:121
+msgid "Order statuses that trigger capture"
+msgstr "Etat(s) de la commande déclenchant l'envoi en banque"
+
+#: classes/wc-etransactions-order.php:34 classes/wc-etransactions-order.php:61
+msgid "Partially refunded"
+msgstr "Partiellement remboursé"
+
+#: global-functions.php:282
+msgid "Pay in 2 instalments with credit card"
+msgstr "Payer en 2 fois par carte bancaire"
+
+#: global-functions.php:292
+msgid "Pay in 3 instalments with credit card"
+msgstr "Payer en 3 fois par carte bancaire"
+
+#: global-functions.php:302
+msgid "Pay in 4 instalments with credit card"
+msgstr "Payer en 4 fois par carte bancaire"
+
+#: global-functions.php:138
+msgid "Pay with AMEX"
+msgstr "Payer avec AMEX"
+
+#: global-functions.php:250
+msgid "Pay with Bimply"
+msgstr "Payer avec Bimply"
+
+#: global-functions.php:124
+msgid "Pay with credit card"
+msgstr "Payer par carte bancaire"
+
+#: global-functions.php:194
+msgid "Pay with CV Connect"
+msgstr "Payer avec CV Connect"
+
+#: global-functions.php:166
+msgid "Pay with Diners"
+msgstr "Payer avec Diners"
+
+#: global-functions.php:180
+msgid "Pay with JCB"
+msgstr "Payer avec JCB"
+
+#: classes/wc-etransactions-gateways.php:177
+msgid "Pay with my previously stored card - %s - %s/%s"
+msgstr "Payer avec ma carte enregistrée - %s - %s/%s"
+
+#: global-functions.php:152
+msgid "Pay with Paypal"
+msgstr "Payer avec Paypal"
+
+#: global-functions.php:208
+msgid "Pay with Pluxee"
+msgstr "Payer avec Pluxee"
+
+#: global-functions.php:236
+msgid "Pay with UnionPay"
+msgstr "Payer avec UnionPay"
+
+#: global-functions.php:222
+msgid "Pay with Up Déjeuner"
+msgstr "Payer avec Up Déjeuner"
+
+#: templates/admin/page-settings/payment.php:13
+msgid "Payment configuration"
+msgstr "CONFIGURATION DU PAIEMENT EN UNE FOIS"
+
+#: templates/admin/page-settings/payment.php:151
+msgid "Payment display"
+msgstr "Affichage"
+
+#: payment-methods/wc-etransactions-abstract-gateway-instalments.php:299
+#: payment-methods/wc-etransactions-abstract-gateway-instalments.php:311
+#: payment-methods/wc-etransactions-abstract-gateway-instalments.php:323
+#: payment-methods/wc-etransactions-abstract-gateway-instalments.php:334
+#: payment-methods/wc-etransactions-abstract-gateway.php:382
+#: payment-methods/wc-etransactions-abstract-gateway.php:394
+#: payment-methods/wc-etransactions-abstract-gateway.php:405
+msgid "Payment error: Please try again"
+msgstr "Erreur de paiement : veuillez réessayer"
+
+#: classes/wc-etransactions-settings.php:326
+msgid "Payment setup"
+msgstr "Configuration du paiment"
+
+#: templates/admin/page-settings/instalment.php:136
+msgid "Payments division"
+msgstr "Répartition du montant des échéances"
+
+#: templates/admin/order/payment-info.php:193
+msgid "Pending payment"
+msgstr "En attente de paiement"
+
+#: templates/admin/order/payment-info.php:184
+msgid "Performed date"
+msgstr "Date d'exécution"
+
+#: classes/wc-etransactions-settings.php:295
+#: classes/wc-etransactions-settings.php:432
+msgid "PHP version"
+msgstr "Version de PHP"
+
+#: classes/wc-etransactions-front.php:41
+#: classes/wc-etransactions-gateways.php:308
+#: payment-methods/wc-etransactions-abstract-gateway-instalments.php:68
+#: payment-methods/wc-etransactions-abstract-gateway.php:85
+msgid "Please fill a valid number"
+msgstr "Merci de saisir une numéro valide"
+
+#: classes/wc-etransactions-settings.php:188
+msgid "Please fill in all the required fields."
+msgstr "Veuillez remplir tous les champs obligatoires."
+
+#: templates/admin/page-settings/payment.php:104
+msgid ""
+"Please note that order status option, allow to trigger remittance also "
+"manually by using action button in order detail."
+msgstr ""
+"L'option \"état de commande\" permet également le déclenchement manuel avec "
+"un bouton disponible dans la commande."
+
+#: classes/wc-etransactions-settings.php:268
+msgid "Please try again."
+msgstr "Veuillez réessayer."
+
+#: classes/wc-etransactions-settings.php:304
+msgid "Plugin configuration"
+msgstr "Configuration d'extension"
+
+#: classes/wc-etransactions-settings.php:297
+msgid "Plugin version"
+msgstr "Version d'extension"
+
+#: templates/admin/order/payment-info.php:185
+msgid "Predicted date"
+msgstr "Date prévue"
+
+#: templates/admin/page-settings/account.php:145
+msgid "Premium"
+msgstr "Premium"
+
+#: templates/admin/page-settings/intro.php:61
+msgid "Premium Offer"
+msgstr "OFFRE PREMIUM"
+
+#: templates/admin/page-settings/popup/config.php:10
+msgid "Prerequisites"
+msgstr "Pré-requis"
+
+#: wc-etransactions.php:30
+msgid "Previous plugin already installed. deactivate the previous one first."
+msgstr "Plugin précédent déjà installé. désactivez d’abord le précédent."
+
+#: templates/admin/page-settings/account.php:50
+msgid "Production"
+msgstr "Production"
+
+#: templates/admin/page-settings/account.php:88
+msgid "PRODUCTION HMAC key"
+msgstr "Clé HMAC de PRODUCTION"
+
+#: templates/admin/page-settings/instalment.php:32
+msgid ""
+"Propose payment of order with multiple instalment in 2, 3 or 4 times (future "
+"instalment are not garanteed in case of payment refused)."
+msgstr ""
+"Proposez d’échelonner le paiement des commandes en 2, 3, ou 4 fois (les "
+"futures échéances ne sont pas garanties en cas de défaut de paiement)."
+
+#: templates/admin/page-settings/account.php:64
+#: templates/admin/page-settings/account.php:108
+msgid "Rank"
+msgstr "Rang"
+
+#: templates/admin/page-settings/payment.php:209
+msgid "Redirected"
+msgstr "Redirigé"
+
+#: templates/admin/order/payment-info.php:103
+#: templates/admin/order/payment-info.php:160
+msgid "Refund"
+msgstr "Remboursement"
+
+#: templates/admin/order/payment-info.php:30
+msgid "Refund done successfully."
+msgstr "Remboursement effectué avec succès"
+
+#: templates/admin/page-settings/payment.php:189
+msgid "remove"
+msgstr "retirer"
+
+#: templates/admin/page-settings/account.php:179
+#: templates/admin/page-settings/instalment.php:178
+#: templates/admin/page-settings/payment.php:277
+#: templates/admin/page-settings/popup/config.php:94
+msgid "Save"
+msgstr "Enregistrer"
+
+#: templates/admin/page-settings/intro.php:41
+msgid "Secure your transactions with 3D-Secure v2 (PSD2 compliant)."
+msgstr "Sécurisez vos transactions avec le 3D-Secure v2 (conforme DSP2)."
+
+#: global-functions.php:264
+msgid "Secured payment by Credit Agricole"
+msgstr "Paiement sécurisé via Crédit Agricole"
+
+#: classes/wc-etransactions-settings.php:45
+msgid "Select Some Options"
+msgstr "Sélectionnez quelques options"
+
+#: classes/wc-etransactions-settings.php:296
+msgid "Server info"
+msgstr "Informations sur le serveur"
+
+#: classes/wc-etransactions-settings.php:336
+msgid "Setting up payment methods"
+msgstr "Configuration des méthodes de paiment"
+
+#: classes/wc-etransactions-settings.php:81
+#: classes/wc-etransactions-settings.php:82
+msgid "Settings"
+msgstr "Paramètres"
+
+#: templates/admin/page-settings/intro.php:88
+msgid "Sign-up"
+msgstr "Je souscris"
+
+#: templates/admin/page-settings/account.php:56
+#: templates/admin/page-settings/account.php:100
+msgid "Site Number"
+msgstr "Numéro de site"
+
+#: templates/admin/order/payment-info.php:183
+msgid "State"
+msgstr "Etat de l'échéance"
+
+#: classes/wc-etransactions-front.php:42
+#: classes/wc-etransactions-gateways.php:348
+msgid "Store my credit card details for future payments."
+msgstr "Enregistrer ma carte pour de futurs paiements"
+
+#: templates/admin/order/payment-info.php:84
+msgid "Submit"
+msgstr "Soumettre"
+
+#: templates/admin/page-settings/intro.php:44
+msgid "Take advantage of support provided by e-Commerce experts."
+msgstr "Accompagnement par des experts du e-Commerce."
+
+#: templates/admin/page-settings/account.php:45
+msgid "Test"
+msgstr "Test"
+
+#: templates/admin/page-settings/account.php:80
+msgid "TEST HMAC key"
+msgstr "Clé HMAC de TEST"
+
+#: templates/admin/page-settings/intro.php:83
+msgid "Test using demo account"
+msgstr "Je teste avec le compte de demo"
+
+#: templates/admin/page-settings/intro.php:13
+msgid "The ideal solution"
+msgstr "LA SOLUTION IDÉALE"
+
+#: templates/admin/page-settings/popup/config.php:87
+msgid "The minimum log level will be set to Debug."
+msgstr "Le niveau de journalisation minimum sera défini sur Debug."
+
+#: templates/admin/page-settings/header.php:26
+msgid "this link"
+msgstr "ce lien"
+
+#: templates/admin/page-settings/instalment.php:100
+#: templates/admin/page-settings/payment.php:42
+msgid "Title displayed on your payment page"
+msgstr "Texte affiché sur votre page de paiement"
+
+#: templates/admin/page-settings/payment.php:45
+msgid ""
+"Title of generic payment option displayed on your page with means of payment "
+"choices (for translation edit the .pot file)."
+msgstr ""
+"Libellé du moyen de paiement Up2pay e-Transactions regroupé qui s'affichera "
+"sur votre page de choix des moyens de paiement. (pour la traduction éditez "
+"le fichier .pot)."
+
+#: templates/admin/page-settings/instalment.php:103
+msgid ""
+"Title of instalment payment option displayed on your page with means of "
+"payment choices."
+msgstr ""
+"Libellé du moyen de paiement en plusieurs fois qui s'affichera sur votre "
+"page de choix des moyens de paiement."
+
+#: templates/admin/page-settings/intro.php:14
+msgid "to accept online payments!"
+msgstr "POUR ENCAISSER LES PAIEMENTS EN LIGNE !"
+
+#: templates/admin/deactivate-popup.php:15
+msgid "To deactivate the plugin correctly, please select if you want to:"
+msgstr ""
+"Pour désactiver correctement le plugin, veuillez sélectionner si vous "
+"souhaitez :"
+
+#: templates/admin/order/payment-info.php:49
+msgid "Transaction amount"
+msgstr "Total"
+
+#: templates/admin/order/payment-info.php:45
+#: templates/admin/order/payment-info.php:181
+msgid "Transaction number"
+msgstr "Numéro de transaction"
+
+#: classes/wc-etransactions-settings.php:90
+#: classes/wc-etransactions-settings.php:91
+msgid "Transactions"
+msgstr "Transactions"
+
+#: classes/wc-etransactions-settings.php:71
+msgid "Up2pay"
+msgstr "Up2pay"
+
+#: classes/wc-etransactions-settings.php:440
+msgid "Up2pay account configured"
+msgstr "Contrat Up2pay e-Transactions existant"
+
+#. Plugin Name of the plugin
+#. Author of the plugin
+msgid "Up2pay e-Transactions"
+msgstr "Up2pay e-Transactions"
+
+#: classes/wc-etransactions-order.php:150
+#: payment-methods/wc-etransactions-standard-gateway.php:22
+#: payment-methods/wc-etransactions-threetime-gateway.php:22
+msgid "Up2pay e-Transactions Crédit Agricole"
+msgstr "Up2pay e-Transactions Crédit Agricole"
+
+#: payment-methods/wc-etransactions-standard-gateway.php:23
+#: payment-methods/wc-etransactions-threetime-gateway.php:23
+msgid ""
+"Up2pay e-Transactions est la solution de paiement à distance dans un "
+"environnement sécurisé du Crédit Agricole."
+msgstr ""
+"Up2pay e-Transactions est la solution de paiement à distance dans un "
+"environnement sécurisé du Crédit Agricole."
+
+#. Description of the plugin
+msgid "Up2pay e-Transactions gateway payment plugins for WooCommerce"
+msgstr "Extension de paiement Up2pay e-Transactions pour WooCommerce"
+
+#: templates/admin/page-settings/account.php:136
+msgid "Up2pay e-Transactions offer subscribed"
+msgstr "Offre Up2pay e-Transactions souscrite"
+
+#: templates/admin/page-settings/account.php:147
+msgid ""
+"Up2pay e-Transactions offer subscribed with your Credit Agricole Regional "
+"Bank."
+msgstr ""
+"Offre Up2pay e-Transactions souscrite auprès de votre Caisse Régionale du "
+"Crédit Agricole."
+
+#: classes/wc-etransactions-settings.php:70
+msgid "Up2pay Settings"
+msgstr "Paramètres Up2pay"
+
+#: templates/admin/page-settings/instalment.php:113
+#: templates/admin/page-settings/payment.php:55
+#: templates/admin/page-settings/payment.php:236
+msgid "Upload"
+msgstr "Télécharger"
+
+#: templates/admin/page-settings/popup/config.php:49
+msgid "Use another production platform"
+msgstr "Utiliser une autre plateforme de production"
+
+#: templates/admin/page-settings/account.php:21
+msgid "Use demo mode"
+msgstr "Utiliser le mode de démonstration"
+
+#: templates/admin/page-settings/header.php:35
+msgid "User guide"
+msgstr "Guide utilisateur"
+
+#: templates/admin/page-settings/instalment.php:119
+#: templates/admin/page-settings/payment.php:61
+msgid ""
+"We recommend that you use images with 30px height & 120px length maximum."
+msgstr "image de 120px de longueur et 30px de hauteur maxium recommandée."
+
+#: templates/admin/page-settings/payment.php:142
+msgid ""
+"We recommend that you use images with 40px height & 120px length maximum"
+msgstr ""
+"Nous vous recommandons une image de 120px de longueur et 40px de hauteur "
+"maximum."
+
+#: templates/admin/page-settings/changelog.php:19
+msgid "What's new in the version"
+msgstr "Nouveautés de la version"
+
+#: templates/admin/page-settings/changelog.php:23
+msgid "What's new in version %s"
+msgstr "Les nouveautés de la version %s"
+
+#: templates/admin/page-settings/changelog.php:12
+msgid "What's new?"
+msgstr "Nouveautés de la version"
+
+#: templates/admin/page-settings/popup/support.php:23
+msgid ""
+"When you contact support and in order to provide as much information as "
+"possible on the settings of your store and your plugin, please copy the "
+"information below and paste it into your message to support."
+msgstr ""
+"Lorsque vous contactez le support et afin de fournir un maximum "
+"d'information sur le paramétrage de votre boutique et de votre module, "
+"veuillez copier les informations ci-dessous et les coller dans votre message "
+"au support."
+
+#: templates/admin/page-settings/account.php:166
+msgid "Whose amount is less than or equal"
+msgstr "dont le montant est inférieur ou égale à"
+
+#: templates/admin/page-settings/account.php:32
+#: templates/admin/page-settings/account.php:127
+msgid ""
+"With demo mode you can check this module and fonctionalities of Up2pay e-"
+"Transactions solution."
+msgstr ""
+"Testez ce module et les fonctionnalités de la solution Up2pay e-Transactions "
+"avec un compte de démonstration ou en utilisant vos identifiants personnels "
+"avec vos options."
+
+#: classes/wc-etransactions-gateways.php:268
+msgid "WooCommerce must be activated."
+msgstr "WooCommerce doit être activé."
+
+#: classes/wc-etransactions-settings.php:292
+msgid "WordPress & server configuration"
+msgstr "WordPress & configuration serveur"
+
+#: classes/wc-etransactions-settings.php:301
+msgid "WordPress debug mode enabled"
+msgstr "WordPress debug mode activé"
+
+#: classes/wc-etransactions-settings.php:300
+msgid "WordPress multisite enabled"
+msgstr "WordPress multisite activé"
+
+#: classes/wc-etransactions-settings.php:294
+msgid "WordPress version"
+msgstr "Version WordPress"
+
+#: classes/wc-etransactions-settings.php:300
+#: classes/wc-etransactions-settings.php:301
+#: templates/admin/order/payment-info.php:58
+#: templates/admin/page-settings/account.php:28
+#: templates/admin/page-settings/instalment.php:28
+#: templates/admin/page-settings/instalment.php:91
+#: templates/admin/page-settings/payment.php:201
+#: templates/admin/page-settings/payment.php:220
+#: templates/admin/page-settings/popup/config.php:56
+#: templates/admin/page-settings/popup/config.php:83
+msgid "Yes"
+msgstr "Oui"
+
+#: classes/wc-etransactions-front.php:39
+#: classes/wc-etransactions-gateways.php:297
+msgid "You are using Up2Pay %s environment"
+msgstr "Vous êtes en mode %s avec vos identifiants"
+
+#: templates/admin/page-settings/payment.php:266
+msgid "You can activate means of payment only included in your contract."
+msgstr ""
+"Vous pouvez activer l'affichage des moyens de paiement dans la limite de "
+"ceux souscrits dans votre contrat."
+
+#: templates/admin/page-settings/instalment.php:118
+#: templates/admin/page-settings/payment.php:60
+msgid "You can upload here a new logo."
+msgstr "Vous pouvez charger un nouveau logo ici."
+
+#: classes/wc-etransactions-front.php:40
+#: classes/wc-etransactions-gateways.php:303
+msgid "You must enter a valid phone number to place an order"
+msgstr "Merci de saisir un numéro de mobile valide pour passer commande"
+
+#: payment-methods/wc-etransactions-abstract-gateway-instalments.php:171
+#: payment-methods/wc-etransactions-abstract-gateway.php:218
+msgid ""
+"You will be redirected to the E-Transactions payment page. If not, please "
+"use the button bellow."
+msgstr ""
+"Vous serez redirigé vers la page de paiement E-Transactions. Sinon, veuillez "
+"utiliser le bouton ci-dessous."
+
+#: templates/admin/page-settings/demo-mode.php:19
+msgid "Your are using the %s mode"
+msgstr "Vous êtes en mode %s"
+
+#: templates/admin/page-settings/intro.php:43
+msgid "Your bank account credited at D+1."
+msgstr "Crédit sur votre compte à J+1."
+
+#: templates/admin/page-settings/popup/config.php:31
+msgid "Your plugin is correctly configured with your contract."
+msgstr "Votre extension est correctement configuré avec votre contrat."
+
+#: templates/admin/page-settings/popup/config.php:38
+msgid ""
+"Your plugin is not correctly configured with your contract or an error has "
+"occurred. Please check your configuration and check again."
+msgstr ""
+"Votre extension n'est pas correctement configuré avec votre contrat ou une "
+"erreur est survenue. Veuillez vérifier votre configuration et vérifier à "
+"nouveau."
