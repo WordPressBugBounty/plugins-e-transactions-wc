@@ -35,7 +35,7 @@
 <?php foreach ( $transactions as $transaction ):
 
     $transaction_number = $transaction['captured'] ? $transaction['numtrans'] : $transaction['auth_numtrans'];
-    $capturable_amount  = $transaction['captured'] ? 0 : $transaction['amount'];
+    $capturable_amount  = $transaction['captured'] ? $transaction['amount'] - $transaction['amount_captured'] : $transaction['amount'];
     $refundable_amount  = $transaction['captured'] ? ( $transaction['amount_captured'] - $order_refunded_amount ) : 0;
 
     ?>
@@ -75,13 +75,14 @@
                                 <div class="wc-etransactions__block__item__title"><?php _e('Amount that can be captured', 'wc-etransactions'); ?></div>
                                 <div class="wc-etransactions__block__item__content"><?php echo wc_price($capturable_amount); ?></div>
                             </div>
-                            <?php if ($capturable_amount): ?>
+                            <?php if ( $transaction['amount_captured'] <= $capturable_amount ): ?>
                                 <hr>
                                 <div>
                                     <div class="wc-etransactions__block__group-money">
                                         <input type="text" name="wc-etransactions-capture[amount_to_capture]" onchange="this.value = parseFloat(this.value.replace(/,/g, '.')) || 0" value="<?php echo esc_attr($capturable_amount); ?>">
                                         <span class="symbol"><?php echo get_woocommerce_currency_symbol(); ?></span>
-                                        <button type="submit" name="wc-etransactions-order-submit" value="capture" class="button button-primary" ><?php _e('Submit', 'wc-etransactions') ?></button>
+                                        <button name="wc-etransactions-order-submit" value="capture" class="button button-primary" ><?php _e('Submit', 'wc-etransactions') ?><span class="spinner"></span></button>
+										<div class="message"></div>
                                     </div>
                                     <input type="hidden" name="wc-etransactions-capture[id_order]" value="<?php echo esc_attr($order->get_id()); ?>"/>
                                     <input type="hidden" name="wc-etransactions-capture[numappel]" value="<?php echo esc_attr($transaction['numappel']); ?>"/>
@@ -116,7 +117,8 @@
                                 <div class="wc-etransactions__block__group-money">
                                     <input type="text" name="wc-etransactions-refund[amount_to_refund]" onchange="this.value = parseFloat(this.value.replace(/,/g, '.')) || 0" value="<?php echo esc_attr($is_instalement ? $deadlines[0]['amount'] : $refundable_amount ); ?>">
                                     <span class="symbol"><?php echo get_woocommerce_currency_symbol(); ?></span>
-                                    <button type="submit" name="wc-etransactions-order-submit" value="refund" class="button button-primary"><?php _e('Make refund', 'wc-etransactions'); ?></button>
+                                    <button name="wc-etransactions-order-refund" value="refund" class="button button-primary"><?php _e('Make refund', 'wc-etransactions'); ?><span class="spinner"></span></button>
+									<div class="message"></div>
                                 </div>
                                 <input type="hidden" name="wc-etransactions-refund[id_order]" value="<?php echo esc_attr($order->get_id()); ?>"/>
                                 <?php wp_nonce_field( 'wc-etransactions-order-action', 'wc-etransactions-order-action-nonce'); ?>

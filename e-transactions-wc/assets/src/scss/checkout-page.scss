@@ -1,0 +1,60 @@
+.wce-notice-warning {
+    background-color: rgba(255,154,82,.3);
+    border: 1px solid #ff9a52;
+}
+
+.wce-notice-padding {
+    padding: 0.75rem 1.25rem;
+}
+
+.wce-number-notice {
+    margin-top: 10px;
+}
+
+.wce-hide {
+    display: none !important;
+}
+
+.wce-number-input {
+    position: relative;
+    padding: 10px 0;
+    padding-bottom: 20px;
+
+    input {
+        width: 250px;
+    }
+}
+
+.wce_up2pay_phone_valid {
+    display: inline-block;
+    float: none !important;
+    width: 20px;
+    height: auto;
+    vertical-align: middle;
+}
+
+.wce_up2pay_phone_error {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    display: block;
+    font-size: 13px;
+    color: red;
+}
+
+.iti__selected-country {
+    display: flex !important;
+    border: 0 !important;
+    font-size: 16px !important;
+    line-height: 1.618 !important;
+    padding: 8px 15px !important;
+    color: #000 !important;
+}
+
+.iti__tel-input {
+    padding-top: 2px !important;
+    padding-right: 6px !important;
+    padding-bottom: 2px !important;
+    font-size: 16px !important;
+    line-height: 1.618 !important;
+}

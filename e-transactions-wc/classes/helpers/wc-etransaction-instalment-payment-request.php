@@ -92,7 +92,7 @@ class WC_Etransactions_Instalment_Payment_Request extends WC_Etransactions_Abstr
         $remaining_amount = $order_total - $total_instalment;
         $this->set_param( 'PBX_2MONT' . ($partial_payments - 1), sprintf('%03d', $remaining_amount) );
         $this->set_param( 'PBX_DATE' . ($partial_payments - 1), wp_date( 'd/m/Y', strtotime('+' . ($days_between_payments * ($partial_payments - 1)) . ' day' ) ) );
-        $this->set_param( 'PBX_CMD', $partial_payments . 'x' . $this->order->get_id() . '_' . trim(str_replace('&', '_', preg_replace("/[^A-Za-z0-9+_]/", '', remove_accents($this->order->get_billing_first_name() . '_' . $this->order->get_billing_last_name())))) . '_' . wp_date('mdHi') );
+        $this->set_param( 'PBX_CMD', 'woo_'.$partial_payments . 'x' . $this->order->get_id() . '_' . trim(str_replace('&', '_', preg_replace("/[^A-Za-z0-9+_]/", '', remove_accents($this->order->get_billing_first_name() . '_' . $this->order->get_billing_last_name())))) . '_' . wp_date('mdHi') );
 
         $hmac = hash_hmac( 'sha512', trim(wc_etransactions_stringfy($this->params)), pack('H*', $account_credentials['account_hmac']) );
         $this->set_param( 'PBX_HMAC', $hmac );

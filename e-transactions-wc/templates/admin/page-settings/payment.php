@@ -87,6 +87,7 @@
 
             <table class="wc-etransactions__section__body__table form-table <?php echo $payment_debit_type !== 'deferred' ? 'hide' : ''; ?>" id="WCE-JS-payment-table-deferred">
 
+				<?php if ( WC_Etransactions_Account::ACCOUNT_CONTRACT_ACCESS_PREMIUM === $account_contract_access ): ?>
                 <tr>
                     <th><?php _e( "Event that will trigger remittance to bank", 'wc-etransactions' ); ?></th>
                     <td>
@@ -104,6 +105,7 @@
                         <p class="description"><?php _e( "Please note that order status option, allow to trigger remittance also manually by using action button in order detail.", 'wc-etransactions'); ?></p>
                     </td>
                 </tr>
+				<?php endif; ?>
 
                 <tr class="<?php echo $payment_capture_event !== 'days' ? 'hide' : ''; ?>" id="WCE-JS-payment-table-days">
                     <th><?php _e( "Delay (days) before remittance to bank", 'wc-etransactions' ); ?></th>

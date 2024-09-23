@@ -26,9 +26,13 @@
                     // echo wp_kses_post( wpautop( wptexturize( $changelog_text ) ) );
                 ?>
                 <ul>
-                    <li><?php _e( 'Fixed : V2 to V3 data migration, problem with the HMAC key', 'wc-etransactions' ) ?></li>
-                    <li><?php _e( 'Fixed : Restored the original HMAC key from V2 if the new one is empty or invalid', 'wc-etransactions' ) ?></li>
+                    <li><?php _e( 'Better gestion of update process', 'wc-etransactions' ) ?></li>
+                    <li><?php _e( 'Fixed : Timeout on migration of old orders to "Processing" status (from "Capture" status)', 'wc-etransactions' ) ?></li>
                 </ul>
+
+                <h3><?php  esc_html_e( "Incompatibility", 'wc-etransactions' ); ?></h3>
+                <p><?php esc_html_e("If you encounter issues to access to the payment page, please make sure you are not using the SEO KEY plugin because it creates an incompatibly with our payment plugin. We are currently working on a way to solve this incompatibility. The Anti spam by CleanTalk module can also block access to the payment page according to its settings.", 'wc-etransactions');?></p>
+
             </div>
         </div>
     </div>

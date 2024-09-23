@@ -119,7 +119,9 @@ abstract class WC_Etransactions_Abstract_Gateway extends WC_Payment_Gateway {
 
         add_action( 'woocommerce_receipt_' . $this->id, array( $this, 'receipt_page' ) );
         add_action( 'woocommerce_api_' . strtolower(get_class($this)), array( $this, 'api_call' ) );
-	}
+        /* Exception SEOKEY */
+        remove_action('wp_head', 'seokey_head_data',1);
+    }
 
     /**
      * Build and send the request to get the form data
@@ -149,11 +151,10 @@ abstract class WC_Etransactions_Abstract_Gateway extends WC_Payment_Gateway {
         $this->payment_request_class->set_gateway_class( get_class( $this ) );
         $this->payment_request_class->set_gateway_params( $this->params );
         $this->payment_request_class->set_order( $order );
-        $response   = $this->payment_request_class->send_request();
-        $params     = $this->payment_request_class->get_params();
+        $response = $this->payment_request_class->send_request();
+        $params = $this->payment_request_class->get_params();
 
         if ( $response ) {
-
             echo $this->generate_payment_form( $order, $params );
 
         } else {
@@ -412,10 +413,7 @@ abstract class WC_Etransactions_Abstract_Gateway extends WC_Payment_Gateway {
         }
 
         $data = $order->get_meta( 'wc-etransactions-data', true );
-        if ( empty($data) ) {
-            $order->set_status( 'wc-e-capture' );
-            $order->save();
-        }
+        if ( empty($data) ) {}
 
         WC()->cart->empty_cart();
 		wp_redirect( $order->get_checkout_order_received_url() );

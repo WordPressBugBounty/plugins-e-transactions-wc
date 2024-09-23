@@ -1,0 +1,243 @@
+.wc-etransactions__section--intro {
+    background-color: $color-white;
+    border: 1px solid $color-border;
+    border-radius: 5px;
+    margin-bottom: 20px;
+
+    &__header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 15px;
+
+        &__title {
+            display: flex;
+            font-size: 16px;
+            font-weight: bold;
+            text-transform: uppercase;
+            padding: 0;
+            margin: 0;
+            
+            & .main {
+                display: inline-block;
+                color: $color-white;
+                background: $color-intro;
+                padding: 10px 2.5px 10px 15px;
+            }
+            
+            & .inverse {
+                display: inline-block;
+                color: $color-intro;
+                background: $color-gray-light;
+                padding: 10px 15px 10px 2.5px;
+            }
+        }
+
+        &__form {
+
+            & button {
+                display: flex;
+                align-items: center;
+                background: transparent;
+                color: $color-black;
+                border: none;
+                outline: none;
+                text-decoration: underline;
+                cursor: pointer;
+                padding: 0 20px;
+
+                & svg {
+                    display: inline-block;
+                    width: 20px;
+                    height: auto;
+                    fill: $color-black;
+                    margin-left: 5px;
+                }
+            }
+
+        }
+    }
+
+    &__content {
+        display: flex;
+        align-items: stretch;
+        justify-content: space-between;
+
+        &__left {
+            position: relative;
+            flex: 66.66667%;
+            min-width: 66.66667%;
+
+            &__bottom {
+                display: flex;
+                align-items: stretch;
+                justify-content: space-between;
+                padding: 10px 15px;
+                gap: 20px;
+            }
+
+            &::after {
+                content: "";
+                height: 75%;
+                position: absolute;
+                top: 50%;
+                right: -15px;
+                background: $color-gray-light;
+                width: 3px;
+                transform: translateY(-50%);
+            }
+        }
+
+        &__right {
+            flex: 33.33333%;
+            min-width: 33.33333%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: flex-end;
+
+            & img {
+                max-width: 75%;
+                height: auto;
+                margin: auto;
+            }
+
+            &__actions {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-end;
+                justify-content: flex-end;
+                flex: 0 1 135px;
+                margin-top: 30px;
+                padding: 20px;
+
+                & form {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-end;
+                }
+
+                & button,
+                & a {
+                    display: inline-block;
+                    font-size: 12px;
+                    font-weight: 400;
+                    line-height: 1.42857;
+                    text-align: center;
+                    background-color: $color-primary;
+                    color: $color-white;
+                    text-transform: uppercase;
+                    background-image: none;
+                    border: 1px solid $color-primary;
+                    border-radius: 3px;
+                    cursor: pointer;
+                    -webkit-user-select: none;
+                    -moz-user-select: none;
+                    user-select: none;
+                    vertical-align: middle;
+                    white-space: nowrap;
+                    text-decoration: none;
+                    padding: 6px 8px;
+                    margin-bottom: 15px;
+                }
+            }
+        }
+
+        &__list {
+            list-style: none;
+            margin-top: 0;
+            margin-bottom: 15px;
+
+            & li {
+                display: flex;
+                align-items: center;
+                font-size: 14px;
+                text-align: left;
+                padding-left: 40px;
+                color: $color-black;
+
+                &::before {
+                    content: "•";
+                    color: $color-intro;
+                    font-weight: bold;
+                    display: inline-block;
+                    width: 1em;
+                    font-size: 1.3rem;
+                    margin-left: -1em;
+                }
+            }
+        }
+
+        &__block {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            background-color: $color-gray-light;
+            background-size: 100%;
+            background-position: top left;
+            background-repeat: no-repeat;
+            padding: 10px;
+            width: 50%;
+
+            &__title {
+                font-size: 1.25rem;
+                font-weight: bold;
+                text-transform: uppercase;
+                color: $color-intro;
+            }
+
+            &__desc {
+                font-size: 14px;
+                color: $color-black;
+                text-transform: uppercase;
+                margin: 15px 0;
+            }
+
+            &__list {
+                padding-left: 20px;
+                margin: 0;
+
+                & li {
+                    font-size: 14px;
+                    color: $color-black;
+                    list-style: none;
+
+                    &:not(:last-child) {
+                        margin-bottom: 15px;
+                    }
+
+                    &::before {
+                        content: "";
+                        background: url(../../img/fleche_bleue.png) no-repeat center center;
+                        background-size: contain;
+                        display: inline-block;
+                        width: 1em;
+                        height: 0.75em;
+                        font-size: 1.25rem;
+                        margin-left: -1em;
+                    }
+                }
+            }
+
+            &.inverse {
+                background-color: $color-intro;
+
+                .wc-etransactions__section--intro__content__block {
+                    &__title {
+                        color: $color-black;
+                    }
+                    &__list {
+                        li {
+
+                            &::before {
+                                background: url(../../img/fleche_grise.png) no-repeat center center;
+                                background-size: contain;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

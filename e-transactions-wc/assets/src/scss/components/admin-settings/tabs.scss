@@ -1,0 +1,65 @@
+.wc-etransactions-tabs {
+
+    &__nav {
+        position: relative;
+        z-index: 2;
+        margin-bottom: -1px;
+
+        &__item {
+            display: inline-block;
+
+            &__link {
+                display: flex;
+                align-items: center;
+                color: $color-text-light;
+                border: 1px solid transparent;
+                border-bottom: none;
+                border-radius: 4px 4px 0 0;
+                cursor: pointer;
+                padding: 10px 15px;
+
+                & svg {
+                    display: block;
+                    height: 10px;
+                    width: auto;
+                    fill: $color-text-light;
+                    margin-right: 10px;
+                }
+
+                &:hover {
+                    border-color: #eee;
+                }
+            }
+
+            &.enabled {
+                .wc-etransactions-tabs__nav__item__link {
+                    color: $color-success-text;
+
+                    & svg {
+                        fill: $color-success-text;
+                    }
+                }
+            }
+            
+            &.active {
+                .wc-etransactions-tabs__nav__item__link {
+                    border-color: $color-border;
+                    background: $color-white;
+                }
+            }
+        }
+    }
+
+    &__content {
+
+        &__item {
+            display: none;
+            border: 1px solid $color-border;
+
+            &.active {
+                display: block;
+            }
+        }
+    }
+
+}

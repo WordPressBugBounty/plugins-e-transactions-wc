@@ -202,6 +202,10 @@ class WC_Etransactions_Settings {
                     wc_etransactions_update_option( 'account_max_amount3DS', $account_max_amount3DS );
                     wc_etransactions_update_option( 'first_time', WC_Etransactions_Config::FIRST_TIME_LOGIN );
 
+					if ( WC_Etransactions_Account::ACCOUNT_CONTRACT_ACCESS_PREMIUM !== $account_contract_access ) {
+						wc_etransactions_update_option( 'payment_capture_event', WC_Etransactions_Payment::PAYMENT_CAPTURE_EVENT_DAYS );
+					}
+
                 } elseif ( isset($_POST['wc_etransactions_settings_payment']) ) {
 
                     $payment_class = new WC_Etransactions_Payment();
@@ -214,6 +218,10 @@ class WC_Etransactions_Settings {
                     $payment_deferred_days      = $payment_class->sanitize_validate_payment_deferred_days( $_POST[wc_etransactions_add_prefix('payment_deferred_days')] ?? null );
                     $payment_capture_status     = $payment_class->sanitize_validate_payment_capture_status( $_POST[wc_etransactions_add_prefix('payment_capture_status')] ?? null );
                     $payment_methods_settings   = $payment_class->sanitize_validate_payment_methods_settings( $_POST[wc_etransactions_add_prefix('payment_methods_settings')] ?? null );
+
+					if ( $payment_capture_event === WC_Etransactions_Payment::PAYMENT_CAPTURE_EVENT_STATUS && empty( $payment_capture_status ) ) {
+						$payment_capture_status = wc_etransactions_get_default_value( 'payment_capture_status' );
+					}
 
                     wc_etransactions_update_option( 'payment_display', $payment_display );
                     wc_etransactions_update_option( 'payment_display_title', $payment_display_title );

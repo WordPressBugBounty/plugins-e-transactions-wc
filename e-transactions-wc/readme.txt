@@ -4,7 +4,7 @@ Donate link: none
 Tags: Payment Gateway, Orders, woocommerce, e-commerce, payment, E-Transactions
 Requires at least: 5.0.0
 Tested up to: 6.6
-Stable tag: 3.0.3
+Stable tag: 3.0.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 WC requires at least: 4.0
@@ -68,6 +68,14 @@ Contact [Up2pay e-Transactions WordPress Support](mailto:support@e-transactions.
 6. Once successfully processed, the Payment transaction details appear in the order details
 
 == Changelog ==
+= 3.0.5 =
+- Better gestion of update process
+- Fixed : Timeout on migration of old orders to "Processing" status (from "Capture" status)
+
+= 3.0.4 =
+- Fixed : Prevent multiples captures tentatives on differed payments
+- Removed : "Capture" status, and migration of old orders to "Processing" status
+
 = 3.0.3 =
 - Fixed : V2 to V3 data migration, problem with the HMAC key
 - Fixed : Restored the original HMAC key from V2 if the new one is empty or invalid

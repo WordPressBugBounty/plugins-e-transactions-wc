@@ -38,7 +38,7 @@ class WC_Etransactions_Test_Payment_Request extends WC_Etransactions_Abstract_Re
 
         $parameters = array(
             'PBX_BILLING'       => '<?xml version="1.0" encoding="utf-8"?><Billing><Address><FirstName>John</FirstName><LastName>Doe</LastName><Address1>1 AVENUE DE L\'OPERA</Address1><ZipCode>75001</ZipCode><City>PARIS</City><CountryCode>250</CountryCode></Address></Billing>',
-            'PBX_CMD'           => '1x123',
+            'PBX_CMD'           => 'woo_1x123',
             'PBX_DEVISE'        => 978,
             'PBX_HASH'          => 'SHA512',
             'PBX_IDENTIFIANT'   => $this->account_id,

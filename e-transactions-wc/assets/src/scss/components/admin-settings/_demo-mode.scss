@@ -1,0 +1,28 @@
+.wc-etransactions__section--demo {
+    margin-bottom: 20px;
+
+    &__content {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: $color-warning-bg-dark;
+        border-radius: 5px;
+        font-size: 15px;
+        font-weight: bold;
+        color: $color-white;
+        padding: 10px;
+
+        & svg {
+            display: inline-block;
+            width: 20px;
+            height: auto;
+            fill: $color-white;
+            margin-right: 8px;
+        }
+
+        &.production {
+            background: green;
+        }
+    }
+
+}

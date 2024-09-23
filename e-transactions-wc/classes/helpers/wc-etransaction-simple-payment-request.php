@@ -56,7 +56,7 @@ class WC_Etransactions_Simple_Payment_Request extends WC_Etransactions_Abstract_
 
         $this->set_param( 'PBX_ANNULE', add_query_arg( array('action' => 'cancel', 'order' => $this->order->get_id(), 'gateway_id' => $this->gateway_params['gateway_id']), trailingslashit(site_url('wc-api/' . $this->gateway_class))) );
         $this->set_param( 'PBX_BILLING', $xml_fields['PBX_BILLING'] );
-        $this->set_param( 'PBX_CMD', $this->order->get_id() . '_' . trim(str_replace('&', '_', preg_replace("/[^A-Za-z0-9+_]/", '', remove_accents($this->order->get_billing_first_name() . '_' . $this->order->get_billing_last_name())))) . '_' . wp_date('mdHi') );
+        $this->set_param( 'PBX_CMD', 'woo_'.$this->order->get_id() . '_' . trim(str_replace('&', '_', preg_replace("/[^A-Za-z0-9+_]/", '', remove_accents($this->order->get_billing_first_name() . '_' . $this->order->get_billing_last_name())))) . '_' . wp_date('mdHi') );
         $this->set_param( 'PBX_DEVISE', $currency_iso_code );
         $this->set_param( 'PBX_EFFECTUE', add_query_arg( array('action' => 'success', 'order' => $this->order->get_id(), 'gateway_id' => $this->gateway_params['gateway_id']), trailingslashit(site_url('wc-api/' . $this->gateway_class))) );
         $this->set_param( 'PBX_HASH', 'SHA512' );

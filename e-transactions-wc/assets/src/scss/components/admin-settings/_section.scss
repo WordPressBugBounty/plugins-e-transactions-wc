@@ -1,0 +1,108 @@
+.wc-etransactions__section {
+    margin-bottom: 20px;
+
+    &__header,
+    &__footer {
+        display: flex;
+        align-items: center;
+        font-size: 16px;
+        font-weight: 600;
+        color: $color-section-header;
+        background: $color-section-header-bg;
+        border: none;
+        padding: 10px;
+    }
+    
+    &__header {
+        border-bottom: 1px solid $color-border;
+        
+        & svg {
+            display: block;
+            height: 20px;
+            width: auto;
+            fill: #6c868e;
+            margin-right: 8px;
+        }
+    }
+
+    &__footer {
+        justify-content: flex-end;
+        border-top: 1px solid $color-border;
+
+        & button {
+            background: $color-link;
+            border-color: $color-link;
+            color: $color-white;
+            border: none;
+            outline: none;
+            padding: 8px 16px;
+            font-size: 14px;
+            font-weight: 600;
+            line-height: 1.5;
+            border-radius: 4px;
+            cursor: pointer;
+
+            &:hover {
+                opacity: 0.8;
+            }
+        }
+    }
+
+    &__body {
+        background: $color-white;
+        padding: 20px;
+
+        &__table {
+
+            &.hide {
+                display: none;
+            }
+
+            &.payment-methods {
+                border: 1px solid $color-border;
+                padding: 10px;
+                border-radius: 4px;
+            }
+
+            & tr {
+
+                &.opacity {
+                    opacity: 0.3;
+                }
+
+                &.required {
+
+                    & th {
+                        &::before {
+                            content: "*";
+                            position: relative;
+                            font-size: 15px;
+                            color: $color-danger;
+                        }
+                    }
+                }
+
+                &.contract {
+                    &.selectable {
+                        display: none;
+                    }
+                }
+
+                &.hide {
+                    display: none;
+                }
+
+                & th {
+                    text-align: right;
+                    font-weight: normal;
+                }
+            }
+
+            & .description {
+                font-size: 12px;
+                color: $color-text-light;
+            }
+        }
+    }
+
+}

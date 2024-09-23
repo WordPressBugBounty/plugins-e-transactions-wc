@@ -21,7 +21,8 @@ class WC_Etransactions_Order {
 		add_filter('woocommerce_valid_order_statuses_for_payment_complete', array( $this, 'append_draft_order_post_status'));
 		add_action('woocommerce_order_status_changed', array($this, 'status_changed'), 10, 3);
         add_action('add_meta_boxes', array($this, 'add_meta_boxes'));
-        add_action( 'admin_init', array( $this, 'submit_forms' ) );
+		add_action( 'wp_ajax_wc_etransactions_admin_single_order_submit', array( $this, 'wc_etransactions_admin_single_order_submit' ) );
+		add_action( 'wp_ajax_wc_etransactions_admin_single_order_refund', array( $this, 'wc_etransactions_admin_single_order_refund' ) );
     }
 
     /**
@@ -29,7 +30,6 @@ class WC_Etransactions_Order {
      */
     public function register_order_status( array $statuses ) {
 
-		$statuses['wc-e-capture']           = __( 'Capture', 'wc-etransactions' );
 		$statuses['wc-e-deferred']          = __( 'Deferred payment', 'wc-etransactions' );
 		$statuses['wc-e-partial-refund']    = __( 'Partially refunded', 'wc-etransactions' );
 
@@ -41,14 +41,6 @@ class WC_Etransactions_Order {
      */
     public function register_order_post_status( array $statuses ) {
 
-		$statuses['wc-e-capture'] = array(
-			'label'                     => __( 'Capture', 'wc-etransactions' ),
-			'public'                    => true,
-			'show_in_admin_status_list' => true,
-			'show_in_admin_all_list'    => true,
-			'exclude_from_search'       => false,
-			'label_count'               => _n_noop( 'Capture <span class="count">(%s)</span>', 'Capture <span class="count">(%s)</span>' )
-		);
 		$statuses['wc-e-deferred'] = array(
 			'label'                     => __( 'Deferred payment', 'wc-etransactions' ),
 			'public'                    => true,
@@ -96,6 +88,11 @@ class WC_Etransactions_Order {
             return;
 		}
 
+        $already_validate_manual = $order->get_meta( '_wc-etransactions-already-validate-manual', true );
+		if ( $already_validate_manual === '1' ) {
+            return;
+		}
+
         $already_validate = $order->get_meta( 'wc-etransactions-already-validate', true );
 		if ( $already_validate === '1' ) {
             return;
@@ -129,8 +126,26 @@ class WC_Etransactions_Order {
                 'numTrans'  => $response_array['NUMTRANS'] ?? '',
             );
 
+			if ( $response_code === '00000' ) {
+
+                $transactions = $order->get_meta('wc-etransactions-transactions', true);
+
+                if ( ! is_array( $transactions ) ) {
+                    $transactions = array();
+                }
+
+                foreach ( $transactions as $key => $transaction ) {
+					$transactions[$key]['captured'] = '1';
+					$transactions[$key]['amount_captured'] = $params['MONTANT'] / 100;
+					$transactions[$key]['numtrans'] = $transaction['auth_numtrans'];
+                }
+
+                $order->update_meta_data( 'wc-etransactions-transactions', $transactions );
+            }
+
             $order->update_meta_data( 'wc-etransactions-operations', $operations );
             $order->update_meta_data( 'wc-etransactions-already-validate', '1' );
+			$order->set_status( apply_filters( 'woocommerce_payment_complete_order_status', $order->needs_processing() ? 'processing' : 'completed', $order->get_id(), $order ) );
             $order->save();
         }
     }
@@ -153,31 +168,6 @@ class WC_Etransactions_Order {
             'normal',
             'high'
         );
-    }
-
-    /**
-     * Submit forms
-     */
-    public function submit_forms() {
-
-        if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
-            return;
-        }
-
-        if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
-            return;
-        }
-
-        $submit = isset($_POST['wc-etransactions-order-submit']) ? sanitize_text_field($_POST['wc-etransactions-order-submit']) : '';
-
-        switch ($submit) {
-            case 'capture':
-                $this->capture_funds();
-            break;
-            case 'refund':
-                $this->refund_funds();
-            break;
-        }
     }
 
     /**
@@ -208,79 +198,49 @@ class WC_Etransactions_Order {
             $admin_single_order_assets = include( WC_ETRANSACTIONS_PLUGIN_PATH . 'assets/build/admin-single-order.asset.php' );
             wp_enqueue_style( 'wc_etransactions_admin_single_order', WC_ETRANSACTIONS_PLUGIN_URL . 'assets/build/admin-single-order.css', array(), $admin_single_order_assets['version'], 'all' );
             wp_enqueue_script( 'wc_etransactions_admin_single_order', WC_ETRANSACTIONS_PLUGIN_URL . 'assets/build/admin-single-order.js', $admin_single_order_assets['dependencies'], $admin_single_order_assets['version'], true );
+			wp_localize_script( 'wc_etransactions_admin_single_order', 'wc_etransactions_admin_single_order', array(
+				'ajaxUrl' => admin_url( 'admin-ajax.php' ),
+				'nonce'   => wp_create_nonce( 'wc-etransactions-order-action' ),
+			));
 
             include( WC_ETRANSACTIONS_PLUGIN_PATH . 'templates/admin/order/payment-info.php' );
         }
     }
 
-    /**
-     * Get refunded amount
-     */
-    private function get_refunded_amount( $operations ) {
+	/**
+	 * Submit
+	 */
+	public function wc_etransactions_admin_single_order_submit() {
 
-        $refunded_amount = 0;
-
-        if ( is_array( $operations ) ) {
-            foreach ( $operations as $operation) {
-                if ( $operation['type'] == 'refund' && $operation['success'] == 'success' ) {
-                    $refunded_amount += $operation['amount'];
-                }
-            }
+		$nonce = sanitize_text_field( $_POST['nonce'] ?? '' );
+        if ( ! wp_verify_nonce( $nonce, 'wc-etransactions-order-action' ) ) {
+            wp_send_json_error( __( 'Refresh the page and try again.', 'wpmastertoolkit' ) );
         }
 
-        return $refunded_amount;
-    }
+		$form_data = sanitize_text_field( $_POST['form'] ?? '' );
 
-    /**
-     * Get captured amount
-     */
-    private function get_captured_amount( $deadlines ) {
+		if ( empty( $form_data ) ) {
+			wp_send_json_error( __( 'Form data not found.', 'wpmastertoolkit' ) );
+		}
 
-        $captured_amount = 0;
+		$form_data = wp_unslash( $form_data );
+		$form_data = json_decode( $form_data, true );
 
-        if ( is_array( $deadlines ) ) {
-            foreach ( $deadlines as $deadline ) {
-                if ( $deadline['captured'] == '1' ) {
-                    $captured_amount += $deadline['amount'];
-                }
-            }
+		$order_id          = $form_data['wc-etransactions-capture[id_order]'] ?? '';
+        $amount_to_capture = $form_data['wc-etransactions-capture[amount_to_capture]'] ?? '';
+        $numappel          = $form_data['wc-etransactions-capture[numappel]'] ?? '';
+
+		if ( empty($order_id) || empty($amount_to_capture) || empty($numappel) ) {
+			wp_send_json_error( __( 'Form data not found.', 'wpmastertoolkit' ) );
         }
 
-        return $captured_amount;
-    }
-
-    /**
-     * Capture funds
-     */
-    private function capture_funds() {
-
-        $nonce = isset($_POST['wc-etransactions-order-action-nonce']) ? sanitize_text_field($_POST['wc-etransactions-order-action-nonce']) : '';
-
-        if ( !wp_verify_nonce( $nonce, 'wc-etransactions-order-action' ) ) {
-            return;
-        }
-
-        $capture_data = isset($_POST['wc-etransactions-capture']) ? wc_clean( $_POST['wc-etransactions-capture'] ) : array();
-
-        if ( empty($capture_data) ) {
-            return;
-        }
-
-        $order_id           = isset( $capture_data['id_order'] ) ? sanitize_text_field( $capture_data['id_order']) : '';
-        $amount_to_capture  = isset( $capture_data['amount_to_capture'] ) ? sanitize_text_field( $capture_data['amount_to_capture'] ) : '';
-        $numappel           = isset( $capture_data['numappel'] ) ? sanitize_text_field( $capture_data['numappel'] ) : '';
-
-        if ( empty($order_id) || empty($amount_to_capture) || empty($numappel) ) {
-            return;
-        }
-
-        $order = wc_get_order( $order_id );
+		$order = wc_get_order( $order_id );
 
         if ( ! $order ) {
-            return;
+			wp_send_json_error( __( 'Order not found.', 'wpmastertoolkit' ) );
         }
 
-        $capture_class = new WC_Etransactions_Capture_Request();
+		$capture_class = new WC_Etransactions_Capture_Request();
         $capture_class->set_order( $order );
         $response = $capture_class->send_request( $amount_to_capture * 100 );
 
@@ -321,49 +281,56 @@ class WC_Etransactions_Order {
                     }
                 }
 
+				$order->update_meta_data( '_wc-etransactions-already-validate-manual', '1' );
                 $order->update_meta_data( 'wc-etransactions-transactions', $transactions );
 				$order->set_status( apply_filters( 'woocommerce_payment_complete_order_status', $order->needs_processing() ? 'processing' : 'completed', $order->get_id(), $order ) );
             }
 
             $order->save();
-        }
-    }
 
-    /**
-     * Refund funds
-     */
-    private function refund_funds() {
-
-        $nonce = isset($_POST['wc-etransactions-order-action-nonce']) ? sanitize_text_field($_POST['wc-etransactions-order-action-nonce']) : '';
-
-        if ( !wp_verify_nonce( $nonce, 'wc-etransactions-order-action' ) ) {
-            return;
+			wp_send_json_success( __( 'Submission successful.', 'wpmastertoolkit' ) );
         }
 
-        $refund_data = isset($_POST['wc-etransactions-refund']) ? wc_clean( $_POST['wc-etransactions-refund'] ) : array();
+		wp_send_json_error( __( 'Submission failed.', 'wpmastertoolkit' ) );
+	}
 
-        if ( empty($refund_data) ) {
-            return;
+	/**
+	 * Refund
+	 */
+	public function wc_etransactions_admin_single_order_refund() {
+
+		$nonce = sanitize_text_field( $_POST['nonce'] ?? '' );
+        if ( ! wp_verify_nonce( $nonce, 'wc-etransactions-order-action' ) ) {
+            wp_send_json_error( __( 'Refresh the page and try again.', 'wpmastertoolkit' ) );
         }
 
-        $order_id           = $refund_data['id_order'] ?? '';
-        $amount_to_refund   = $refund_data['amount_to_refund'] ?? '';
+		$form_data = sanitize_text_field( $_POST['form'] ?? '' );
 
-        if ( empty($order_id) || empty($amount_to_refund) ) {
-            return;
+		if ( empty( $form_data ) ) {
+			wp_send_json_error( __( 'Form data not found.', 'wpmastertoolkit' ) );
+		}
+		
+		$form_data = wp_unslash( $form_data );
+		$form_data = json_decode( $form_data, true );
+
+        $order_id         = $form_data['wc-etransactions-refund[id_order]'] ?? '';
+		$amount_to_refund = $form_data['wc-etransactions-refund[amount_to_refund]'] ?? '';
+
+		if ( empty($order_id) || empty($amount_to_refund) ) {
+			wp_send_json_error( __( 'Form data not found.', 'wpmastertoolkit' ) );
         }
 
-        $order = wc_get_order( $order_id );
+		$order = wc_get_order( $order_id );
 
         if ( ! $order ) {
-            return;
+			wp_send_json_error( __( 'Order not found.', 'wpmastertoolkit' ) );
         }
 
-        $refund_class = new WC_Etransactions_Refund_Request();
+		$refund_class = new WC_Etransactions_Refund_Request();
         $refund_class->set_order( $order );
         $response = $refund_class->send_request( $amount_to_refund * 100 );
 
-        if ( $response ) {
+		if ( $response ) {
 
             parse_str( $response, $response_array );
             $params = $refund_class->get_params();
@@ -399,7 +366,46 @@ class WC_Etransactions_Order {
 
             $order->update_meta_data( 'wc-etransactions-operations', $operations );
             $order->save();
+
+			wp_send_json_success( __( 'Refund successful.', 'wpmastertoolkit' ) );
         }
+
+		wp_send_json_error( __( 'Refund failed.', 'wpmastertoolkit' ) );
+	}
+
+    /**
+     * Get refunded amount
+     */
+    private function get_refunded_amount( $operations ) {
+
+        $refunded_amount = 0;
+
+        if ( is_array( $operations ) ) {
+            foreach ( $operations as $operation) {
+                if ( $operation['type'] == 'refund' && $operation['success'] == 'success' ) {
+                    $refunded_amount += $operation['amount'];
+                }
+            }
+        }
+
+        return $refunded_amount;
     }
 
+    /**
+     * Get captured amount
+     */
+    private function get_captured_amount( $deadlines ) {
+
+        $captured_amount = 0;
+
+        if ( is_array( $deadlines ) ) {
+            foreach ( $deadlines as $deadline ) {
+                if ( $deadline['captured'] == '1' ) {
+                    $captured_amount += $deadline['amount'];
+                }
+            }
+        }
+
+        return $captured_amount;
+    }
 }
