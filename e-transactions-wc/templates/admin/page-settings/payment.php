@@ -41,7 +41,7 @@
                 <tr>
                     <th><?php _e( "Title displayed on your payment page", 'wc-etransactions' ); ?></th>
                     <td>
-                        <input type="text" name="wc_etransactions_payment_display_title" value="<?php echo esc_attr($payment_display_title); ?>" placeholder="<?php _e( WC_Etransactions_Payment::PAYMENT_DISPLAY_TITLE_DEFAULT, 'wc-etransactions' ); ?>" style="width: 260px;" >
+                        <input type="text" name="wc_etransactions_payment_display_title" value="<?php echo esc_attr($payment_display_title); ?>" placeholder="<?php _e( 'Secure payment with Crédit Agricole', 'wc-etransactions' ); ?>" style="width: 260px;" >
                         <p class="description"><?php _e( 'Title of generic payment option displayed on your page with means of payment choices (for translation edit the .pot file).', 'wc-etransactions' ); ?></p>
                     </td>
                 </tr>

@@ -24,7 +24,7 @@ class WC_Etransactions_Updater {
      * Constructor
      */
     public function __construct() {
-        $this->version     = wc_etransactions_get_option('version');
+        $this->version     = wc_etransactions_get_option_version('version');
 		$this->crons_queue = array();
 		$this->crons_list  = array();
 
@@ -77,7 +77,7 @@ class WC_Etransactions_Updater {
 			$this->crons_list[ $version ] = array(
 				'callback' => $callback,
 				'interval' => MINUTE_IN_SECONDS,
-				'display'  => sprintf( esc_html__( 'Up2pay updater version %s', 'wc-etransactions' ), $version ), 
+				'display'  => sprintf( 'Up2pay updater version %s', $version ),
 			);
 			add_action( 'wc_etransactions_' . $callback . '_hook', array( $this, $callback ) );
 		}

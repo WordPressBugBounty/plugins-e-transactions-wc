@@ -60,18 +60,11 @@ abstract class WC_Etransactions_Abstract_Gateway_Instalments extends WC_Payment_
      * Process the payment
      */
     public function process_payment( $order_id ) {
-
-		$phone_number  = isset( $_POST['wce_up2pay_phone_number'] ) ? sanitize_text_field( $_POST['wce_up2pay_phone_number'] ) : '';
-        $phone_country = isset( $_POST['wce_up2pay_phone_country'] ) ? sanitize_text_field( $_POST['wce_up2pay_phone_country'] ) : '';
-
-        if ( empty( $phone_number ) || empty( $phone_country ) ) {
-            wc_add_notice( __( 'Please fill a valid number', 'wc-etransactions' ), 'error' );
-            return array( 'result' => 'failure', 'redirect' => wc_get_checkout_url() );
-        }
-
         $order = wc_get_order( $order_id );
+
+		$phone_number  = $order->get_billing_phone();
+
 		$order->update_meta_data( wc_etransactions_add_prefix('wce_phone_number'), $phone_number );
-        $order->update_meta_data( wc_etransactions_add_prefix('wce_phone_country'), $phone_country );
 		$order->save();
     
         return array(
@@ -177,6 +170,15 @@ abstract class WC_Etransactions_Abstract_Gateway_Instalments extends WC_Payment_
                 </form>
                 <script type="text/javascript">
                     window.addEventListener('DOMContentLoaded', function () {
+                        const inputs = document.getElementById("JS-WCE-form").getElementsByTagName("input");
+
+                        // Iterate over the form controls
+                        for (let i = 0; i < inputs.length; i++) {
+                            $value = inputs[i].getAttribute('name');
+                            if (!$value.includes('PBX')) {
+                                document.getElementById("JS-WCE-form").removeChild(inputs[i]);
+                            }
+                        }
                         document.getElementById('JS-WCE-form').submit();
                     });
                 </script>
@@ -242,6 +244,13 @@ abstract class WC_Etransactions_Abstract_Gateway_Instalments extends WC_Payment_
         }
 
         $values = $_GET;
+
+        if (isset($values['wc-api'])) {
+            unset($values['wc-api']);
+        }
+        if (isset($values['page_id'])) {
+            unset($values['page_id']);
+        }
         if (isset($values['action'])) {
             unset($values['action']);
         }
@@ -251,6 +260,10 @@ abstract class WC_Etransactions_Abstract_Gateway_Instalments extends WC_Payment_
         if (isset($values['gateway_id'])) {
             unset($values['gateway_id']);
         }
+        if (isset($values['partial'])) {
+            unset($values['partial']);
+        }
+
         $passed = $this->signature_class->verify_signature( $values, true );
         if ( !$passed ) {
 
@@ -260,6 +273,7 @@ abstract class WC_Etransactions_Abstract_Gateway_Instalments extends WC_Payment_
         }
 
         $params = $this->config_class->get_params($_GET);
+        wc_etransactions_add_log(json_encode($params));
         if ( empty($params) ) {
 
             $message = __CLASS__ . ':' . __FUNCTION__ . ": empty params for order(" . $order_id . ")";
@@ -386,11 +400,13 @@ abstract class WC_Etransactions_Abstract_Gateway_Instalments extends WC_Payment_
 
         $transaction    = array();
         $total_paid     = $params['amount'] / 100;
+        $guarantee_3ds  = $params['3dsWarranty'] == 'O' ? 1 : 0;
+
 
         $transaction['id_order']        = $params['order'];
         $transaction['amount']          = $total_paid;
         $transaction['numappel']        = $params['call'];
-        $transaction['guarantee_3ds']   = 0;
+        $transaction['guarantee_3ds']   = $guarantee_3ds;
         $transaction['card_type']       = $params['cardType'];
         $transaction['ipn']             = '00000';
         $transaction['amount_captured'] = $total_paid;

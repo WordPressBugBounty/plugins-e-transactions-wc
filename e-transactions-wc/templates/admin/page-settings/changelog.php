@@ -26,13 +26,16 @@
                     // echo wp_kses_post( wpautop( wptexturize( $changelog_text ) ) );
                 ?>
                 <ul>
-                    <li><?php _e( 'Better gestion of update process', 'wc-etransactions' ) ?></li>
-                    <li><?php _e( 'Fixed : Timeout on migration of old orders to "Processing" status (from "Capture" status)', 'wc-etransactions' ) ?></li>
+                    <li><?php _e( 'Removed: number phone field', 'wc-etransactions' ) ?></li>
+                    <li><?php _e( 'Fixed : payment status in several time', 'wc-etransactions' ) ?></li>
+                    <li><?php _e( 'Fixed : the order of payment methods', 'wc-etransactions' ) ?></li>
+                    <li><?php _e( 'Fixed : postcode', 'wc-etransactions' ) ?></li>
+                    <li><?php _e( 'Fixed : Payment card display when customer aren\'t login', 'wc-etransactions' ) ?></li>
+                    <li><?php _e( 'Fixed : 3ds display guaranteed', 'wc-etransactions' ) ?></li>
+                    <li><?php _e( 'Fixed : simple permalink', 'wc-etransactions' ) ?></li>
+                    <li><?php _e( 'Fixed : compatibility with plugin Anti-SPAM CleanTalk', 'wc-etransactions' ) ?></li>
+                    <li><?php _e( 'Add transaction page', 'wc-etransactions' ) ?></li>
                 </ul>
-
-                <h3><?php  esc_html_e( "Incompatibility", 'wc-etransactions' ); ?></h3>
-                <p><?php esc_html_e("If you encounter issues to access to the payment page, please make sure you are not using the SEO KEY plugin because it creates an incompatibly with our payment plugin. We are currently working on a way to solve this incompatibility. The Anti spam by CleanTalk module can also block access to the payment page according to its settings.", 'wc-etransactions');?></p>
-
             </div>
         </div>
     </div>

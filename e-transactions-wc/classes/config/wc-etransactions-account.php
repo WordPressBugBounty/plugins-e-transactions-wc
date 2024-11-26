@@ -14,7 +14,7 @@ class WC_Etransactions_Account extends WC_Etransactions_Config {
     const ACCOUNT_ENVIRONMENT_PRODUCTION    = 'production';
     const ACCOUNT_CONTRACT_ACCESS_ACCESS    = 'access';
     const ACCOUNT_CONTRACT_ACCESS_PREMIUM   = 'premium';
-    const ACCOUNT_MAX_AMOUNT3DS_MAX         = 30;
+    const ACCOUNT_MAX_AMOUNT3DS_MAX         = 100;
 
     /**
      * Sanitize and Validate the demo mode

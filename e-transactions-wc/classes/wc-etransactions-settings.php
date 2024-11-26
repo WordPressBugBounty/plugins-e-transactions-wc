@@ -60,12 +60,6 @@ class WC_Etransactions_Settings {
      */
     public function add_settings_menu() {
 
-        if ( OrderUtil::custom_orders_table_usage_is_enabled() ) {
-            $orders_slug = '/admin.php?page=wc-orders';
-        } else {
-            $orders_slug = '/edit.php?post_type=shop_order';
-        }
-
         add_menu_page(
 			__("Up2pay Settings", 'wc-etransactions'),
 			__("Up2pay", 'wc-etransactions'),
@@ -85,14 +79,6 @@ class WC_Etransactions_Settings {
             array( $this, 'render_settings_page' )
         );
 
-        add_submenu_page(
-            'credit-agricole-settings',
-            __( 'Transactions', 'wc-etransactions' ),
-            __( 'Transactions', 'wc-etransactions' ),
-            'manage_options',
-            $orders_slug,
-            ''
-        );
     }
 
     /**

@@ -160,38 +160,40 @@ class WC_Etransactions_Config {
     public function get_xml_fields( $order ) {
 
         $quantity = 0;
-        foreach ($order->get_items() as $item) {
-            $quantity += (int)$item->get_quantity();
+        if (!empty($order)){
+            foreach ($order->get_items() as $item) {
+                $quantity += (int)$item->get_quantity();
+            }
+        } else {
+            $quantity = 1;
         }
+
+        // totalQuantity must be less or equal than 99
+        // totalQuantity must be greater or equal than 1
+        $totalQuantity = max(1, min($quantity, 99));
 
         $xml_shopping_cart = sprintf(
             '<?xml version="1.0" encoding="utf-8"?><shoppingcart><total><totalQuantity>%d</totalQuantity></total></shoppingcart>',
-            $quantity
+            $totalQuantity
         );
 
         $wce_up2pay_phone_number  = $order->get_meta( wc_etransactions_add_prefix('wce_phone_number'), true );
-        $wce_up2pay_phone_country = $order->get_meta( wc_etransactions_add_prefix('wce_phone_country'), true );
+        $postal_code_format = wc_etransactions_format_text_value($order->get_billing_postcode(), 'ANS', 16);
+        $postal_code = trim(str_replace(' ', '', $postal_code_format));
 
-		$reg_exp = '/^(\+|00)*' . $wce_up2pay_phone_country . '/';
-		preg_match( $reg_exp, $wce_up2pay_phone_number, $matches );
-
-		if ( ! empty( $matches[0] ) ) {
-			$wce_up2pay_phone_number = str_replace( $matches[0], '0', $wce_up2pay_phone_number );
-		}
 
         $billing_details = array(
             wc_etransactions_format_text_value($order->get_billing_first_name(), 'ANS', 22),
             wc_etransactions_format_text_value($order->get_billing_last_name(), 'ANS', 22),
             wc_etransactions_format_text_value($order->get_billing_address_1(), 'ANS', 50),
-            wc_etransactions_format_text_value($order->get_billing_postcode(), 'ANS', 16),
+            $postal_code,
             wc_etransactions_format_text_value($order->get_billing_city(), 'ANS', 50),
             wc_etransactions_get_country_numeric_code($order->get_billing_country()),
-            '+' . wc_etransactions_format_text_value( $wce_up2pay_phone_country, 'ANS', 16),
             wc_etransactions_format_text_value( $wce_up2pay_phone_number, 'ANS', 16),
         );
 
         $xml_billing = vsprintf(
-            '<?xml version="1.0" encoding="utf-8"?><Billing><Address><FirstName>%s</FirstName><LastName>%s</LastName><Address1>%s</Address1><ZipCode>%s</ZipCode><City>%s</City><CountryCode>%s</CountryCode><CountryCodeMobilePhone>%s</CountryCodeMobilePhone><MobilePhone>%s</MobilePhone></Address></Billing>',
+            '<?xml version="1.0" encoding="utf-8"?><Billing><Address><FirstName>%s</FirstName><LastName>%s</LastName><Address1>%s</Address1><ZipCode>%s</ZipCode><City>%s</City><CountryCode>%s</CountryCode><MobilePhone>%s</MobilePhone></Address></Billing>',
             $billing_details
         );
 

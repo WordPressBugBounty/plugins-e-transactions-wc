@@ -86,6 +86,16 @@ function wc_etransactions_get_option( $option_id ) {
 }
 
 /**
+ * Get an option value version
+ */
+function wc_etransactions_get_option_version( $option_id ) {
+
+    $option_id_prefixed = wc_etransactions_add_prefix( $option_id );
+
+    return get_option( $option_id_prefixed);
+}
+
+/**
  * Update an option value
  */
 function wc_etransactions_update_option( $option_id, $value ) {

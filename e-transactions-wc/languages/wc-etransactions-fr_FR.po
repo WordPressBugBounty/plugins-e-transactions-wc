@@ -5,18 +5,18 @@ msgstr ""
 "Project-Id-Version: Up2pay e-Transactions 3.0.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/e-transactions-"
 "wc\n"
+"POT-Creation-Date: 2024-03-08T10:07:35+00:00\n"
+"PO-Revision-Date: 2024-11-21 13:55+0000\n"
 "Last-Translator: \n"
 "Language-Team: Français\n"
+"Language: fr_FR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-03-08T10:07:35+00:00\n"
-"PO-Revision-Date: 2024-09-13 15:48+0000\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
 "X-Generator: Loco https://localise.biz/\n"
 "X-Domain: wc-etransactions\n"
-"Language: fr_FR\n"
-"Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Loco-Version: 2.6.6; wp-6.6.1"
+"X-Loco-Version: 2.6.11; wp-6.7"
 
 #: templates/admin/page-settings/intro.php:55
 #, php-format
@@ -101,6 +101,10 @@ msgstr ""
 "(cliquez à l'intérieur de la zone pour copier automatiquement les "
 "informations dans le presse-papier)"
 
+#: classes/helpers/wc-etransaction-order-manager.php:119
+msgid "--"
+msgstr "--"
+
 #: templates/admin/page-settings/payment.php:155
 msgid "1-Click"
 msgstr "1 clic"
@@ -149,7 +153,7 @@ msgstr "OFFRE ACCESS"
 msgid "Active"
 msgstr "Activer"
 
-#: classes/wc-etransactions-settings.php:351
+#: classes/wc-etransactions-settings.php:337
 msgid "Active plugins"
 msgstr "Extensions activé"
 
@@ -157,10 +161,19 @@ msgstr "Extensions activé"
 msgid "Add a means of payment"
 msgstr "Ajouter un moyen de paiement"
 
+#: templates/admin/page-settings/changelog.php:37
+msgid "Add transaction page"
+msgstr "Ajout de la page de transactions dans le back office"
+
 #: templates/admin/page-settings/payment.php:30
 msgid "Advanced"
 msgstr "Avancé"
 
+#: classes/helpers/wc-etransaction-order-manager.php:146
+msgid "All status"
+msgstr "Tous les statuts"
+
+#: classes/helpers/wc-etransaction-order-manager.php:75
 #: templates/admin/order/payment-info.php:184
 msgid "Amount"
 msgstr "Montant"
@@ -186,8 +199,8 @@ msgstr "Montant pouvant être remboursé"
 msgid "Availability of services"
 msgstr "Disponibilité des services"
 
-#: payment-methods/wc-etransactions-abstract-gateway-instalments.php:196
-#: payment-methods/wc-etransactions-abstract-gateway.php:246
+#: payment-methods/wc-etransactions-abstract-gateway-instalments.php:198
+#: payment-methods/wc-etransactions-abstract-gateway.php:247
 msgid "Back..."
 msgstr "Retour..."
 
@@ -205,10 +218,6 @@ msgid ""
 msgstr ""
 "Avant de contacter le support, veuillez vérifier la disponibilité des "
 "services via ce lien :"
-
-#: templates/admin/page-settings/changelog.php:29
-msgid "Better gestion of update process"
-msgstr "Meilleure gestion du processus de mise à jour"
 
 #: templates/admin/deactivate-popup.php:22
 msgid "Cancel"
@@ -249,7 +258,7 @@ msgstr "Cliquez %sici pour télécharger%s le dernier fichier de logs."
 msgid "Code returned"
 msgstr "Code retourné"
 
-#: classes/wc-etransactions-settings.php:347
+#: classes/wc-etransactions-settings.php:333
 msgid "Configuring payment in X times"
 msgstr "Configuration du paiment en Xfois"
 
@@ -265,12 +274,12 @@ msgstr "Contactez-nous"
 msgid "Contact us using"
 msgstr "Contactez-nous grâce à"
 
-#: payment-methods/wc-etransactions-abstract-gateway-instalments.php:176
-#: payment-methods/wc-etransactions-abstract-gateway.php:225
+#: payment-methods/wc-etransactions-abstract-gateway-instalments.php:169
+#: payment-methods/wc-etransactions-abstract-gateway.php:217
 msgid "Continue..."
 msgstr "Continuer..."
 
-#: classes/wc-etransactions-settings.php:325
+#: classes/wc-etransactions-settings.php:311
 #: templates/admin/page-settings/popup/config.php:25
 msgid "Contract configuration"
 msgstr "Configuration du contrat"
@@ -279,19 +288,23 @@ msgstr "Configuration du contrat"
 msgid "Copied"
 msgstr "Copié"
 
-#: classes/wc-etransactions-settings.php:292
-#: classes/wc-etransactions-settings.php:293
+#: classes/wc-etransactions-settings.php:278
+#: classes/wc-etransactions-settings.php:279
 msgid "cURL installed but unable to retrieve version."
 msgstr "cURL installé mais impossible de récupérer la version."
 
-#: classes/wc-etransactions-settings.php:295
-#: classes/wc-etransactions-settings.php:296
+#: classes/wc-etransactions-settings.php:281
+#: classes/wc-etransactions-settings.php:282
 msgid "cURL not installed."
 msgstr "cURL n'est pas installé."
 
-#: classes/wc-etransactions-settings.php:306
+#: classes/wc-etransactions-settings.php:292
 msgid "cURL version"
 msgstr "Version cURL"
+
+#: classes/helpers/wc-etransaction-order-manager.php:77
+msgid "Date"
+msgstr "Date"
 
 #: templates/admin/page-settings/instalment.php:124
 msgid "Days between each instalment"
@@ -387,7 +400,7 @@ msgstr "Environnement"
 msgid "Error checking configuration."
 msgstr "Erreur lors du contrôle de la configuration."
 
-#: classes/wc-etransactions-settings.php:444
+#: classes/wc-etransactions-settings.php:430
 msgid "EURO currency installed"
 msgstr "Monnaie EURO installée"
 
@@ -401,6 +414,10 @@ msgstr ""
 "Vous pouvez charger des nouveaux logos au format .png, .jpg ou .gif "
 "uniquement."
 
+#: classes/helpers/wc-etransaction-order-manager.php:154
+msgid "Filter"
+msgstr "Filtrer"
+
 #: templates/admin/page-settings/instalment.php:95
 msgid ""
 "First instalment correspond to the day of the payment of order. You will be "
@@ -409,13 +426,34 @@ msgstr ""
 "La 1ère échéance correspond au jour du paiement - Vous serez crédité au fur "
 "et à mesure des dates d'échéances."
 
+#: templates/admin/page-settings/changelog.php:34
+msgid "Fixed : 3ds display guaranteed"
+msgstr "Résolution des soucis d'affichage de la garantie 3DS"
+
+#: templates/admin/page-settings/changelog.php:36
+msgid "Fixed : compatibility with plugin Anti-SPAM CleanTalk"
+msgstr "Résolution de la compatibilité avec le module Anti-SPAM CleanTalK"
+
+#: templates/admin/page-settings/changelog.php:33
+msgid "Fixed : Payment card display when customer aren't login"
+msgstr "Résolution de l'affichage des cartes lorsqu'on n'est pas connecté"
+
 #: templates/admin/page-settings/changelog.php:30
-msgid ""
-"Fixed : Timeout on migration of old orders to \"Processing\" status (from "
-"\"Capture\" status)"
+msgid "Fixed : payment status in several time"
+msgstr "Résolution du statut pour les paiements en plusieurs fois"
+
+#: templates/admin/page-settings/changelog.php:32
+msgid "Fixed : postcode"
+msgstr "Suppression des espaces sur les codes postaux"
+
+#: templates/admin/page-settings/changelog.php:35
+msgid "Fixed : simple permalink"
+msgstr "Résolution du retour en boutique avec le permalien simple"
+
+#: templates/admin/page-settings/changelog.php:31
+msgid "Fixed : the order of payment methods"
 msgstr ""
-"Corrigé : Délai d'attente lors de la migration des anciennes commandes vers "
-"le statut « En cours de traitement » (à partir du statut « Capture »)"
+"Prise en compte de l'ordre choisi pour l'affichage des moyens de paiements"
 
 #: templates/admin/page-settings/payment.php:159
 msgid "From"
@@ -469,20 +507,6 @@ msgstr "Je souhaite demander du frictionless sur les transactions 3DS"
 msgid "ID"
 msgstr "Identifiant"
 
-#: templates/admin/page-settings/changelog.php:34
-msgid ""
-"If you encounter issues to access to the payment page, please make sure you "
-"are not using the SEO KEY plugin because it creates an incompatibly with our "
-"payment plugin. We are currently working on a way to solve this "
-"incompatibility. The Anti spam by CleanTalk module can also block access to "
-"the payment page according to its settings."
-msgstr ""
-"Si vous rencontrez des difficultés d’accès à la page de paiement, veuillez-"
-"vous assurer que vous n’utilisez pas le module SEO KEY car celui-ci présente "
-"un incompatibilité avec notre module de paiement qui est en cours de "
-"résolution. Le module Anti Spam Cleantalk peut également bloquer l’accès au "
-"paiement selon sa configuration."
-
 #: templates/admin/page-settings/popup/config.php:39
 msgid ""
 "If you have any problems, please do not hesitate to contact e-Transactions "
@@ -495,13 +519,9 @@ msgstr ""
 msgid "Immediate"
 msgstr "Immédiat"
 
-#: classes/wc-etransactions-settings.php:356
+#: classes/wc-etransactions-settings.php:342
 msgid "Inactive plugins"
 msgstr "Extensions inactifs"
-
-#: templates/admin/page-settings/changelog.php:33
-msgid "Incompatibility"
-msgstr "Incompatibilité"
 
 #: templates/admin/page-settings/instalment.php:13
 msgid "Instalment configuration"
@@ -514,6 +534,10 @@ msgstr "Détails du versement"
 #: templates/admin/page-settings/payment.php:210
 msgid "Integrated"
 msgstr "Intégré"
+
+#: classes/helpers/wc-etransaction-order-manager.php:76
+msgid "IPN"
+msgstr "IPN"
 
 #: templates/admin/order/payment-info.php:130
 msgid ""
@@ -537,7 +561,7 @@ msgstr "Logo affiché sur votre page de paiement"
 msgid "Logs"
 msgstr "Logs"
 
-#: classes/wc-etransactions-settings.php:314
+#: classes/wc-etransactions-settings.php:300
 msgid "Main configuration"
 msgstr "Configuration principale"
 
@@ -571,8 +595,8 @@ msgstr "Version du module v%s"
 msgid "My Account"
 msgstr "Mon contrat"
 
-#: classes/wc-etransactions-settings.php:308
-#: classes/wc-etransactions-settings.php:309
+#: classes/wc-etransactions-settings.php:294
+#: classes/wc-etransactions-settings.php:295
 #: templates/admin/order/payment-info.php:58
 #: templates/admin/page-settings/payment.php:204
 #: templates/admin/page-settings/payment.php:223
@@ -584,7 +608,7 @@ msgstr "Mon contrat"
 msgid "No"
 msgstr "Non"
 
-#: classes/wc-etransactions-settings.php:486
+#: classes/wc-etransactions-settings.php:472
 msgid "No log files found!"
 msgstr "Aucun fichier journal trouvé !"
 
@@ -621,7 +645,7 @@ msgstr ""
 "Les fichiers plus anciens sont accessibles sur votre serveur, dans le "
 "répertoire %s."
 
-#: classes/wc-etransactions-settings.php:307
+#: classes/wc-etransactions-settings.php:293
 msgid "OpenSSL version"
 msgstr "Version OpenSSL"
 
@@ -641,6 +665,10 @@ msgstr "Type d'opération"
 msgid "Operations history"
 msgstr "Historique des opérations"
 
+#: classes/helpers/wc-etransaction-order-manager.php:71
+msgid "Order"
+msgstr "Commande"
+
 #: templates/admin/page-settings/payment.php:101
 msgid "Order status"
 msgstr "Etat commande"
@@ -653,60 +681,60 @@ msgstr "Etat(s) de la commande déclenchant l'envoi en banque"
 msgid "Partially refunded"
 msgstr "Partiellement remboursé"
 
-#: global-functions.php:282
+#: global-functions.php:292
 msgid "Pay in 2 instalments with credit card"
 msgstr "Payer en 2 fois par carte bancaire"
 
-#: global-functions.php:292
+#: global-functions.php:302
 msgid "Pay in 3 instalments with credit card"
 msgstr "Payer en 3 fois par carte bancaire"
 
-#: global-functions.php:302
+#: global-functions.php:312
 msgid "Pay in 4 instalments with credit card"
 msgstr "Payer en 4 fois par carte bancaire"
 
-#: global-functions.php:138
+#: global-functions.php:148
 msgid "Pay with AMEX"
 msgstr "Payer avec AMEX"
 
-#: global-functions.php:250
+#: global-functions.php:260
 msgid "Pay with Bimply"
 msgstr "Payer avec Bimply"
 
-#: global-functions.php:124
+#: global-functions.php:134
 msgid "Pay with credit card"
 msgstr "Payer par carte bancaire"
 
-#: global-functions.php:194
+#: global-functions.php:204
 msgid "Pay with CV Connect"
 msgstr "Payer avec CV Connect"
 
-#: global-functions.php:166
+#: global-functions.php:176
 msgid "Pay with Diners"
 msgstr "Payer avec Diners"
 
-#: global-functions.php:180
+#: global-functions.php:190
 msgid "Pay with JCB"
 msgstr "Payer avec JCB"
 
-#: classes/wc-etransactions-gateways.php:177
+#: classes/wc-etransactions-gateways.php:175
 #, php-format
 msgid "Pay with my previously stored card - %s - %s/%s"
 msgstr "Payer avec ma carte enregistrée - %s - %s/%s"
 
-#: global-functions.php:152
+#: global-functions.php:162
 msgid "Pay with Paypal"
 msgstr "Payer avec Paypal"
 
-#: global-functions.php:208
+#: global-functions.php:218
 msgid "Pay with Pluxee"
 msgstr "Payer avec Pluxee"
 
-#: global-functions.php:236
+#: global-functions.php:246
 msgid "Pay with UnionPay"
 msgstr "Payer avec UnionPay"
 
-#: global-functions.php:222
+#: global-functions.php:232
 msgid "Pay with Up Déjeuner"
 msgstr "Payer avec Up Déjeuner"
 
@@ -718,17 +746,21 @@ msgstr "CONFIGURATION DU PAIEMENT EN UNE FOIS"
 msgid "Payment display"
 msgstr "Affichage"
 
-#: payment-methods/wc-etransactions-abstract-gateway-instalments.php:298
-#: payment-methods/wc-etransactions-abstract-gateway-instalments.php:310
-#: payment-methods/wc-etransactions-abstract-gateway-instalments.php:322
-#: payment-methods/wc-etransactions-abstract-gateway-instalments.php:333
-#: payment-methods/wc-etransactions-abstract-gateway.php:383
-#: payment-methods/wc-etransactions-abstract-gateway.php:395
-#: payment-methods/wc-etransactions-abstract-gateway.php:406
+#: payment-methods/wc-etransactions-abstract-gateway-instalments.php:312
+#: payment-methods/wc-etransactions-abstract-gateway-instalments.php:324
+#: payment-methods/wc-etransactions-abstract-gateway-instalments.php:336
+#: payment-methods/wc-etransactions-abstract-gateway-instalments.php:347
+#: payment-methods/wc-etransactions-abstract-gateway.php:397
+#: payment-methods/wc-etransactions-abstract-gateway.php:409
+#: payment-methods/wc-etransactions-abstract-gateway.php:420
 msgid "Payment error: Please try again"
 msgstr "Erreur de paiement : veuillez réessayer"
 
-#: classes/wc-etransactions-settings.php:334
+#: classes/helpers/wc-etransaction-order-manager.php:74
+msgid "Payment method"
+msgstr "Méthode de paiement"
+
+#: classes/wc-etransactions-settings.php:320
 msgid "Payment setup"
 msgstr "Configuration du paiment"
 
@@ -744,19 +776,16 @@ msgstr "En attente de paiement"
 msgid "Performed date"
 msgstr "Date d'exécution"
 
-#: classes/wc-etransactions-settings.php:303
-#: classes/wc-etransactions-settings.php:440
+#: classes/wc-etransactions-settings.php:289
+#: classes/wc-etransactions-settings.php:426
 msgid "PHP version"
 msgstr "Version de PHP"
 
-#: payment-methods/wc-etransactions-abstract-gateway-instalments.php:68
-#: payment-methods/wc-etransactions-abstract-gateway.php:85
-#: classes/wc-etransactions-gateways.php:308
 #: classes/wc-etransactions-front.php:41
 msgid "Please fill a valid number"
 msgstr "Merci de saisir une numéro valide"
 
-#: classes/wc-etransactions-settings.php:188
+#: classes/wc-etransactions-settings.php:174
 msgid "Please fill in all the required fields."
 msgstr "Veuillez remplir tous les champs obligatoires."
 
@@ -768,15 +797,15 @@ msgstr ""
 "L'option \"état de commande\" permet également le déclenchement manuel avec "
 "un bouton disponible dans la commande."
 
-#: classes/wc-etransactions-settings.php:276
+#: classes/wc-etransactions-settings.php:262
 msgid "Please try again."
 msgstr "Veuillez réessayer."
 
-#: classes/wc-etransactions-settings.php:312
+#: classes/wc-etransactions-settings.php:298
 msgid "Plugin configuration"
 msgstr "Configuration d'extension"
 
-#: classes/wc-etransactions-settings.php:305
+#: classes/wc-etransactions-settings.php:291
 msgid "Plugin version"
 msgstr "Version d'extension"
 
@@ -838,6 +867,14 @@ msgstr "Remboursement effectué avec succès"
 msgid "remove"
 msgstr "retirer"
 
+#: templates/admin/page-settings/changelog.php:29
+msgid "Removed: number phone field"
+msgstr "Suppression du champ téléphone"
+
+#: classes/helpers/wc-etransaction-order-manager.php:156
+msgid "Reset filter"
+msgstr "Réinitialiser les filtres"
+
 #: templates/admin/page-settings/payment.php:279
 #: templates/admin/page-settings/instalment.php:178
 #: templates/admin/page-settings/account.php:179
@@ -845,11 +882,15 @@ msgstr "retirer"
 msgid "Save"
 msgstr "Enregistrer"
 
+#: templates/admin/page-settings/payment.php:44
+msgid "Secure payment with Crédit Agricole"
+msgstr "Paiement sécurisé via Crédit Agricole"
+
 #: templates/admin/page-settings/intro.php:41
 msgid "Secure your transactions with 3D-Secure v2 (PSD2 compliant)."
 msgstr "Sécurisez vos transactions avec le 3D-Secure v2 (conforme DSP2)."
 
-#: global-functions.php:264
+#: global-functions.php:274
 msgid "Secured payment by Credit Agricole"
 msgstr "Paiement sécurisé via Crédit Agricole"
 
@@ -857,16 +898,16 @@ msgstr "Paiement sécurisé via Crédit Agricole"
 msgid "Select Some Options"
 msgstr "Sélectionnez quelques options"
 
-#: classes/wc-etransactions-settings.php:304
+#: classes/wc-etransactions-settings.php:290
 msgid "Server info"
 msgstr "Informations sur le serveur"
 
-#: classes/wc-etransactions-settings.php:344
+#: classes/wc-etransactions-settings.php:330
 msgid "Setting up payment methods"
 msgstr "Configuration des méthodes de paiment"
 
-#: classes/wc-etransactions-settings.php:81
-#: classes/wc-etransactions-settings.php:82
+#: classes/wc-etransactions-settings.php:75
+#: classes/wc-etransactions-settings.php:76
 msgid "Settings"
 msgstr "Paramètres"
 
@@ -883,7 +924,11 @@ msgstr "Numéro de site"
 msgid "State"
 msgstr "Etat de l'échéance"
 
-#: classes/wc-etransactions-gateways.php:348
+#: classes/helpers/wc-etransaction-order-manager.php:73
+msgid "Status"
+msgstr "Etat de commande"
+
+#: classes/wc-etransactions-gateways.php:298
 #: classes/wc-etransactions-front.php:42
 msgid "Store my credit card details for future payments."
 msgstr "Enregistrer ma carte pour de futurs paiements"
@@ -952,6 +997,10 @@ msgstr ""
 "Pour désactiver correctement le plugin, veuillez sélectionner si vous "
 "souhaitez :"
 
+#: classes/helpers/wc-etransaction-order-manager.php:72
+msgid "Transaction"
+msgstr "Transaction"
+
 #: templates/admin/order/payment-info.php:49
 msgid "Transaction amount"
 msgstr "Total"
@@ -961,16 +1010,24 @@ msgstr "Total"
 msgid "Transaction number"
 msgstr "Numéro de transaction"
 
-#: classes/wc-etransactions-settings.php:90
-#: classes/wc-etransactions-settings.php:91
+#: classes/wc-etransactions-list-transaction.php:25
+#: classes/wc-etransactions-list-transaction.php:26
 msgid "Transactions"
 msgstr "Transactions"
 
-#: classes/wc-etransactions-settings.php:71
+#: classes/helpers/wc-etransaction-order-manager.php:109
+msgid "Transactions not found"
+msgstr "Transactions non trouvé"
+
+#: classes/wc-etransactions-list-transaction.php:38
+msgid "Transactions Up2Pay list"
+msgstr "Listes des transactions Up2Pay"
+
+#: classes/wc-etransactions-settings.php:65
 msgid "Up2pay"
 msgstr "Up2pay"
 
-#: classes/wc-etransactions-settings.php:448
+#: classes/wc-etransactions-settings.php:434
 msgid "Up2pay account configured"
 msgstr "Contrat Up2pay e-Transactions existant"
 
@@ -1010,14 +1067,9 @@ msgstr ""
 "Offre Up2pay e-Transactions souscrite auprès de votre Caisse Régionale du "
 "Crédit Agricole."
 
-#: classes/wc-etransactions-settings.php:70
+#: classes/wc-etransactions-settings.php:64
 msgid "Up2pay Settings"
 msgstr "Paramètres Up2pay"
-
-#: classes/wc-etransactions-updater.php:80
-#, php-format
-msgid "Up2pay updater version %s"
-msgstr "Mise à jour de la version %s de Up2pay"
 
 #: templates/admin/page-settings/payment.php:55
 #: templates/admin/page-settings/payment.php:238
@@ -1088,28 +1140,28 @@ msgstr ""
 "avec un compte de démonstration ou en utilisant vos identifiants personnels "
 "avec vos options."
 
-#: classes/wc-etransactions-gateways.php:268
+#: classes/wc-etransactions-gateways.php:262
 msgid "WooCommerce must be activated."
 msgstr "WooCommerce doit être activé."
 
-#: classes/wc-etransactions-settings.php:300
+#: classes/wc-etransactions-settings.php:286
 msgid "WordPress & server configuration"
 msgstr "WordPress & configuration serveur"
 
-#: classes/wc-etransactions-settings.php:309
+#: classes/wc-etransactions-settings.php:295
 msgid "WordPress debug mode enabled"
 msgstr "WordPress debug mode activé"
 
-#: classes/wc-etransactions-settings.php:308
+#: classes/wc-etransactions-settings.php:294
 msgid "WordPress multisite enabled"
 msgstr "WordPress multisite activé"
 
-#: classes/wc-etransactions-settings.php:302
+#: classes/wc-etransactions-settings.php:288
 msgid "WordPress version"
 msgstr "Version WordPress"
 
-#: classes/wc-etransactions-settings.php:308
-#: classes/wc-etransactions-settings.php:309
+#: classes/wc-etransactions-settings.php:294
+#: classes/wc-etransactions-settings.php:295
 #: templates/admin/order/payment-info.php:58
 #: templates/admin/page-settings/payment.php:203
 #: templates/admin/page-settings/payment.php:222
@@ -1121,7 +1173,7 @@ msgstr "Version WordPress"
 msgid "Yes"
 msgstr "Oui"
 
-#: classes/wc-etransactions-gateways.php:297
+#: classes/wc-etransactions-gateways.php:291
 #: classes/wc-etransactions-front.php:39
 #, php-format
 msgid "You are using Up2Pay %s environment"
@@ -1138,13 +1190,12 @@ msgstr ""
 msgid "You can upload here a new logo."
 msgstr "Vous pouvez charger un nouveau logo ici."
 
-#: classes/wc-etransactions-gateways.php:303
 #: classes/wc-etransactions-front.php:40
 msgid "You must enter a valid phone number to place an order"
 msgstr "Merci de saisir un numéro de mobile valide pour passer commande"
 
-#: payment-methods/wc-etransactions-abstract-gateway-instalments.php:170
-#: payment-methods/wc-etransactions-abstract-gateway.php:219
+#: payment-methods/wc-etransactions-abstract-gateway-instalments.php:163
+#: payment-methods/wc-etransactions-abstract-gateway.php:211
 msgid ""
 "You will be redirected to the E-Transactions payment page. If not, please "
 "use the button bellow."

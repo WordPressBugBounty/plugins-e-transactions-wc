@@ -121,8 +121,6 @@ class WC_Etransactions_Gateways {
 
         } else {
 
-            if ( ! $is_payment_methods_tab ) {
-
                 $payment_methods            = wc_etransactions_get_payment_methods();
                 $payment_methods_settings   = wc_etransactions_get_option('payment_methods_settings');
 
@@ -154,7 +152,7 @@ class WC_Etransactions_Gateways {
                         }
                     }
 
-					if ( $one_click_enabled === '1' && !$is_admin_checkout_page ) {
+					if ( $one_click_enabled === '1' && !$is_admin_checkout_page && !empty(get_current_user_id()) ) {
 
                         $gateway_id         = 'etransactions_std_card_' . $method_id;
                         $existing_tokens    = WC_Payment_Tokens::get_tokens(array(
@@ -202,15 +200,11 @@ class WC_Etransactions_Gateways {
                     );
                     $wce_methods[] = new WC_EStd_Gw($params);
                 }
-                
-            } else {
 
-                $wce_methods[] = new WC_EStd_Gw();
-            }
         }
 
         $instalments_enabled = wc_etransactions_get_option('instalment_enabled');
-        if ( $instalments_enabled === '1' && !$is_payment_methods_tab && !$is_account_contract_access ) {
+        if ( $instalments_enabled === '1' && !$is_account_contract_access ) {
 
             $instalments            = wc_etransactions_get_instalments();
             $instalments_settings   = wc_etransactions_get_option('instalment_settings');
@@ -297,50 +291,6 @@ class WC_Etransactions_Gateways {
                     <span><?php echo sprintf( __( "You are using Up2Pay %s environment", 'wc-etransactions' ), esc_html($mode) ); ?></span>
                 </div>
             <?php endif; ?>
-
-            <div class="wce-number">
-                <div class="wce-number-notice wce-notice-warning wce-notice-padding">
-                    <span><?php _e( 'You must enter a valid phone number to place an order', 'wc-etransactions' ); ?></span>
-                </div>
-                <div class="wce-number-input">
-                    <input type="tel" id="<?php echo esc_attr( $uniq_id ); ?>">
-                    <img class="wce_up2pay_phone_valid wce-hide" src="<?php echo esc_attr( WC_ETRANSACTIONS_PLUGIN_URL . 'assets/img/icons/icon_valid.png' ); ?>"/>
-                    <span class="wce_up2pay_phone_error"><?php _e( 'Please fill a valid number', 'wc-etransactions' ); ?></span>
-                </div>
-                <script>
-                    (function( d, w ) {
-						var billingPhone = d.querySelector( '#billing_phone' );
-                        var wceInput     = d.querySelector( '#<?php echo esc_attr( $uniq_id ); ?>' );
-                        var wceInterval  = null;
-
-                        function wceInitField( telInput ) {
-                            if ( w.wceIntlTelInput !== undefined ) {
-                                clearInterval( wceInterval );
-                                wceIntlTelInput( telInput );
-
-								if ( billingPhone ) {
-									telInput.value = billingPhone.value;
-									window.wceChangeTelInput( {}, telInput );
-								}
-                            } else {
-                                wceInterval = setInterval(() => {
-                                    wceInitField( telInput );
-                                }, 100);
-                            }
-                        }
-                        wceInitField( wceInput );
-
-                        wceInput.addEventListener( 'change', function(e){ window.wceChangeTelInput( e, wceInput, false ) }.bind(this) );
-                        wceInput.addEventListener( 'keyup', function(e){ window.wceChangeTelInput( e, wceInput, false ) }.bind(this) );
-						if ( billingPhone ) {
-							billingPhone.addEventListener( 'keyup', function(e){ 
-								wceInput.value = e.target.value;
-								window.wceChangeTelInput( {}, wceInput );
-							}.bind(this) );
-						}
-                    })( document, window );
-                </script>
-            </div>
 
             <?php if( $one_click_enabled === '1' ) : ?>
                 <div class="wce-one-click-notice wce-notice-padding">

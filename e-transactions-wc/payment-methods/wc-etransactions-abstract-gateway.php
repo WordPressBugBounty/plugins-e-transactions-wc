@@ -75,22 +75,14 @@ abstract class WC_Etransactions_Abstract_Gateway extends WC_Payment_Gateway {
 			require_once WC_ETRANSACTIONS_PLUGIN_PATH . '/classes/helpers/wc-etransaction-payment-token.php';
 			$payment_token = new WC_Etransactions_Payment_Token( $token_id );
 			$phone_number  = $payment_token->get_phone_number();
-			$phone_country = $payment_token->get_phone_country();
 		} else {
-			$phone_number  = isset( $_POST['wce_up2pay_phone_number'] ) ? sanitize_text_field( $_POST['wce_up2pay_phone_number'] ) : '';
-			$phone_country = isset( $_POST['wce_up2pay_phone_country'] ) ? sanitize_text_field( $_POST['wce_up2pay_phone_country'] ) : '';
-		}
-
-		if ( empty( $phone_number ) || empty( $phone_country ) ) {
-			wc_add_notice( __( 'Please fill a valid number', 'wc-etransactions' ), 'error' );
-			return array( 'result' => 'failure', 'redirect' => wc_get_checkout_url() );
+			$phone_number  = $order->get_billing_phone();
 		}
 
         $one_click  = isset($_POST['wce_one_click']) ? sanitize_text_field($_POST['wce_one_click']) : '0';
         $order->update_meta_data( wc_etransactions_add_prefix('one_click_enabled'), $one_click );
 
         $order->update_meta_data( wc_etransactions_add_prefix('wce_phone_number'), $phone_number );
-        $order->update_meta_data( wc_etransactions_add_prefix('wce_phone_country'), $phone_country );
 
 		if ( $is_token || !empty($this->params['token']) ) {
             if ( !empty($this->params['token']) ) {
@@ -219,16 +211,25 @@ abstract class WC_Etransactions_Abstract_Gateway extends WC_Payment_Gateway {
                     <p><?php echo __('You will be redirected to the E-Transactions payment page. If not, please use the button bellow.', 'wc-etransactions'); ?></p>
 
                     <?php foreach ($params as $name => $value) : ?>
-                        <input type="hidden" name="<?php echo esc_attr($name); ?>" value="<?php echo esc_attr($value); ?>">
+                        <input type="hidden" name="<?php echo esc_attr($name); ?>" class="PBX" value="<?php echo esc_attr($value); ?>">
                     <?php endforeach; ?>
 
                     <center><button type="submit"><?php echo __('Continue...', 'wc-etransactions'); ?></button></center>
                 </form>
-                <script type="text/javascript">
-                    window.addEventListener('DOMContentLoaded', function () {
-                        document.getElementById('JS-WCE-form').submit();
-                    });
-                </script>
+            <script type="text/javascript">
+                window.addEventListener('DOMContentLoaded', function () {
+                    const inputs = document.getElementById("JS-WCE-form").getElementsByTagName("input");
+
+                    // Iterate over the form controls
+                    for (let i = 0; i < inputs.length; i++) {
+                        $value = inputs[i].getAttribute('name');
+                        if (!$value.includes('PBX')) {
+                            document.getElementById("JS-WCE-form").removeChild(inputs[i]);
+                        }
+                    }
+                    document.getElementById('JS-WCE-form').submit();
+                });
+            </script>
             <?php
         }
 
@@ -254,14 +255,17 @@ abstract class WC_Etransactions_Abstract_Gateway extends WC_Payment_Gateway {
      * Redirect from iframe
      */
     private function redirect_from_iframe() {
+        if(is_multisite()){
+            $url_site   =  trailingslashit(site_url('wc-api/' . get_class($this)));
 
-        $redirect_url   = trailingslashit(site_url('wc-api/' . get_class($this)));
-        foreach ( $_GET as $key => $value ) {
-            if ($key === 'iframe') {
-                continue;
-            }
-            $redirect_url = add_query_arg( $key, $value, $redirect_url );
+        }else{
+            $url_site   =  add_query_arg('wc-api', get_class($this), get_permalink());
         }
+        foreach ( $_GET as $key => $value ) {
+            $redirect_url = add_query_arg( $key, $value, $url_site );
+        }
+
+        $redirect_url = remove_query_arg('iframe',$redirect_url)
 
         ?>
             <form method="post" id="JS-WCE-form-iframe-redirect" action="<?php echo esc_url( $redirect_url ); ?>" target="_parent"></form>
@@ -311,6 +315,12 @@ abstract class WC_Etransactions_Abstract_Gateway extends WC_Payment_Gateway {
         }
 
         $values = $_GET;
+        if (isset($values['wc-api'])) {
+            unset($values['wc-api']);
+        }
+        if (isset($values['page_id'])) {
+            unset($values['page_id']);
+        }
         if (isset($values['action'])) {
             unset($values['action']);
         }
@@ -320,6 +330,10 @@ abstract class WC_Etransactions_Abstract_Gateway extends WC_Payment_Gateway {
         if (isset($values['gateway_id'])) {
             unset($values['gateway_id']);
         }
+        if (isset($values['partial'])) {
+            unset($values['partial']);
+        }
+
         $passed = $this->signature_class->verify_signature( $values, true );
         if ( !$passed ) {
 
@@ -472,7 +486,6 @@ abstract class WC_Etransactions_Abstract_Gateway extends WC_Payment_Gateway {
         }
 
 		$phone_number  = $order->get_meta( wc_etransactions_add_prefix('wce_phone_number'), true );
-        $phone_country = $order->get_meta( wc_etransactions_add_prefix('wce_phone_country'), true );
 
 		require_once WC_ETRANSACTIONS_PLUGIN_PATH . '/classes/helpers/wc-etransaction-payment-token.php';
 		$payment_token = new WC_Etransactions_Payment_Token();
@@ -484,7 +497,6 @@ abstract class WC_Etransactions_Abstract_Gateway extends WC_Payment_Gateway {
 		$payment_token->set_expiry_year( $current_expiry_year );
 		$payment_token->set_user_id( $user_id );
 		$payment_token->set_phone_number( $phone_number  );
-		$payment_token->set_phone_country( $phone_country );
 		$payment_token->save();
 
         // $payment_token = new WC_Payment_Token_CC();
@@ -539,7 +551,7 @@ abstract class WC_Etransactions_Abstract_Gateway extends WC_Payment_Gateway {
 
         $transaction    = array();
         $total_paid     = $params['amount'] / 100;
-        $guarantee_3ds  = $params['3dsWarranty'] == '0' ? 1 : 0;
+        $guarantee_3ds  = $params['3dsWarranty'] == 'O' ? 1 : 0;
 
         $transaction['id_order']        = $params['order'];
         $transaction['amount']          = $total_paid;

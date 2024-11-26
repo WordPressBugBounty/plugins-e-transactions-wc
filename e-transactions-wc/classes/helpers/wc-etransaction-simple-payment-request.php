@@ -54,18 +54,18 @@ class WC_Etransactions_Simple_Payment_Request extends WC_Etransactions_Abstract_
         $is_token                   = !empty($token_id);
         $one_click_enabled_checkbox = $this->order->get_meta( wc_etransactions_add_prefix('one_click_enabled'), true );
 
-        $this->set_param( 'PBX_ANNULE', add_query_arg( array('action' => 'cancel', 'order' => $this->order->get_id(), 'gateway_id' => $this->gateway_params['gateway_id']), trailingslashit(site_url('wc-api/' . $this->gateway_class))) );
+       // $this->set_param( 'PBX_ANNULE', add_query_arg( array('action' => 'cancel', 'order' => $this->order->get_id(), 'gateway_id' => $this->gateway_params['gateway_id']), trailingslashit(site_url('wc-api/' . $this->gateway_class))) );
         $this->set_param( 'PBX_BILLING', $xml_fields['PBX_BILLING'] );
         $this->set_param( 'PBX_CMD', 'woo_'.$this->order->get_id() . '_' . trim(str_replace('&', '_', preg_replace("/[^A-Za-z0-9+_]/", '', remove_accents($this->order->get_billing_first_name() . '_' . $this->order->get_billing_last_name())))) . '_' . wp_date('mdHi') );
         $this->set_param( 'PBX_DEVISE', $currency_iso_code );
-        $this->set_param( 'PBX_EFFECTUE', add_query_arg( array('action' => 'success', 'order' => $this->order->get_id(), 'gateway_id' => $this->gateway_params['gateway_id']), trailingslashit(site_url('wc-api/' . $this->gateway_class))) );
+      //  $this->set_param( 'PBX_EFFECTUE', add_query_arg( array('action' => 'success', 'order' => $this->order->get_id(), 'gateway_id' => $this->gateway_params['gateway_id']), trailingslashit(site_url('wc-api/' . $this->gateway_class))) );
         $this->set_param( 'PBX_HASH', 'SHA512' );
         $this->set_param( 'PBX_IDENTIFIANT', $account_credentials['account_id'] );
         $this->set_param( 'PBX_LANGUE', wc_etransactions_get_language_Iso6393_code() );
         $this->set_param( 'PBX_PORTEUR', $this->order->get_billing_email() );
         $this->set_param( 'PBX_RANG', $account_credentials['account_rank'] );
-        $this->set_param( 'PBX_REFUSE', add_query_arg( array('action' => 'failed', 'order' => $this->order->get_id(), 'gateway_id' => $this->gateway_params['gateway_id']), trailingslashit(site_url('wc-api/' . $this->gateway_class))) );
-        $this->set_param( 'PBX_REPONDRE_A', add_query_arg( array('action' => 'ipn', 'order' => $this->order->get_id(), 'gateway_id' => $this->gateway_params['gateway_id']), trailingslashit(site_url('wc-api/' . $this->gateway_class))) );
+      //  $this->set_param( 'PBX_REFUSE', add_query_arg( array('action' => 'failed', 'order' => $this->order->get_id(), 'gateway_id' => $this->gateway_params['gateway_id']), trailingslashit(site_url('wc-api/' . $this->gateway_class))) );
+      //  $this->set_param( 'PBX_REPONDRE_A', add_query_arg( array('action' => 'ipn', 'order' => $this->order->get_id(), 'gateway_id' => $this->gateway_params['gateway_id']), trailingslashit(site_url('wc-api/' . $this->gateway_class))) );
         $this->set_param( 'PBX_SHOPPINGCART', $xml_fields['PBX_SHOPPINGCART'] );
         $this->set_param( 'PBX_SITE', $account_credentials['account_site_number'] );
         $this->set_param( 'PBX_TIME', date('c') );
@@ -74,6 +74,20 @@ class WC_Etransactions_Simple_Payment_Request extends WC_Etransactions_Abstract_
         $this->set_param( 'PBX_SOUHAITAUTHENT', $config_class->order_needs_3ds_exemption($this->order) ? "02" : "01" );
         $this->set_param( 'PBX_RETOUR', self::PBX_RETOUR );
         $this->set_param( 'PBX_SOURCE', 'RWD' );
+
+
+        if(is_multisite()){
+            $this->set_param( 'PBX_ANNULE', add_query_arg( array('action' => 'cancel', 'order' => $this->order->get_id(), 'gateway_id' => $this->gateway_params['gateway_id']), trailingslashit(site_url('wc-api/' . $this->gateway_class))) );
+            $this->set_param( 'PBX_EFFECTUE', add_query_arg( array('action' => 'success', 'order' => $this->order->get_id(), 'gateway_id' => $this->gateway_params['gateway_id']), trailingslashit(site_url('wc-api/' . $this->gateway_class))) );
+            $this->set_param( 'PBX_REFUSE', add_query_arg( array('action' => 'failed', 'order' => $this->order->get_id(), 'gateway_id' => $this->gateway_params['gateway_id']), trailingslashit(site_url('wc-api/' . $this->gateway_class))) );
+            $this->set_param( 'PBX_REPONDRE_A', add_query_arg( array('action' => 'ipn', 'order' => $this->order->get_id(), 'gateway_id' => $this->gateway_params['gateway_id']), trailingslashit(site_url('wc-api/' . $this->gateway_class))) );
+        }else{
+            $this->set_param( 'PBX_ANNULE', add_query_arg( array('action' => 'cancel', 'order' => $this->order->get_id(), 'gateway_id' => $this->gateway_params['gateway_id']),add_query_arg('wc-api', $this->gateway_class, get_permalink())) );
+            $this->set_param( 'PBX_EFFECTUE', add_query_arg( array('action' => 'success', 'order' => $this->order->get_id(), 'gateway_id' => $this->gateway_params['gateway_id']), add_query_arg('wc-api', $this->gateway_class, get_permalink())) );
+            $this->set_param( 'PBX_REFUSE', add_query_arg( array('action' => 'failed', 'order' => $this->order->get_id(), 'gateway_id' => $this->gateway_params['gateway_id']), add_query_arg('wc-api', $this->gateway_class, get_permalink())) );
+            $this->set_param( 'PBX_REPONDRE_A', add_query_arg( array('action' => 'ipn', 'order' => $this->order->get_id(), 'gateway_id' => $this->gateway_params['gateway_id']), add_query_arg('wc-api', $this->gateway_class, get_permalink())) );
+        }
+
 
         if ( wc_etransactions_get_option('payment_debit_type') === WC_Etransactions_Payment::PAYMENT_DEBIT_TYPE_DEFERRED ) {
             if ( wc_etransactions_get_option('payment_capture_event') === WC_Etransactions_Payment::PAYMENT_CAPTURE_EVENT_DAYS ) {

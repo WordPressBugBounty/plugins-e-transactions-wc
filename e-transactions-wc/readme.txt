@@ -3,12 +3,12 @@ Contributors: Up2pay e-Transactions
 Donate link: none
 Tags: Payment Gateway, Orders, woocommerce, e-commerce, payment, E-Transactions
 Requires at least: 5.0.0
-Tested up to: 6.6
-Stable tag: 3.0.5
+Tested up to: 6.7
+Stable tag: 3.0.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 WC requires at least: 4.0
-WC tested up to: 9.1.2
+WC tested up to: 9.4.1
 
 This plugin is a Up2pay e-Transactions payment gateway for WooCommerce 4.x
 
@@ -68,6 +68,19 @@ Contact [Up2pay e-Transactions WordPress Support](mailto:support@e-transactions.
 6. Once successfully processed, the Payment transaction details appear in the order details
 
 == Changelog ==
+
+= 3.0.6 =
+- Removed: number phone field
+- Fixed : payment status in several x
+- Fixed : the order of payment methods
+- Fixed : postcode
+- Fixed : Payment card display when customer aren't login
+- Fixed : 3ds display guaranteed
+- Fixed : simple permalink
+- Fixed : compatibility with plugin Anti-SPAM CleanTalk
+- Add transaction page
+- Fixed : translation following Wordpress 6.7 upgrade
+
 = 3.0.5 =
 - Better gestion of update process
 - Fixed : Timeout on migration of old orders to "Processing" status (from "Capture" status)
