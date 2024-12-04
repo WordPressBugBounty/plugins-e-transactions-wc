@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: Up2pay e-Transactions 3.0.6\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/e-transactions-"
 "wc\n"
-"POT-Creation-Date: 2024-11-21 13:53+0000\n"
+"POT-Creation-Date: 2024-12-02 14:47+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -142,10 +142,6 @@ msgstr ""
 
 #: templates/admin/page-settings/payment.php:255
 msgid "Add a means of payment"
-msgstr ""
-
-#: templates/admin/page-settings/changelog.php:37
-msgid "Add transaction page"
 msgstr ""
 
 #: templates/admin/page-settings/payment.php:30
@@ -399,32 +395,8 @@ msgid ""
 "credited at every instalment."
 msgstr ""
 
-#: templates/admin/page-settings/changelog.php:34
-msgid "Fixed : 3ds display guaranteed"
-msgstr ""
-
-#: templates/admin/page-settings/changelog.php:36
-msgid "Fixed : compatibility with plugin Anti-SPAM CleanTalk"
-msgstr ""
-
-#: templates/admin/page-settings/changelog.php:33
-msgid "Fixed : Payment card display when customer aren't login"
-msgstr ""
-
-#: templates/admin/page-settings/changelog.php:30
-msgid "Fixed : payment status in several time"
-msgstr ""
-
-#: templates/admin/page-settings/changelog.php:32
-msgid "Fixed : postcode"
-msgstr ""
-
-#: templates/admin/page-settings/changelog.php:35
-msgid "Fixed : simple permalink"
-msgstr ""
-
-#: templates/admin/page-settings/changelog.php:31
-msgid "Fixed : the order of payment methods"
+#: templates/admin/page-settings/changelog.php:25
+msgid "Fixed: tag CountryCodeMobilePhone"
 msgstr ""
 
 #: templates/admin/page-settings/payment.php:159
@@ -635,39 +607,39 @@ msgstr ""
 msgid "Partially refunded"
 msgstr ""
 
-#: global-functions.php:292
+#: global-functions.php:293
 msgid "Pay in 2 instalments with credit card"
 msgstr ""
 
-#: global-functions.php:302
+#: global-functions.php:303
 msgid "Pay in 3 instalments with credit card"
 msgstr ""
 
-#: global-functions.php:312
+#: global-functions.php:313
 msgid "Pay in 4 instalments with credit card"
 msgstr ""
 
-#: global-functions.php:148
+#: global-functions.php:149
 msgid "Pay with AMEX"
 msgstr ""
 
-#: global-functions.php:260
+#: global-functions.php:261
 msgid "Pay with Bimply"
 msgstr ""
 
-#: global-functions.php:134
+#: global-functions.php:135
 msgid "Pay with credit card"
 msgstr ""
 
-#: global-functions.php:204
+#: global-functions.php:205
 msgid "Pay with CV Connect"
 msgstr ""
 
-#: global-functions.php:176
+#: global-functions.php:177
 msgid "Pay with Diners"
 msgstr ""
 
-#: global-functions.php:190
+#: global-functions.php:191
 msgid "Pay with JCB"
 msgstr ""
 
@@ -676,19 +648,19 @@ msgstr ""
 msgid "Pay with my previously stored card - %s - %s/%s"
 msgstr ""
 
-#: global-functions.php:162
+#: global-functions.php:163
 msgid "Pay with Paypal"
 msgstr ""
 
-#: global-functions.php:218
+#: global-functions.php:219
 msgid "Pay with Pluxee"
 msgstr ""
 
-#: global-functions.php:246
+#: global-functions.php:247
 msgid "Pay with UnionPay"
 msgstr ""
 
-#: global-functions.php:232
+#: global-functions.php:233
 msgid "Pay with Up Déjeuner"
 msgstr ""
 
@@ -817,10 +789,6 @@ msgstr ""
 msgid "remove"
 msgstr ""
 
-#: templates/admin/page-settings/changelog.php:29
-msgid "Removed: number phone field"
-msgstr ""
-
 #: classes/helpers/wc-etransaction-order-manager.php:156
 msgid "Reset filter"
 msgstr ""
@@ -840,7 +808,7 @@ msgstr ""
 msgid "Secure your transactions with 3D-Secure v2 (PSD2 compliant)."
 msgstr ""
 
-#: global-functions.php:274
+#: global-functions.php:275
 msgid "Secured payment by Credit Agricole"
 msgstr ""
 

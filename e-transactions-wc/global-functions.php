@@ -1,4 +1,5 @@
 <?php
+use libphonenumber\PhoneNumberUtil;
 
 // Ensure not called directly
 if ( !defined('ABSPATH') ) {
@@ -1089,4 +1090,14 @@ function wc_etransactions_get_language_Iso6393_code() {
     );
 
     return $iso_codes[$lang] ?? $iso_codes['default'];
+}
+
+function display_country_calling_code($billing_country) {
+
+    $phoneUtil = PhoneNumberUtil::getInstance();
+
+    $calling_code = $phoneUtil->getCountryCodeForRegion($billing_country);
+
+    return '+'. $calling_code;
+
 }

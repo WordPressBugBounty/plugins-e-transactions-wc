@@ -21,20 +21,8 @@
             </div>
             <div class="wc-etransactions__changelog__popup__content__body">
                 <h3><?php echo sprintf( __( "What's new in version %s", 'wc-etransactions' ), WC_ETRANSACTIONS_VERSION ); ?></h3>
-                <?php
-                    // $changelog_text = file_get_contents( WC_ETRANSACTIONS_PLUGIN_PATH . 'assets/txt/changelog.txt' );
-                    // echo wp_kses_post( wpautop( wptexturize( $changelog_text ) ) );
-                ?>
                 <ul>
-                    <li><?php _e( 'Removed: number phone field', 'wc-etransactions' ) ?></li>
-                    <li><?php _e( 'Fixed : payment status in several time', 'wc-etransactions' ) ?></li>
-                    <li><?php _e( 'Fixed : the order of payment methods', 'wc-etransactions' ) ?></li>
-                    <li><?php _e( 'Fixed : postcode', 'wc-etransactions' ) ?></li>
-                    <li><?php _e( 'Fixed : Payment card display when customer aren\'t login', 'wc-etransactions' ) ?></li>
-                    <li><?php _e( 'Fixed : 3ds display guaranteed', 'wc-etransactions' ) ?></li>
-                    <li><?php _e( 'Fixed : simple permalink', 'wc-etransactions' ) ?></li>
-                    <li><?php _e( 'Fixed : compatibility with plugin Anti-SPAM CleanTalk', 'wc-etransactions' ) ?></li>
-                    <li><?php _e( 'Add transaction page', 'wc-etransactions' ) ?></li>
+                    <li><?php _e( 'Fixed: tag CountryCodeMobilePhone', 'wc-etransactions' ) ?></li>
                 </ul>
             </div>
         </div>

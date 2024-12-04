@@ -189,11 +189,12 @@ class WC_Etransactions_Config {
             $postal_code,
             wc_etransactions_format_text_value($order->get_billing_city(), 'ANS', 50),
             wc_etransactions_get_country_numeric_code($order->get_billing_country()),
+            !empty($wce_up2pay_phone_number) ? display_country_calling_code($order->get_billing_country()) : '+33',
             wc_etransactions_format_text_value( $wce_up2pay_phone_number, 'ANS', 16),
         );
 
         $xml_billing = vsprintf(
-            '<?xml version="1.0" encoding="utf-8"?><Billing><Address><FirstName>%s</FirstName><LastName>%s</LastName><Address1>%s</Address1><ZipCode>%s</ZipCode><City>%s</City><CountryCode>%s</CountryCode><MobilePhone>%s</MobilePhone></Address></Billing>',
+            '<?xml version="1.0" encoding="utf-8"?><Billing><Address><FirstName>%s</FirstName><LastName>%s</LastName><Address1>%s</Address1><ZipCode>%s</ZipCode><City>%s</City><CountryCode>%s</CountryCode><CountryCodeMobilePhone>%s</CountryCodeMobilePhone><MobilePhone>%s</MobilePhone></Address></Billing>',
             $billing_details
         );
 

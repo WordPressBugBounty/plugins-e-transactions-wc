@@ -6,7 +6,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/e-transactions-"
 "wc\n"
 "POT-Creation-Date: 2024-03-08T10:07:35+00:00\n"
-"PO-Revision-Date: 2024-11-21 13:55+0000\n"
+"PO-Revision-Date: 2024-12-02 14:48+0000\n"
 "Last-Translator: \n"
 "Language-Team: Français\n"
 "Language: fr_FR\n"
@@ -160,10 +160,6 @@ msgstr "Extensions activé"
 #: templates/admin/page-settings/payment.php:255
 msgid "Add a means of payment"
 msgstr "Ajouter un moyen de paiement"
-
-#: templates/admin/page-settings/changelog.php:37
-msgid "Add transaction page"
-msgstr "Ajout de la page de transactions dans le back office"
 
 #: templates/admin/page-settings/payment.php:30
 msgid "Advanced"
@@ -426,34 +422,9 @@ msgstr ""
 "La 1ère échéance correspond au jour du paiement - Vous serez crédité au fur "
 "et à mesure des dates d'échéances."
 
-#: templates/admin/page-settings/changelog.php:34
-msgid "Fixed : 3ds display guaranteed"
-msgstr "Résolution des soucis d'affichage de la garantie 3DS"
-
-#: templates/admin/page-settings/changelog.php:36
-msgid "Fixed : compatibility with plugin Anti-SPAM CleanTalk"
-msgstr "Résolution de la compatibilité avec le module Anti-SPAM CleanTalK"
-
-#: templates/admin/page-settings/changelog.php:33
-msgid "Fixed : Payment card display when customer aren't login"
-msgstr "Résolution de l'affichage des cartes lorsqu'on n'est pas connecté"
-
-#: templates/admin/page-settings/changelog.php:30
-msgid "Fixed : payment status in several time"
-msgstr "Résolution du statut pour les paiements en plusieurs fois"
-
-#: templates/admin/page-settings/changelog.php:32
-msgid "Fixed : postcode"
-msgstr "Suppression des espaces sur les codes postaux"
-
-#: templates/admin/page-settings/changelog.php:35
-msgid "Fixed : simple permalink"
-msgstr "Résolution du retour en boutique avec le permalien simple"
-
-#: templates/admin/page-settings/changelog.php:31
-msgid "Fixed : the order of payment methods"
-msgstr ""
-"Prise en compte de l'ordre choisi pour l'affichage des moyens de paiements"
+#: templates/admin/page-settings/changelog.php:25
+msgid "Fixed: tag CountryCodeMobilePhone"
+msgstr "Correction de la balise CountryCodeMobilePhone"
 
 #: templates/admin/page-settings/payment.php:159
 msgid "From"
@@ -681,39 +652,39 @@ msgstr "Etat(s) de la commande déclenchant l'envoi en banque"
 msgid "Partially refunded"
 msgstr "Partiellement remboursé"
 
-#: global-functions.php:292
+#: global-functions.php:293
 msgid "Pay in 2 instalments with credit card"
 msgstr "Payer en 2 fois par carte bancaire"
 
-#: global-functions.php:302
+#: global-functions.php:303
 msgid "Pay in 3 instalments with credit card"
 msgstr "Payer en 3 fois par carte bancaire"
 
-#: global-functions.php:312
+#: global-functions.php:313
 msgid "Pay in 4 instalments with credit card"
 msgstr "Payer en 4 fois par carte bancaire"
 
-#: global-functions.php:148
+#: global-functions.php:149
 msgid "Pay with AMEX"
 msgstr "Payer avec AMEX"
 
-#: global-functions.php:260
+#: global-functions.php:261
 msgid "Pay with Bimply"
 msgstr "Payer avec Bimply"
 
-#: global-functions.php:134
+#: global-functions.php:135
 msgid "Pay with credit card"
 msgstr "Payer par carte bancaire"
 
-#: global-functions.php:204
+#: global-functions.php:205
 msgid "Pay with CV Connect"
 msgstr "Payer avec CV Connect"
 
-#: global-functions.php:176
+#: global-functions.php:177
 msgid "Pay with Diners"
 msgstr "Payer avec Diners"
 
-#: global-functions.php:190
+#: global-functions.php:191
 msgid "Pay with JCB"
 msgstr "Payer avec JCB"
 
@@ -722,19 +693,19 @@ msgstr "Payer avec JCB"
 msgid "Pay with my previously stored card - %s - %s/%s"
 msgstr "Payer avec ma carte enregistrée - %s - %s/%s"
 
-#: global-functions.php:162
+#: global-functions.php:163
 msgid "Pay with Paypal"
 msgstr "Payer avec Paypal"
 
-#: global-functions.php:218
+#: global-functions.php:219
 msgid "Pay with Pluxee"
 msgstr "Payer avec Pluxee"
 
-#: global-functions.php:246
+#: global-functions.php:247
 msgid "Pay with UnionPay"
 msgstr "Payer avec UnionPay"
 
-#: global-functions.php:232
+#: global-functions.php:233
 msgid "Pay with Up Déjeuner"
 msgstr "Payer avec Up Déjeuner"
 
@@ -867,10 +838,6 @@ msgstr "Remboursement effectué avec succès"
 msgid "remove"
 msgstr "retirer"
 
-#: templates/admin/page-settings/changelog.php:29
-msgid "Removed: number phone field"
-msgstr "Suppression du champ téléphone"
-
 #: classes/helpers/wc-etransaction-order-manager.php:156
 msgid "Reset filter"
 msgstr "Réinitialiser les filtres"
@@ -890,7 +857,7 @@ msgstr "Paiement sécurisé via Crédit Agricole"
 msgid "Secure your transactions with 3D-Secure v2 (PSD2 compliant)."
 msgstr "Sécurisez vos transactions avec le 3D-Secure v2 (conforme DSP2)."
 
-#: global-functions.php:274
+#: global-functions.php:275
 msgid "Secured payment by Credit Agricole"
 msgstr "Paiement sécurisé via Crédit Agricole"
 
