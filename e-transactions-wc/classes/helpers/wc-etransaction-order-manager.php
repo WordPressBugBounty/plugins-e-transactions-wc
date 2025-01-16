@@ -84,15 +84,19 @@ class WC_Etransaction_Order_Manager
         $operations = $order_data->get_meta('wc-etransactions-operations', true);
         $transactions = $order_data->get_meta('wc-etransactions-transactions', true);
         $transaction_number = null;
+        $transaction_date = $order_data->get_date_created();
         $ipn = null;
         if (!empty($operations)) {
-            foreach ($operations as $operation) {
-                $ipn = $operation['result'];
-            }
+            $last_operation = end($operations);
+            $ipn = $last_operation['result'];
+            $transaction_number = $last_operation['numTrans'];
+            $transaction_date = $last_operation['date'];
         }
         if (!empty($transactions)) {
             foreach ($transactions as $transaction) {
-                $transaction_number = $transaction['captured'] ? $transaction['numtrans'] : $transaction['auth_numtrans'];
+                if(empty($transaction_number)){
+                    $transaction_number = $transaction['captured'] ? $transaction['numtrans'] : $transaction['auth_numtrans'];
+                }
                 if(empty($ipn)){
                     $ipn = $transaction['ipn'];
                 }
@@ -119,7 +123,7 @@ class WC_Etransaction_Order_Manager
             echo '<td class="column-ipn">' . __('--', 'wc-etransactions') . '</td>';
 
         }
-        echo '<td class="column-date"><time datetime="' . esc_attr($order_data->get_date_created()->date('c')) . '">' . esc_html(date_i18n('Y-m-d H:i', strtotime($order_data->get_date_created()))) . '</time></td>';
+        echo '<td class="column-date"><time datetime="' . esc_attr($transaction_date) . '">' . esc_html(date_i18n('Y-m-d H:i', strtotime($transaction_date))) . '</time></td>';
 
         echo '</tr>';
     }

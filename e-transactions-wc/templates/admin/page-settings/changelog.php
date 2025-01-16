@@ -22,7 +22,7 @@
             <div class="wc-etransactions__changelog__popup__content__body">
                 <h3><?php echo sprintf( __( "What's new in version %s", 'wc-etransactions' ), WC_ETRANSACTIONS_VERSION ); ?></h3>
                 <ul>
-                    <li><?php _e( 'Fixed: tag CountryCodeMobilePhone', 'wc-etransactions' ) ?></li>
+                    <li><?php _e( 'Fixed: updated transaction number after capture', 'wc-etransactions' ) ?></li>
                 </ul>
             </div>
         </div>

@@ -214,13 +214,13 @@ class WC_Etransactions_Order {
 
 		$nonce = sanitize_text_field( $_POST['nonce'] ?? '' );
         if ( ! wp_verify_nonce( $nonce, 'wc-etransactions-order-action' ) ) {
-            wp_send_json_error( __( 'Refresh the page and try again.', 'wpmastertoolkit' ) );
+            wp_send_json_error( __( 'Refresh the page and try again.', 'wc-etransactions' ) );
         }
 
 		$form_data = sanitize_text_field( $_POST['form'] ?? '' );
 
 		if ( empty( $form_data ) ) {
-			wp_send_json_error( __( 'Form data not found.', 'wpmastertoolkit' ) );
+			wp_send_json_error( __( 'Form data not found.', 'wc-etransactions' ) );
 		}
 
 		$form_data = wp_unslash( $form_data );
@@ -231,13 +231,13 @@ class WC_Etransactions_Order {
         $numappel          = $form_data['wc-etransactions-capture[numappel]'] ?? '';
 
 		if ( empty($order_id) || empty($amount_to_capture) || empty($numappel) ) {
-			wp_send_json_error( __( 'Form data not found.', 'wpmastertoolkit' ) );
+			wp_send_json_error( __( 'Form data not found.', 'wc-etransactions' ) );
         }
 
 		$order = wc_get_order( $order_id );
 
         if ( ! $order ) {
-			wp_send_json_error( __( 'Order not found.', 'wpmastertoolkit' ) );
+			wp_send_json_error( __( 'Order not found.', 'wc-etransactions' ) );
         }
 
 		$capture_class = new WC_Etransactions_Capture_Request();
@@ -288,10 +288,10 @@ class WC_Etransactions_Order {
 
             $order->save();
 
-			wp_send_json_success( __( 'Submission successful.', 'wpmastertoolkit' ) );
+			wp_send_json_success( __( 'Submission successful.', 'wc-etransactions' ) );
         }
 
-		wp_send_json_error( __( 'Submission failed.', 'wpmastertoolkit' ) );
+		wp_send_json_error( __( 'Submission failed.', 'wc-etransactions' ) );
 	}
 
 	/**
@@ -301,13 +301,13 @@ class WC_Etransactions_Order {
 
 		$nonce = sanitize_text_field( $_POST['nonce'] ?? '' );
         if ( ! wp_verify_nonce( $nonce, 'wc-etransactions-order-action' ) ) {
-            wp_send_json_error( __( 'Refresh the page and try again.', 'wpmastertoolkit' ) );
+            wp_send_json_error( __( 'Refresh the page and try again.', 'wc-etransactions' ) );
         }
 
 		$form_data = sanitize_text_field( $_POST['form'] ?? '' );
 
 		if ( empty( $form_data ) ) {
-			wp_send_json_error( __( 'Form data not found.', 'wpmastertoolkit' ) );
+			wp_send_json_error( __( 'Form data not found.', 'wc-etransactions' ) );
 		}
 		
 		$form_data = wp_unslash( $form_data );
@@ -317,13 +317,13 @@ class WC_Etransactions_Order {
 		$amount_to_refund = $form_data['wc-etransactions-refund[amount_to_refund]'] ?? '';
 
 		if ( empty($order_id) || empty($amount_to_refund) ) {
-			wp_send_json_error( __( 'Form data not found.', 'wpmastertoolkit' ) );
+			wp_send_json_error( __( 'Form data not found.', 'wc-etransactions' ) );
         }
 
 		$order = wc_get_order( $order_id );
 
         if ( ! $order ) {
-			wp_send_json_error( __( 'Order not found.', 'wpmastertoolkit' ) );
+			wp_send_json_error( __( 'Order not found.', 'wc-etransactions' ) );
         }
 
 		$refund_class = new WC_Etransactions_Refund_Request();
@@ -367,10 +367,10 @@ class WC_Etransactions_Order {
             $order->update_meta_data( 'wc-etransactions-operations', $operations );
             $order->save();
 
-			wp_send_json_success( __( 'Refund successful.', 'wpmastertoolkit' ) );
+			wp_send_json_success( __( 'Refund successful.', 'wc-etransactions' ) );
         }
 
-		wp_send_json_error( __( 'Refund failed.', 'wpmastertoolkit' ) );
+		wp_send_json_error( __( 'Refund failed.', 'wc-etransactions' ) );
 	}
 
     /**

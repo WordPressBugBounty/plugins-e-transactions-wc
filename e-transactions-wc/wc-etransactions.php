@@ -2,10 +2,11 @@
 /**
  * Plugin Name: Up2pay e-Transactions
  * Description: Up2pay e-Transactions gateway payment plugins for WooCommerce
- * Version: 3.0.7
+ * Version: 3.0.8
  * Author: Up2pay e-Transactions
  * Author URI: https://www.ca-moncommerce.com/espace-client-mon-commerce/up2pay-e-transactions/
  * Text Domain: wc-etransactions
+ * Requires Plugins: woocommerce
  *
  * @package WordPress
  * @since 0.9.0

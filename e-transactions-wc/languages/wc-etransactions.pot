@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: Up2pay e-Transactions 3.0.6\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/e-transactions-"
 "wc\n"
-"POT-Creation-Date: 2024-12-02 14:47+0000\n"
+"POT-Creation-Date: 2024-12-16 13:27+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -88,7 +88,7 @@ msgid ""
 "(click inside the box to automatically copy the information to the clipboard)"
 msgstr ""
 
-#: classes/helpers/wc-etransaction-order-manager.php:119
+#: classes/helpers/wc-etransaction-order-manager.php:123
 msgid "--"
 msgstr ""
 
@@ -106,7 +106,7 @@ msgstr ""
 msgid "2 or 3-digit number"
 msgstr ""
 
-#: templates/admin/order/payment-info.php:57
+#: templates/admin/order/payment-info.php:65
 msgid "3D-Secure garantee"
 msgstr ""
 
@@ -148,29 +148,29 @@ msgstr ""
 msgid "Advanced"
 msgstr ""
 
-#: classes/helpers/wc-etransaction-order-manager.php:146
+#: classes/helpers/wc-etransaction-order-manager.php:150
 msgid "All status"
 msgstr ""
 
 #: classes/helpers/wc-etransaction-order-manager.php:75
-#: templates/admin/order/payment-info.php:184
+#: templates/admin/order/payment-info.php:194
 msgid "Amount"
 msgstr ""
 
-#: templates/admin/order/payment-info.php:71
-#: templates/admin/order/payment-info.php:94
+#: templates/admin/order/payment-info.php:79
+#: templates/admin/order/payment-info.php:102
 msgid "Amount captured"
 msgstr ""
 
-#: templates/admin/order/payment-info.php:107
+#: templates/admin/order/payment-info.php:115
 msgid "Amount refunded"
 msgstr ""
 
-#: templates/admin/order/payment-info.php:75
+#: templates/admin/order/payment-info.php:83
 msgid "Amount that can be captured"
 msgstr ""
 
-#: templates/admin/order/payment-info.php:111
+#: templates/admin/order/payment-info.php:119
 msgid "Amount that can be refunded"
 msgstr ""
 
@@ -198,16 +198,16 @@ msgstr ""
 msgid "Cancel"
 msgstr ""
 
-#: templates/admin/order/payment-info.php:195
+#: templates/admin/order/payment-info.php:205
 msgid "Cancelled"
 msgstr ""
 
-#: templates/admin/order/payment-info.php:67
-#: templates/admin/order/payment-info.php:162
+#: templates/admin/order/payment-info.php:75
+#: templates/admin/order/payment-info.php:171
 msgid "Capture"
 msgstr ""
 
-#: templates/admin/order/payment-info.php:195
+#: templates/admin/order/payment-info.php:205
 msgid "Captured"
 msgstr ""
 
@@ -229,7 +229,7 @@ msgstr ""
 msgid "Click %shere to download%s the last log file."
 msgstr ""
 
-#: templates/admin/order/payment-info.php:156
+#: templates/admin/order/payment-info.php:165
 msgid "Code returned"
 msgstr ""
 
@@ -385,7 +385,7 @@ msgstr ""
 msgid "File types accepted for logos are: .png .gif .jpg only"
 msgstr ""
 
-#: classes/helpers/wc-etransaction-order-manager.php:154
+#: classes/helpers/wc-etransaction-order-manager.php:158
 msgid "Filter"
 msgstr ""
 
@@ -396,7 +396,7 @@ msgid ""
 msgstr ""
 
 #: templates/admin/page-settings/changelog.php:25
-msgid "Fixed: tag CountryCodeMobilePhone"
+msgid "Fixed: updated transaction number after capture"
 msgstr ""
 
 #: templates/admin/page-settings/payment.php:159
@@ -463,7 +463,7 @@ msgstr ""
 msgid "Instalment configuration"
 msgstr ""
 
-#: templates/admin/order/payment-info.php:178
+#: templates/admin/order/payment-info.php:188
 msgid "Instalment details"
 msgstr ""
 
@@ -475,7 +475,7 @@ msgstr ""
 msgid "IPN"
 msgstr ""
 
-#: templates/admin/order/payment-info.php:130
+#: templates/admin/order/payment-info.php:138
 msgid ""
 "It is only possible to refund the first installment, for the other cash "
 "functions, it is necessary to perform the actions on the Vision back-office."
@@ -498,7 +498,7 @@ msgstr ""
 msgid "Main configuration"
 msgstr ""
 
-#: templates/admin/order/payment-info.php:120
+#: templates/admin/order/payment-info.php:128
 msgid "Make refund"
 msgstr ""
 
@@ -511,7 +511,7 @@ msgstr ""
 msgid "Maximum amount requested can't exceed %d %s"
 msgstr ""
 
-#: templates/admin/order/payment-info.php:53
+#: templates/admin/order/payment-info.php:61
 msgid "Means of payment"
 msgstr ""
 
@@ -530,7 +530,7 @@ msgstr ""
 
 #: classes/wc-etransactions-settings.php:294
 #: classes/wc-etransactions-settings.php:295
-#: templates/admin/order/payment-info.php:58
+#: templates/admin/order/payment-info.php:66
 #: templates/admin/page-settings/payment.php:204
 #: templates/admin/page-settings/payment.php:223
 #: templates/admin/page-settings/instalment.php:29
@@ -575,19 +575,19 @@ msgstr ""
 msgid "OpenSSL version"
 msgstr ""
 
-#: templates/admin/order/payment-info.php:154
+#: templates/admin/order/payment-info.php:162
 msgid "Operation amount"
 msgstr ""
 
-#: templates/admin/order/payment-info.php:155
+#: templates/admin/order/payment-info.php:164
 msgid "Operation date"
 msgstr ""
 
-#: templates/admin/order/payment-info.php:153
+#: templates/admin/order/payment-info.php:161
 msgid "Operation type"
 msgstr ""
 
-#: templates/admin/order/payment-info.php:148
+#: templates/admin/order/payment-info.php:156
 msgid "Operations history"
 msgstr ""
 
@@ -694,11 +694,11 @@ msgstr ""
 msgid "Payments division"
 msgstr ""
 
-#: templates/admin/order/payment-info.php:195
+#: templates/admin/order/payment-info.php:205
 msgid "Pending payment"
 msgstr ""
 
-#: templates/admin/order/payment-info.php:186
+#: templates/admin/order/payment-info.php:196
 msgid "Performed date"
 msgstr ""
 
@@ -733,7 +733,7 @@ msgstr ""
 msgid "Plugin version"
 msgstr ""
 
-#: templates/admin/order/payment-info.php:187
+#: templates/admin/order/payment-info.php:197
 msgid "Predicted date"
 msgstr ""
 
@@ -776,8 +776,8 @@ msgstr ""
 msgid "Redirected"
 msgstr ""
 
-#: templates/admin/order/payment-info.php:104
-#: templates/admin/order/payment-info.php:162
+#: templates/admin/order/payment-info.php:112
+#: templates/admin/order/payment-info.php:171
 msgid "Refund"
 msgstr ""
 
@@ -789,7 +789,7 @@ msgstr ""
 msgid "remove"
 msgstr ""
 
-#: classes/helpers/wc-etransaction-order-manager.php:156
+#: classes/helpers/wc-etransaction-order-manager.php:160
 msgid "Reset filter"
 msgstr ""
 
@@ -838,7 +838,7 @@ msgstr ""
 msgid "Site Number"
 msgstr ""
 
-#: templates/admin/order/payment-info.php:185
+#: templates/admin/order/payment-info.php:195
 msgid "State"
 msgstr ""
 
@@ -851,7 +851,7 @@ msgstr ""
 msgid "Store my credit card details for future payments."
 msgstr ""
 
-#: templates/admin/order/payment-info.php:84
+#: templates/admin/order/payment-info.php:92
 msgid "Submit"
 msgstr ""
 
@@ -909,15 +909,16 @@ msgid "To deactivate the plugin correctly, please select if you want to:"
 msgstr ""
 
 #: classes/helpers/wc-etransaction-order-manager.php:72
+#: templates/admin/order/payment-info.php:163
 msgid "Transaction"
 msgstr ""
 
-#: templates/admin/order/payment-info.php:49
+#: templates/admin/order/payment-info.php:57
 msgid "Transaction amount"
 msgstr ""
 
-#: templates/admin/order/payment-info.php:45
-#: templates/admin/order/payment-info.php:183
+#: templates/admin/order/payment-info.php:53
+#: templates/admin/order/payment-info.php:193
 msgid "Transaction number"
 msgstr ""
 
@@ -926,7 +927,7 @@ msgstr ""
 msgid "Transactions"
 msgstr ""
 
-#: classes/helpers/wc-etransaction-order-manager.php:109
+#: classes/helpers/wc-etransaction-order-manager.php:113
 msgid "Transactions not found"
 msgstr ""
 
@@ -1060,7 +1061,7 @@ msgstr ""
 
 #: classes/wc-etransactions-settings.php:294
 #: classes/wc-etransactions-settings.php:295
-#: templates/admin/order/payment-info.php:58
+#: templates/admin/order/payment-info.php:66
 #: templates/admin/page-settings/payment.php:203
 #: templates/admin/page-settings/payment.php:222
 #: templates/admin/page-settings/instalment.php:28

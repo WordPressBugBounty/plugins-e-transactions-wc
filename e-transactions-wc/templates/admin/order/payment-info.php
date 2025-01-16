@@ -32,9 +32,17 @@
     </div>
 <?php endif; ?>
 
-<?php foreach ( $transactions as $transaction ):
+<?php
+    if(!empty($operations)){
+        $last_operations = end($operations);
+        $transaction_number = $last_operations['numTrans'];
+    }
 
-    $transaction_number = $transaction['captured'] ? $transaction['numtrans'] : $transaction['auth_numtrans'];
+    foreach ( $transactions as $transaction ):
+
+        if(empty($transaction_number)){
+            $transaction_number = $transaction['captured'] ? $transaction['numtrans'] : $transaction['auth_numtrans'];
+        }
     $capturable_amount  = $transaction['captured'] ? $transaction['amount'] - $transaction['amount_captured'] : $transaction['amount'];
     $refundable_amount  = $transaction['captured'] ? ( $transaction['amount_captured'] - $order_refunded_amount ) : 0;
 
@@ -152,6 +160,7 @@
                     <tr>
                         <th><?php _e('Operation type', 'wc-etransactions'); ?></th>
                         <th><?php _e('Operation amount', 'wc-etransactions'); ?></th>
+                        <th><?php _e('Transaction', 'wc-etransactions'); ?></th>
                         <th><?php _e('Operation date', 'wc-etransactions'); ?></th>
                         <th><?php _e('Code returned', 'wc-etransactions'); ?></th>
                     </tr>
@@ -161,6 +170,7 @@
                         <tr>
                             <td><?php echo $operation['type'] == 'refund' ? __('Refund', 'wc-etransactions') : __('Capture', 'wc-etransactions') ; ?></td>
                             <td><?php echo $operation['type'] == 'refund' ? '-' : ''; ?><?php echo wc_price($operation['amount']); ?></td>
+                            <td><?php echo esc_html($operation['numTrans'] ); ?></td>
                             <td><?php echo esc_html($operation['date']); ?></td>
                             <td class="<?php echo esc_attr($operation['success']); ?>"><?php echo esc_html($operation['result']); ?></td>
                         </tr>
