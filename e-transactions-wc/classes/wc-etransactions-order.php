@@ -21,8 +21,11 @@ class WC_Etransactions_Order {
 		add_filter('woocommerce_valid_order_statuses_for_payment_complete', array( $this, 'append_draft_order_post_status'));
 		add_action('woocommerce_order_status_changed', array($this, 'status_changed'), 10, 3);
         add_action('add_meta_boxes', array($this, 'add_meta_boxes'));
-		add_action( 'wp_ajax_wc_etransactions_admin_single_order_submit', array( $this, 'wc_etransactions_admin_single_order_submit' ) );
-		add_action( 'wp_ajax_wc_etransactions_admin_single_order_refund', array( $this, 'wc_etransactions_admin_single_order_refund' ) );
+		add_action('wp_ajax_wc_etransactions_admin_single_order_submit', array( $this, 'wc_etransactions_admin_single_order_submit'));
+		add_action('wp_ajax_wc_etransactions_admin_single_order_refund', array( $this, 'wc_etransactions_admin_single_order_refund'));
+        add_action('woocommerce_new_order', array( $this, 'save_shipping_address_on_order_creation'));
+        add_action('woocommerce_order_shipping_method_changed', array( $this, 'save_shipping_address_on_shipping_method_change'));
+
     }
 
     /**
@@ -30,8 +33,8 @@ class WC_Etransactions_Order {
      */
     public function register_order_status( array $statuses ) {
 
-		$statuses['wc-e-deferred']          = __( 'Deferred payment', 'wc-etransactions' );
-		$statuses['wc-e-partial-refund']    = __( 'Partially refunded', 'wc-etransactions' );
+		$statuses['wc-e-deferred']          = esc_html__( 'Deferred payment', 'wc-etransactions' );
+		$statuses['wc-e-partial-refund']    = esc_html__( 'Partially refunded', 'wc-etransactions' );
 
 		return $statuses;
 	}
@@ -42,7 +45,7 @@ class WC_Etransactions_Order {
     public function register_order_post_status( array $statuses ) {
 
 		$statuses['wc-e-deferred'] = array(
-			'label'                     => __( 'Deferred payment', 'wc-etransactions' ),
+			'label'                     => esc_html__( 'Deferred payment', 'wc-etransactions' ),
 			'public'                    => true,
 			'show_in_admin_status_list' => true,
 			'show_in_admin_all_list'    => true,
@@ -50,7 +53,7 @@ class WC_Etransactions_Order {
 			'label_count'               => _n_noop( 'Deferred payment <span class="count">(%s)</span>', 'Deferred payment <span class="count">(%s)</span>' )
 		);
 		$statuses['wc-e-partial-refund'] = array(
-			'label'                     => __( 'Partially refunded', 'wc-etransactions' ),
+			'label'                     => esc_html__( 'Partially refunded', 'wc-etransactions' ),
 			'public'                    => true,
 			'show_in_admin_status_list' => true,
 			'show_in_admin_all_list'    => true,
@@ -73,9 +76,67 @@ class WC_Etransactions_Order {
         return $statuses;
     }
 
+
     /**
-	 * Validate the payment if the order has the right status
-	 */
+     * Save shipping address on order creation
+     * @param $order_id
+     * @return void
+     */
+    public function save_shipping_address_on_order_creation($order_id ) {
+        $order = wc_get_order( $order_id );
+        if ( ! $order ) {
+            return;
+        }
+
+        $payment_method = $order->get_payment_method();
+        if ( strpos( $payment_method, 'etransactions' ) === false ) {
+            return;
+        }
+
+        $order->update_meta_data(wc_etransactions_add_prefix('original_shipping_address_1'), $order->get_shipping_address_1());
+        $order->update_meta_data(wc_etransactions_add_prefix('original_shipping_address_2'), $order->get_shipping_address_2());
+        $order->update_meta_data(wc_etransactions_add_prefix('original_shipping_city'), $order->get_shipping_city());
+        $order->update_meta_data(wc_etransactions_add_prefix('original_shipping_postcode'), $order->get_shipping_postcode());
+        $order->update_meta_data(wc_etransactions_add_prefix('original_shipping_company'), $order->get_shipping_company());
+        $order->update_meta_data(wc_etransactions_add_prefix('original_shipping_first_name'), $order->get_shipping_first_name());
+        $order->update_meta_data(wc_etransactions_add_prefix('original_shipping_last_name'), $order->get_shipping_last_name());
+        $order->save();
+    }
+
+
+    /**
+     *  Save shipping address on shipping method change
+     * @param $order_id
+     * @return void
+     */
+    public function save_shipping_address_on_shipping_method_change($order_id ) {
+        $order = wc_get_order( $order_id );
+        if ( ! $order ) {
+            return;
+        }
+
+        $payment_method = $order->get_payment_method();
+        if ( strpos( $payment_method, 'etransactions' ) === false ) {
+            return;
+        }
+
+        $order->update_meta_data(wc_etransactions_add_prefix('original_shipping_address_1'), $order->get_shipping_address_1());
+        $order->update_meta_data(wc_etransactions_add_prefix('original_shipping_address_2'), $order->get_shipping_address_2());
+        $order->update_meta_data(wc_etransactions_add_prefix('original_shipping_city'), $order->get_shipping_city());
+        $order->update_meta_data(wc_etransactions_add_prefix('original_shipping_postcode'), $order->get_shipping_postcode());
+        $order->update_meta_data(wc_etransactions_add_prefix('original_shipping_company'), $order->get_shipping_company());
+        $order->update_meta_data(wc_etransactions_add_prefix('original_shipping_first_name'), $order->get_shipping_first_name());
+        $order->update_meta_data(wc_etransactions_add_prefix('original_shipping_last_name'), $order->get_shipping_last_name());
+        $order->save();
+    }
+
+
+    /**
+     * Validate the payment if the order has the right status
+     * @param $order_id
+     * @param $old_status
+     * @param $new_status
+     */
 	public function status_changed( $order_id, $old_status, $new_status ) {
 
         $order = wc_get_order( $order_id );
@@ -162,7 +223,7 @@ class WC_Etransactions_Order {
 
         add_meta_box(
             'wc-etransactions-payment-info',
-            __( 'Up2pay e-Transactions Crédit Agricole', 'wc-etransactions' ),
+            esc_html__( 'Up2pay e-Transactions Crédit Agricole', 'wc-etransactions' ),
             array($this, 'render_meta_box_payment_info'),
             $screen,
             'normal',
@@ -214,13 +275,13 @@ class WC_Etransactions_Order {
 
 		$nonce = sanitize_text_field( $_POST['nonce'] ?? '' );
         if ( ! wp_verify_nonce( $nonce, 'wc-etransactions-order-action' ) ) {
-            wp_send_json_error( __( 'Refresh the page and try again.', 'wc-etransactions' ) );
+            wp_send_json_error( esc_html__( 'Refresh the page and try again.', 'wc-etransactions' ) );
         }
 
 		$form_data = sanitize_text_field( $_POST['form'] ?? '' );
 
 		if ( empty( $form_data ) ) {
-			wp_send_json_error( __( 'Form data not found.', 'wc-etransactions' ) );
+			wp_send_json_error( esc_html__( 'Form data not found.', 'wc-etransactions' ) );
 		}
 
 		$form_data = wp_unslash( $form_data );
@@ -231,13 +292,13 @@ class WC_Etransactions_Order {
         $numappel          = $form_data['wc-etransactions-capture[numappel]'] ?? '';
 
 		if ( empty($order_id) || empty($amount_to_capture) || empty($numappel) ) {
-			wp_send_json_error( __( 'Form data not found.', 'wc-etransactions' ) );
+			wp_send_json_error( esc_html__( 'Form data not found.', 'wc-etransactions' ) );
         }
 
 		$order = wc_get_order( $order_id );
 
         if ( ! $order ) {
-			wp_send_json_error( __( 'Order not found.', 'wc-etransactions' ) );
+			wp_send_json_error( esc_html__( 'Order not found.', 'wc-etransactions' ) );
         }
 
 		$capture_class = new WC_Etransactions_Capture_Request();
@@ -288,10 +349,10 @@ class WC_Etransactions_Order {
 
             $order->save();
 
-			wp_send_json_success( __( 'Submission successful.', 'wc-etransactions' ) );
+			wp_send_json_success( esc_html__( 'Submission successful.', 'wc-etransactions' ) );
         }
 
-		wp_send_json_error( __( 'Submission failed.', 'wc-etransactions' ) );
+		wp_send_json_error( esc_html__( 'Submission failed.', 'wc-etransactions' ) );
 	}
 
 	/**
@@ -301,13 +362,13 @@ class WC_Etransactions_Order {
 
 		$nonce = sanitize_text_field( $_POST['nonce'] ?? '' );
         if ( ! wp_verify_nonce( $nonce, 'wc-etransactions-order-action' ) ) {
-            wp_send_json_error( __( 'Refresh the page and try again.', 'wc-etransactions' ) );
+            wp_send_json_error( esc_html__( 'Refresh the page and try again.', 'wc-etransactions' ) );
         }
 
 		$form_data = sanitize_text_field( $_POST['form'] ?? '' );
 
 		if ( empty( $form_data ) ) {
-			wp_send_json_error( __( 'Form data not found.', 'wc-etransactions' ) );
+			wp_send_json_error( esc_html__( 'Form data not found.', 'wc-etransactions' ) );
 		}
 		
 		$form_data = wp_unslash( $form_data );
@@ -317,13 +378,13 @@ class WC_Etransactions_Order {
 		$amount_to_refund = $form_data['wc-etransactions-refund[amount_to_refund]'] ?? '';
 
 		if ( empty($order_id) || empty($amount_to_refund) ) {
-			wp_send_json_error( __( 'Form data not found.', 'wc-etransactions' ) );
+			wp_send_json_error( esc_html__( 'Form data not found.', 'wc-etransactions' ) );
         }
 
 		$order = wc_get_order( $order_id );
 
         if ( ! $order ) {
-			wp_send_json_error( __( 'Order not found.', 'wc-etransactions' ) );
+			wp_send_json_error( esc_html__( 'Order not found.', 'wc-etransactions' ) );
         }
 
 		$refund_class = new WC_Etransactions_Refund_Request();
@@ -367,10 +428,10 @@ class WC_Etransactions_Order {
             $order->update_meta_data( 'wc-etransactions-operations', $operations );
             $order->save();
 
-			wp_send_json_success( __( 'Refund successful.', 'wc-etransactions' ) );
+			wp_send_json_success( esc_html__( 'Refund successful.', 'wc-etransactions' ) );
         }
 
-		wp_send_json_error( __( 'Refund failed.', 'wc-etransactions' ) );
+		wp_send_json_error( esc_html__( 'Refund failed.', 'wc-etransactions' ) );
 	}
 
     /**

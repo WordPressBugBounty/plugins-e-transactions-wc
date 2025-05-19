@@ -40,7 +40,7 @@ class WC_Etransaction_Order_Manager
     public function display_orders_table($orders)
     {
         echo '<table class="wp-list-table widefat fixed striped orders">';
-        echo $this->get_table_headers();
+        echo wp_kses_post( $this->get_table_headers() );
         echo '<tbody>';
 
         foreach ($orders as $order) {
@@ -68,13 +68,13 @@ class WC_Etransaction_Order_Manager
 
         return '<thead>
         <tr>
-        <th scope="col" class="manage-column column-order-number">' . __('Order', 'wc-etransactions') . ' </th>
-        <th scope="col" class="manage-column column-transaction">' . __('Transaction', 'wc-etransactions') . '</th>
-        <th scope="col" class="manage-column column-status">' . __('Status', 'wc-etransactions') . '</th>
-        <th scope="col" class="manage-column column-payment">' . __('Payment method', 'wc-etransactions') . '</th>
-        <th scope="col" class="manage-column column-amount">' . __('Amount', 'wc-etransactions') . '</th>
-        <th scope="col" class="manage-column column-ipn">' . __('IPN', 'wc-etransactions') . '</th>
-        <th scope="col" class="manage-column column-date">' . __('Date', 'wc-etransactions') . '</th>
+        <th scope="col" class="manage-column column-order-number">' . esc_html__('Order', 'wc-etransactions') . ' </th>
+        <th scope="col" class="manage-column column-transaction">' . esc_html__('Transaction', 'wc-etransactions') . '</th>
+        <th scope="col" class="manage-column column-status">' . esc_html__('Status', 'wc-etransactions') . '</th>
+        <th scope="col" class="manage-column column-payment">' . esc_html__('Payment method', 'wc-etransactions') . '</th>
+        <th scope="col" class="manage-column column-amount">' . esc_html__('Amount', 'wc-etransactions') . '</th>
+        <th scope="col" class="manage-column column-ipn">' . esc_html__('IPN', 'wc-etransactions') . '</th>
+        <th scope="col" class="manage-column column-date">' . esc_html__('Date', 'wc-etransactions') . '</th>
        </tr>
        </thead>';
     }
@@ -110,7 +110,7 @@ class WC_Etransaction_Order_Manager
         if (!empty($transaction_number)) {
             echo '<td class="column-transaction">' . esc_html($transaction_number) . '</td>';
         } else {
-            echo '<td class="column-transaction">' . __('Transactions not found', 'wc-etransactions') . '</td>';
+            echo '<td class="column-transaction">' . esc_html__('Transactions not found', 'wc-etransactions') . '</td>';
         }
         echo '<td class="order_status column-order_status">';
         echo '<mark class="order-status status-' . esc_attr($order_data->get_status()) . ' tips"> <span>' . esc_html(wc_get_order_status_name($order_data->get_status())) . '</span></mark>';
@@ -120,7 +120,7 @@ class WC_Etransaction_Order_Manager
         if (!empty($ipn)) {
             echo '<td class="column-ipn">' . esc_html($ipn) . '</td>';
         } else {
-            echo '<td class="column-ipn">' . __('--', 'wc-etransactions') . '</td>';
+            echo '<td class="column-ipn">' . esc_html__('--', 'wc-etransactions') . '</td>';
 
         }
         echo '<td class="column-date"><time datetime="' . esc_attr($transaction_date) . '">' . esc_html(date_i18n('Y-m-d H:i', strtotime($transaction_date))) . '</time></td>';
@@ -147,7 +147,7 @@ class WC_Etransaction_Order_Manager
         echo '<input type="hidden" name="page" value="credit-agricole-transactions">';
         echo '<div class="alignleft actions">';
         echo '<select name="order_status" id="order_status">';
-        echo '<option value="">'.__('All status','wc-etransactions').'</option>';
+        echo '<option value="">'.esc_html__('All status','wc-etransactions').'</option>';
 
         foreach ($statuses as $slug => $name) {
             $selected = selected($selected_status, $slug, false);
@@ -155,9 +155,9 @@ class WC_Etransaction_Order_Manager
         }
 
         echo '</select>';
-        echo '<input type="submit" class="button action" value="'.__('Filter', 'wc-etransactions').'">';
+        echo '<input type="submit" class="button action" value="'.esc_html__('Filter', 'wc-etransactions').'">';
         echo '</div>';
-        echo '<div class="alignleft actions"><a href="' . esc_url(remove_query_arg(['order_status','paged']) ). '" class="button action">'.__('Reset filter','wc-etransactions').'</a></div>';
+        echo '<div class="alignleft actions"><a href="' . esc_url(remove_query_arg(['order_status','paged']) ). '" class="button action">'.esc_html__('Reset filter','wc-etransactions').'</a></div>';
         echo '</form>';
     }
 
@@ -197,7 +197,7 @@ class WC_Etransaction_Order_Manager
         if ($total_pages > 1) {
             $current_page = isset($_GET['paged']) ? (int) $_GET['paged'] : 1;
 
-            echo '<span class="displaying-num">'.__(sprintf('%d elements', $total_orders),'wc-etransactions').'</span>';
+            echo '<span class="displaying-num">'.esc_html__(sprintf('%d elements', $total_orders),'wc-etransactions').'</span>';
             echo '<span class="pagination-links">';
 
             // Lien vers la page précédente
@@ -213,7 +213,7 @@ class WC_Etransaction_Order_Manager
             for ($i = 1; $i <= $total_pages; $i++) {
                 if ($i == $current_page) {
                     echo '<span id="table-paging" class="paging-input">';
-                    echo '<span class="tablenav-paging-text">'.__(sprintf('%d on', $i),'wc-etransactions');
+                    echo '<span class="tablenav-paging-text">'.esc_html__(sprintf('%d on', $i),'wc-etransactions');
                     echo '<span class="total-pages"> '.$total_pages.'</span></span></span>';}
             }
 

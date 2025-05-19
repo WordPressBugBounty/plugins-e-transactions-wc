@@ -113,7 +113,7 @@ class WC_Etransactions_Gateways {
             $payment_display_logo   = wc_etransactions_get_option('payment_display_logo');
 
             $params = array(
-                'title'         => !empty($payment_display_title) ? $payment_display_title : __(WC_Etransactions_Payment::PAYMENT_DISPLAY_TITLE_DEFAULT, 'wc-etransactions'),
+                'title'         => !empty($payment_display_title) ? $payment_display_title : esc_html__(WC_Etransactions_Payment::PAYMENT_DISPLAY_TITLE_DEFAULT, 'wc-etransactions'),
                 'description'   => $this->get_description(),
                 'icon'          => !empty($payment_display_logo) ? $payment_display_logo : WC_Etransactions_Payment::PAYMENT_DISPLAY_LOGO_DEFAULT,
             );
@@ -172,8 +172,8 @@ class WC_Etransactions_Gateways {
 							$params		= array(
 								'id' 			        => $method_id,
 								'sub_id' 		        => '_token_' . $method_id . $token_u_id,
-                                'title'                 => sprintf( __( "Pay with my previously stored card - %s - %s/%s", 'wc-etransactions' ), $last4, $expiry_month, substr($expiry_year,2,2) ),
-                                'description'           => $this->get_description('0'),
+                                /* translators: 1: last 4 digits of the card, 2: expiration month, 3: expiration year (last 2 digits) */
+                                'title' => sprintf( esc_html__( "Pay with my previously stored card - %1\$s - %2\$s/%3\$s", 'wc-etransactions' ), $last4, $expiry_month, substr($expiry_year,2,2) ),                                'description'           => $this->get_description('0'),
                                 'icon'                  => file_exists(WC_ETRANSACTIONS_PLUGIN_PATH . 'assets/svg/payment-methods/' . $card_type . '.svg') ? WC_ETRANSACTIONS_PLUGIN_URL . 'assets/svg/payment-methods/' . $card_type . '.svg' : WC_ETRANSACTIONS_PLUGIN_URL . 'assets/svg/payment-methods/CB_VISA_MC.svg',
                                 'one_click_enabled'     => '0',
                                 'iframe'                => $force_redirect || $display_type !== 'iframe' ? '0' : '1',
@@ -259,7 +259,7 @@ class WC_Etransactions_Gateways {
 	 */
 	public function woocommerce_missing_notice() {
 
-        echo '<div class="error"><p><strong>Up2pay e-Transactions:</strong> ' . __('WooCommerce must be activated.', 'wc-etransactions') . '</p></div>';
+        echo '<div class="error"><p><strong>Up2pay e-Transactions:</strong> ' . esc_html__('WooCommerce must be activated.', 'wc-etransactions') . '</p></div>';
 	}
 
     /**
@@ -281,6 +281,10 @@ class WC_Etransactions_Gateways {
             $mode = 'DEMO';
         }
 
+        if(!$mode && !$one_click_enabled) {
+            return '';
+        }
+
         $uniq_id = uniqid( 'wce_' );
 
         ob_start();
@@ -288,14 +292,14 @@ class WC_Etransactions_Gateways {
 
             <?php if( $mode ) : ?>
                 <div class="wce-description-notice wce-notice-warning wce-notice-padding">
-                    <span><?php echo sprintf( __( "You are using Up2Pay %s environment", 'wc-etransactions' ), esc_html($mode) ); ?></span>
+                    <span><?php echo sprintf( esc_html__( "You are using Up2Pay %s environment", 'wc-etransactions' ), esc_html($mode) ); ?></span>
                 </div>
             <?php endif; ?>
 
             <?php if( $one_click_enabled === '1' ) : ?>
                 <div class="wce-one-click-notice wce-notice-padding">
                     <label for="wce_one_click"><input type="checkbox" name="wce_one_click" id="wce_one_click" value="1"/>
-                        <span><?php _e( 'Store my credit card details for future payments.', 'wc-etransactions' ); ?></span>
+                        <span><?php echo esc_html__( 'Store my credit card details for future payments.', 'wc-etransactions' ); ?></span>
                     </label>
                 </div>
             <?php endif;

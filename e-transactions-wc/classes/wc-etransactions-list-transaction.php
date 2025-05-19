@@ -22,8 +22,8 @@ class WC_Etransactions_List_Transaction
     public function add_menu_page() {
         add_submenu_page(
             'credit-agricole-settings',
-            __( 'Transactions', 'wc-etransactions' ),
-            __( 'Transactions', 'wc-etransactions' ),
+            esc_html__( 'Transactions', 'wc-etransactions' ),
+            esc_html__( 'Transactions', 'wc-etransactions' ),
             'manage_options',
             'credit-agricole-transactions',
             array( $this, 'render_orders_list' )
@@ -35,7 +35,7 @@ class WC_Etransactions_List_Transaction
         $orders = $this->order_manager->get_filtered_orders();
 
         echo '<div class="wrap">';
-        echo '<h1 class="wp-heading-inline">'.__( 'Transactions Up2Pay list', 'wc-etransactions' ).'</h1>';
+        echo '<h1 class="wp-heading-inline">'.esc_html__( 'Transactions Up2Pay list', 'wc-etransactions' ).'</h1>';
         echo  '<hr class="wp-header-end">';
         echo  '<div class="tablenav top">';
         $this->order_manager->render_filters();

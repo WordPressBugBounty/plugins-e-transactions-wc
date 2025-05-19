@@ -36,10 +36,10 @@ class WC_Etransactions_Front {
                 'account_demo_mode'   => wc_etransactions_get_option( 'account_demo_mode' ),
                 'account_environment' => wc_etransactions_get_option( 'account_environment' ),
 				'i18n' => array(
-					'environment' => __( "You are using Up2Pay %s environment", 'wc-etransactions' ),
-					'enterNumber' => __( 'You must enter a valid phone number to place an order', 'wc-etransactions' ),
-					'validNumber' => __( 'Please fill a valid number', 'wc-etransactions' ),
-					'oneClick'    => __( 'Store my credit card details for future payments.', 'wc-etransactions' ),
+					'environment' => esc_html__( "You are using Up2Pay %s environment", 'wc-etransactions' ),
+					'enterNumber' => esc_html__( 'You must enter a valid phone number to place an order', 'wc-etransactions' ),
+					'validNumber' => esc_html__( 'Please fill a valid number', 'wc-etransactions' ),
+					'oneClick'    => esc_html__( 'Store my credit card details for future payments.', 'wc-etransactions' ),
 				),
             ));
         }
@@ -62,7 +62,7 @@ class WC_Etransactions_Front {
 			
 			$new_items[ $item_key ] = $item_value;
 			if ( 'edit-address' == $item_key && ! isset( $items['payment-methods'] ) ) {
-				$new_items['payment-methods'] = __( 'Payment methods', 'woocommerce' );
+				$new_items['payment-methods'] = esc_html__( 'Payment methods', 'woocommerce' );
 			}
 		}
 

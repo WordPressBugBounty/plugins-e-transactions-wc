@@ -132,7 +132,7 @@ function wc_etransactions_get_payment_methods() {
             "oneClickAvailable" => '1',
             "forceRedirect"     => '0',
             "displayType"       => "redirect",
-            "title"             => __('Pay with credit card', 'wc-etransactions' ),
+            "title"             => esc_html__('Pay with credit card', 'wc-etransactions' ),
             "logoUrl"           => WC_ETRANSACTIONS_PLUGIN_URL . "assets/svg/payment-methods/CB_VISA_MC.svg",
             "minAmount"         => '0'
         ),
@@ -146,7 +146,7 @@ function wc_etransactions_get_payment_methods() {
             "oneClickAvailable" => '0',
             "forceRedirect"     => '0',
             "displayType"       => "redirect",
-            "title"             => __('Pay with AMEX', 'wc-etransactions' ),
+            "title"             => esc_html__('Pay with AMEX', 'wc-etransactions' ),
             "logoUrl"           => WC_ETRANSACTIONS_PLUGIN_URL . "assets/svg/payment-methods/AMEX.svg",
             "minAmount"         => '0'
         ),
@@ -160,7 +160,7 @@ function wc_etransactions_get_payment_methods() {
             "oneClickAvailable" => '0',
             "forceRedirect"     => '1',
             "displayType"       => "redirect",
-            "title"             => __('Pay with Paypal', 'wc-etransactions' ),
+            "title"             => esc_html__('Pay with Paypal', 'wc-etransactions' ),
             "logoUrl"           => WC_ETRANSACTIONS_PLUGIN_URL . "assets/svg/payment-methods/PAYPAL.svg",
             "minAmount"         => '0'
         ),
@@ -174,7 +174,7 @@ function wc_etransactions_get_payment_methods() {
             "oneClickAvailable" => '0',
             "forceRedirect"     => '0',
             "displayType"       => "redirect",
-            "title"             => __('Pay with Diners', 'wc-etransactions' ),
+            "title"             => esc_html__('Pay with Diners', 'wc-etransactions' ),
             "logoUrl"           => WC_ETRANSACTIONS_PLUGIN_URL . "assets/svg/payment-methods/DINERS.svg",
             "minAmount"         => '0'
         ),
@@ -188,7 +188,7 @@ function wc_etransactions_get_payment_methods() {
             "oneClickAvailable" => '0',
             "forceRedirect"     => '0',
             "displayType"       => "redirect",
-            "title"             => __('Pay with JCB', 'wc-etransactions' ),
+            "title"             => esc_html__('Pay with JCB', 'wc-etransactions' ),
             "logoUrl"           => WC_ETRANSACTIONS_PLUGIN_URL . "assets/svg/payment-methods/JCB.svg",
             "minAmount"         => '0'
         ),
@@ -202,7 +202,7 @@ function wc_etransactions_get_payment_methods() {
             "oneClickAvailable" => '0',
             "forceRedirect"     => '1',
             "displayType"       => "redirect",
-            "title"             => __('Pay with CV Connect', 'wc-etransactions' ),
+            "title"             => esc_html__('Pay with CV Connect', 'wc-etransactions' ),
             "logoUrl"           => WC_ETRANSACTIONS_PLUGIN_URL . "assets/svg/payment-methods/CV_CONNECT.svg",
             "minAmount"         => '0'
         ),
@@ -216,7 +216,7 @@ function wc_etransactions_get_payment_methods() {
             "oneClickAvailable" => '0',
             "forceRedirect"     => '1',
             "displayType"       => "redirect",
-            "title"             => __('Pay with Pluxee', 'wc-etransactions' ),
+            "title"             => esc_html__('Pay with Pluxee', 'wc-etransactions' ),
             "logoUrl"           => WC_ETRANSACTIONS_PLUGIN_URL . "assets/svg/payment-methods/PLUXEE.svg",
             "minAmount"         => '0'
         ),
@@ -230,7 +230,7 @@ function wc_etransactions_get_payment_methods() {
             "oneClickAvailable" => '0',
             "forceRedirect"     => '1',
             "displayType"       => "redirect",
-            "title"             => __('Pay with Up Déjeuner', 'wc-etransactions' ),
+            "title"             => esc_html__('Pay with Up Déjeuner', 'wc-etransactions' ),
             "logoUrl"           => WC_ETRANSACTIONS_PLUGIN_URL . "assets/svg/payment-methods/UPCHEQUDEJ.svg",
             "minAmount"         => '0'
         ),
@@ -244,7 +244,7 @@ function wc_etransactions_get_payment_methods() {
             "oneClickAvailable" => '0',
             "forceRedirect"     => '0',
             "displayType"       => "redirect",
-            "title"             => __('Pay with UnionPay', 'wc-etransactions' ),
+            "title"             => esc_html__('Pay with UnionPay', 'wc-etransactions' ),
             "logoUrl"           => WC_ETRANSACTIONS_PLUGIN_URL . "assets/svg/payment-methods/UPI.svg",
             "minAmount"         => '0'
         ),
@@ -258,7 +258,7 @@ function wc_etransactions_get_payment_methods() {
             "oneClickAvailable" => '0',
             "forceRedirect"     => '1',
             "displayType"       => "redirect",
-            "title"             => __('Pay with Bimply', 'wc-etransactions' ),
+            "title"             => esc_html__('Pay with Bimply', 'wc-etransactions' ),
             "logoUrl"           => WC_ETRANSACTIONS_PLUGIN_URL . "assets/svg/payment-methods/BIMPLY.svg",
             "minAmount"         => '0'
         ),
@@ -272,7 +272,7 @@ function wc_etransactions_get_payment_methods() {
             "oneClickAvailable" => '0',
             "forceRedirect"     => '1',
             "displayType"       => "redirect",
-            "title"             => __('Secured payment by Credit Agricole', 'wc-etransactions' ),
+            "title"             => esc_html__('Secured payment by Credit Agricole', 'wc-etransactions' ),
             "logoUrl"           => WC_ETRANSACTIONS_PLUGIN_URL . "assets/svg/payment-methods/CB_VISA_MC.svg",
             "minAmount"         => '0'
         ),
@@ -290,7 +290,7 @@ function wc_etransactions_get_instalments() {
             "enabled"               => '0',
             "daysBetweenPayments"   => '30',
             "percents"              => ['50', '50'],
-            "title"                 => __('Pay in 2 instalments with credit card', 'wc-etransactions' ),
+            "title"                 => esc_html__('Pay in 2 instalments with credit card', 'wc-etransactions' ),
             "logoUrl"               => WC_ETRANSACTIONS_PLUGIN_URL . "assets/svg/payment-methods/2x.svg",
             "minAmount"             => '150',
             "maxAmount"             => '2000'
@@ -300,7 +300,7 @@ function wc_etransactions_get_instalments() {
             "enabled"               => '0',
             "daysBetweenPayments"   => '30',
             "percents"              => ['33', '33', '34'],
-            "title"                 => __('Pay in 3 instalments with credit card', 'wc-etransactions' ),
+            "title"                 => esc_html__('Pay in 3 instalments with credit card', 'wc-etransactions' ),
             "logoUrl"               => WC_ETRANSACTIONS_PLUGIN_URL . "assets/svg/payment-methods/3x.svg",
             "minAmount"             => '150',
             "maxAmount"             => '2000'
@@ -310,7 +310,7 @@ function wc_etransactions_get_instalments() {
             "enabled"               => '0',
             "daysBetweenPayments"   => '30',
             "percents"              => ['25', '25', '25', '25'],
-            "title"                 => __('Pay in 4 instalments with credit card', 'wc-etransactions' ),
+            "title"                 => esc_html__('Pay in 4 instalments with credit card', 'wc-etransactions' ),
             "logoUrl"               => WC_ETRANSACTIONS_PLUGIN_URL . "assets/svg/payment-methods/4x.svg",
             "minAmount"             => '150',
             "maxAmount"             => '2000'
@@ -1100,4 +1100,20 @@ function display_country_calling_code($billing_country) {
 
     return '+'. $calling_code;
 
+
+}
+
+function allowed_tag_svg() {
+	return array(
+		'svg' => array(
+			'xmlns' => array(),
+			'width' => array(),
+			'height' => array(),
+			'viewBox' => array(),
+		),
+		'path' => array(
+			'd' => array(),
+			'fill' => array(),
+		),
+	);
 }

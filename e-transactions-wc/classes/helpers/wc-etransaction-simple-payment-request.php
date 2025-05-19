@@ -74,6 +74,8 @@ class WC_Etransactions_Simple_Payment_Request extends WC_Etransactions_Abstract_
         $this->set_param( 'PBX_SOUHAITAUTHENT', $config_class->order_needs_3ds_exemption($this->order) ? "02" : "01" );
         $this->set_param( 'PBX_RETOUR', self::PBX_RETOUR );
         $this->set_param( 'PBX_SOURCE', 'RWD' );
+        $this->set_param( 'PBX_RUF1', 'POST' );
+
 
 
         if(is_multisite()){

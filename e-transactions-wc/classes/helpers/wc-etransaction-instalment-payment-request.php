@@ -75,10 +75,11 @@ class WC_Etransactions_Instalment_Payment_Request extends WC_Etransactions_Abstr
         $this->set_param( 'PBX_SOUHAITAUTHENT', $config_class->order_needs_3ds_exemption($this->order) ? "02" : "01" );
         $this->set_param( 'PBX_RETOUR', self::PBX_RETOUR );
         $this->set_param( 'PBX_SOURCE', 'RWD' );
+        $this->set_param( 'PBX_RUF1', 'POST' );
 
         for ( $i = 0; $i < ($partial_payments - 1); $i++ ) {
 
-            $amount = round($order_total * ($percents[$i] / 100), 2);
+            $amount = round($order_total * ($percents[$i] / 100), 0);
             $total_instalment += $amount;
 
             if ( $i == 0 ) {

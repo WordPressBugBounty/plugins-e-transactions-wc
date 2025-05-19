@@ -6,7 +6,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/e-transactions-"
 "wc\n"
 "POT-Creation-Date: 2024-03-08T10:07:35+00:00\n"
-"PO-Revision-Date: 2024-12-16 13:29+0000\n"
+"PO-Revision-Date: 2025-05-19 09:17+0000\n"
 "Last-Translator: \n"
 "Language-Team: Français\n"
 "Language: fr_FR\n"
@@ -161,6 +161,10 @@ msgstr "Extensions activé"
 msgid "Add a means of payment"
 msgstr "Ajouter un moyen de paiement"
 
+#: templates/admin/page-settings/changelog.php:26
+msgid "Add notices to the admin order page"
+msgstr "Ajout de notifications dans la page de commande "
+
 #: templates/admin/page-settings/payment.php:30
 msgid "Advanced"
 msgstr "Avancé"
@@ -195,10 +199,10 @@ msgstr "Montant pouvant être remboursé"
 msgid "Availability of services"
 msgstr "Disponibilité des services"
 
-#: payment-methods/wc-etransactions-abstract-gateway-instalments.php:198
-#: payment-methods/wc-etransactions-abstract-gateway.php:247
+#: payment-methods/wc-etransactions-abstract-gateway-instalments.php:230
+#: payment-methods/wc-etransactions-abstract-gateway.php:276
 msgid "Back..."
-msgstr "Retour..."
+msgstr "Retour"
 
 #: templates/admin/page-settings/account.php:170
 msgid ""
@@ -232,7 +236,11 @@ msgstr "Remise en banque"
 msgid "Captured"
 msgstr "Capturé"
 
-#: templates/admin/page-settings/header.php:38
+#: templates/admin/page-settings/changelog.php:29
+msgid "Changed : IPN type of call to POST"
+msgstr "L'ipn fait un appel en POST"
+
+#: templates/admin/page-settings/header.php:37
 #: templates/admin/page-settings/popup/config.php:5
 msgid "Check my configuration"
 msgstr "Vérifier ma configuration"
@@ -266,14 +274,13 @@ msgstr "Contactez le support"
 msgid "Contact us"
 msgstr "Contactez-nous"
 
-#: templates/admin/page-settings/header.php:24
+#: templates/admin/page-settings/header.php:23
 msgid "Contact us using"
 msgstr "Contactez-nous grâce à"
 
 #: payment-methods/wc-etransactions-abstract-gateway-instalments.php:169
-#: payment-methods/wc-etransactions-abstract-gateway.php:217
 msgid "Continue..."
-msgstr "Continuer..."
+msgstr "Poursuivre..."
 
 #: classes/wc-etransactions-settings.php:311
 #: templates/admin/page-settings/popup/config.php:25
@@ -298,6 +305,16 @@ msgstr "cURL n'est pas installé."
 msgid "cURL version"
 msgstr "Version cURL"
 
+#: payment-methods/wc-etransactions-abstract-gateway-instalments.php:398
+#: payment-methods/wc-etransactions-abstract-gateway.php:475
+msgid "Customer is back from E-Transactions payment page."
+msgstr "Le client revient de la page de paiement e-Transactions."
+
+#: payment-methods/wc-etransactions-abstract-gateway-instalments.php:69
+#: payment-methods/wc-etransactions-abstract-gateway.php:99
+msgid "Customer is redirected to E-Transactions payment page"
+msgstr "Le client est redirigé vers la pages de paiement etransactions"
+
 #: classes/helpers/wc-etransaction-order-manager.php:77
 msgid "Date"
 msgstr "Date"
@@ -311,7 +328,7 @@ msgstr "Nombre de jours entre chaque échéance"
 msgid "Deactivate"
 msgstr "Désactiver"
 
-#: templates/admin/deactivate-popup.php:25
+#: templates/admin/deactivate-popup.php:26
 msgid "Deactivate and Reset"
 msgstr "Désactiver et réinitialiser"
 
@@ -327,7 +344,7 @@ msgstr "Type de débit"
 msgid "Deferred"
 msgstr "Différé"
 
-#: classes/wc-etransactions-order.php:33 classes/wc-etransactions-order.php:45
+#: classes/wc-etransactions-order.php:36 classes/wc-etransactions-order.php:48
 msgid "Deferred payment"
 msgstr "Paiement différé"
 
@@ -359,7 +376,7 @@ msgstr "Affichage des moyens de paiement"
 msgid "Display text"
 msgstr "Libellé"
 
-#: templates/admin/page-settings/header.php:22
+#: templates/admin/page-settings/header.php:21
 msgid "Do you have a question?"
 msgstr "Vous avez une question ?"
 
@@ -422,11 +439,26 @@ msgstr ""
 "La 1ère échéance correspond au jour du paiement - Vous serez crédité au fur "
 "et à mesure des dates d'échéances."
 
+#: templates/admin/page-settings/changelog.php:28
+msgid "Fixed : rounding payment by instalments"
+msgstr "Modification de l'arrondis pour les paiements en plusieurs fois "
+
+#: templates/admin/page-settings/changelog.php:27
+msgid "Fixed: other url production"
+msgstr "Correction : url autre production"
+
 #: templates/admin/page-settings/changelog.php:25
-msgid "Fixed: updated transaction number after capture"
-msgstr ""
-"Correction : mise à jours du numéro de transaction après une capture de "
-"paiement"
+#, fuzzy
+#| msgid "Fixed: update shipping adress "
+msgid "Fixed: update shipping address "
+msgstr "Correction :  mise à jour de l'adresse de livraison "
+
+#: classes/wc-etransactions-order.php:284
+#: classes/wc-etransactions-order.php:295
+#: classes/wc-etransactions-order.php:371
+#: classes/wc-etransactions-order.php:381
+msgid "Form data not found."
+msgstr "Form data non trouvé."
 
 #: templates/admin/page-settings/payment.php:159
 msgid "From"
@@ -642,6 +674,11 @@ msgstr "Historique des opérations"
 msgid "Order"
 msgstr "Commande"
 
+#: classes/wc-etransactions-order.php:301
+#: classes/wc-etransactions-order.php:387
+msgid "Order not found."
+msgstr "Commande non trouvé"
+
 #: templates/admin/page-settings/payment.php:101
 msgid "Order status"
 msgstr "Etat commande"
@@ -650,7 +687,7 @@ msgstr "Etat commande"
 msgid "Order statuses that trigger capture"
 msgstr "Etat(s) de la commande déclenchant l'envoi en banque"
 
-#: classes/wc-etransactions-order.php:34 classes/wc-etransactions-order.php:53
+#: classes/wc-etransactions-order.php:37 classes/wc-etransactions-order.php:56
 msgid "Partially refunded"
 msgstr "Partiellement remboursé"
 
@@ -690,10 +727,12 @@ msgstr "Payer avec Diners"
 msgid "Pay with JCB"
 msgstr "Payer avec JCB"
 
-#: classes/wc-etransactions-gateways.php:175
+#. 1: last 4 digits of the card, 2: expiration month, 3: expiration year (last 2 digits)
+#: classes/wc-etransactions-gateways.php:176
 #, php-format
-msgid "Pay with my previously stored card - %s - %s/%s"
-msgstr "Payer avec ma carte enregistrée - %s - %s/%s"
+#| msgid "Pay with my previously stored card - %s - %s/%s"
+msgid "Pay with my previously stored card - %1$s - %2$s/%3$s"
+msgstr "Payer avec ma carte enregistrée - %1$s - %2$s/%3$s"
 
 #: global-functions.php:163
 msgid "Pay with Paypal"
@@ -719,15 +758,15 @@ msgstr "CONFIGURATION DU PAIEMENT EN UNE FOIS"
 msgid "Payment display"
 msgstr "Affichage"
 
-#: payment-methods/wc-etransactions-abstract-gateway-instalments.php:312
-#: payment-methods/wc-etransactions-abstract-gateway-instalments.php:324
-#: payment-methods/wc-etransactions-abstract-gateway-instalments.php:336
-#: payment-methods/wc-etransactions-abstract-gateway-instalments.php:347
-#: payment-methods/wc-etransactions-abstract-gateway.php:397
-#: payment-methods/wc-etransactions-abstract-gateway.php:409
-#: payment-methods/wc-etransactions-abstract-gateway.php:420
+#: payment-methods/wc-etransactions-abstract-gateway-instalments.php:354
+#: payment-methods/wc-etransactions-abstract-gateway-instalments.php:366
+#: payment-methods/wc-etransactions-abstract-gateway-instalments.php:378
+#: payment-methods/wc-etransactions-abstract-gateway-instalments.php:389
+#: payment-methods/wc-etransactions-abstract-gateway.php:441
+#: payment-methods/wc-etransactions-abstract-gateway.php:453
+#: payment-methods/wc-etransactions-abstract-gateway.php:464
 msgid "Payment error: Please try again"
-msgstr "Erreur de paiement : veuillez réessayer"
+msgstr "Erreur de paiement : veuillez réessayer"
 
 #: classes/helpers/wc-etransaction-order-manager.php:74
 msgid "Payment method"
@@ -736,6 +775,16 @@ msgstr "Méthode de paiement"
 #: classes/wc-etransactions-settings.php:320
 msgid "Payment setup"
 msgstr "Configuration du paiment"
+
+#: payment-methods/wc-etransactions-abstract-gateway-instalments.php:335
+#: payment-methods/wc-etransactions-abstract-gateway-instalments.php:503
+#: payment-methods/wc-etransactions-abstract-gateway.php:417
+msgid "Payment was authorized and captured by E-Transactions."
+msgstr "Paiement autorisé et capturé par e-Transactions."
+
+#: payment-methods/wc-etransactions-abstract-gateway.php:402
+msgid "Payment was authorized by E-Transactions."
+msgstr "Paiement autorisé par e-Transactions."
 
 #: templates/admin/page-settings/instalment.php:136
 msgid "Payments division"
@@ -798,7 +847,7 @@ msgstr "OFFRE PREMIUM"
 msgid "Prerequisites"
 msgstr "Pré-requis"
 
-#: wc-etransactions.php:30
+#: wc-etransactions.php:31
 msgid "Previous plugin already installed. deactivate the previous one first."
 msgstr "Plugin précédent déjà installé. désactivez d’abord le précédent."
 
@@ -827,6 +876,11 @@ msgstr "Rang"
 msgid "Redirected"
 msgstr "Redirigé"
 
+#: classes/wc-etransactions-order.php:278
+#: classes/wc-etransactions-order.php:365
+msgid "Refresh the page and try again."
+msgstr "Réactualiser la page et réessayé "
+
 #: templates/admin/order/payment-info.php:112
 #: templates/admin/order/payment-info.php:171
 msgid "Refund"
@@ -834,6 +888,14 @@ msgstr "Remboursement"
 
 #: templates/admin/order/payment-info.php:30
 msgid "Refund done successfully."
+msgstr "Remboursement effectué avec succès"
+
+#: classes/wc-etransactions-order.php:434
+msgid "Refund failed."
+msgstr "Remboursement échoué"
+
+#: classes/wc-etransactions-order.php:431
+msgid "Refund successful."
 msgstr "Remboursement effectué avec succès"
 
 #: templates/admin/page-settings/payment.php:191
@@ -850,6 +912,10 @@ msgstr "Réinitialiser les filtres"
 #: templates/admin/page-settings/popup/config.php:94
 msgid "Save"
 msgstr "Enregistrer"
+
+#: payment-methods/wc-etransactions-abstract-gateway-instalments.php:518
+msgid "Second payment was captured by E-Transactions."
+msgstr "Deuxième paiement capturé par e-Transactions."
 
 #: templates/admin/page-settings/payment.php:44
 msgid "Secure payment with Crédit Agricole"
@@ -897,10 +963,18 @@ msgstr "Etat de l'échéance"
 msgid "Status"
 msgstr "Etat de commande"
 
-#: classes/wc-etransactions-gateways.php:298
+#: classes/wc-etransactions-gateways.php:302
 #: classes/wc-etransactions-front.php:42
 msgid "Store my credit card details for future payments."
 msgstr "Enregistrer ma carte pour de futurs paiements"
+
+#: classes/wc-etransactions-order.php:355
+msgid "Submission failed."
+msgstr "Soumission échoué"
+
+#: classes/wc-etransactions-order.php:352
+msgid "Submission successful."
+msgstr "Soumission réalisé avec succès"
 
 #: templates/admin/order/payment-info.php:92
 msgid "Submit"
@@ -930,7 +1004,11 @@ msgstr "LA SOLUTION IDÉALE"
 msgid "The minimum log level will be set to Debug."
 msgstr "Le niveau de journalisation minimum sera défini sur Debug."
 
-#: templates/admin/page-settings/header.php:26
+#: payment-methods/wc-etransactions-abstract-gateway-instalments.php:520
+msgid "Third payment was captured by E-Transactions."
+msgstr "Troisième paiement capturé par e-Transactions."
+
+#: templates/admin/page-settings/header.php:25
 msgid "this link"
 msgstr "ce lien"
 
@@ -1008,7 +1086,7 @@ msgstr "Up2pay e-Transactions"
 
 #: payment-methods/wc-etransactions-threetime-gateway.php:22
 #: payment-methods/wc-etransactions-standard-gateway.php:22
-#: classes/wc-etransactions-order.php:165
+#: classes/wc-etransactions-order.php:226
 msgid "Up2pay e-Transactions Crédit Agricole"
 msgstr "Up2pay e-Transactions Crédit Agricole"
 
@@ -1055,7 +1133,7 @@ msgstr "Utiliser une autre plateforme de production"
 msgid "Use demo mode"
 msgstr "Utiliser le mode de démonstration"
 
-#: templates/admin/page-settings/header.php:35
+#: templates/admin/page-settings/header.php:34
 msgid "User guide"
 msgstr "Guide utilisateur"
 
@@ -1143,7 +1221,7 @@ msgstr "Version WordPress"
 msgid "Yes"
 msgstr "Oui"
 
-#: classes/wc-etransactions-gateways.php:291
+#: classes/wc-etransactions-gateways.php:295
 #: classes/wc-etransactions-front.php:39
 #, php-format
 msgid "You are using Up2Pay %s environment"
@@ -1165,13 +1243,12 @@ msgid "You must enter a valid phone number to place an order"
 msgstr "Merci de saisir un numéro de mobile valide pour passer commande"
 
 #: payment-methods/wc-etransactions-abstract-gateway-instalments.php:163
-#: payment-methods/wc-etransactions-abstract-gateway.php:211
 msgid ""
 "You will be redirected to the E-Transactions payment page. If not, please "
 "use the button bellow."
 msgstr ""
-"Vous serez redirigé vers la page de paiement E-Transactions. Sinon, veuillez "
-"utiliser le bouton ci-dessous."
+"Vous serez redirigé vers la page de paiement d'E-Transactions. Si ce n'est "
+"pas le cas, veuillez utiliser le bouton ci-dessous."
 
 #: templates/admin/page-settings/demo-mode.php:19
 #, php-format

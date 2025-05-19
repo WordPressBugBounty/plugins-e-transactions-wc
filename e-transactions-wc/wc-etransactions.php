@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Up2pay e-Transactions
  * Description: Up2pay e-Transactions gateway payment plugins for WooCommerce
- * Version: 3.0.8
+ * Version: 3.0.9
  * Author: Up2pay e-Transactions
  * Author URI: https://www.ca-moncommerce.com/espace-client-mon-commerce/up2pay-e-transactions/
  * Text Domain: wc-etransactions
@@ -28,7 +28,7 @@ if (is_multisite()) {
 if ( $previousET || defined('WC_ETRANSACTIONS_PLUGIN') ) {
 
     add_action('admin_notices', function(){
-        echo '<div class="error"><p>' . __('Previous plugin already installed. deactivate the previous one first.', 'wc-etransactions') . '</p></div>';
+        echo '<div class="error"><p>' . esc_html__('Previous plugin already installed. deactivate the previous one first.', 'wc-etransactions') . '</p></div>';
     });
 
     add_action('admin_init', function(){

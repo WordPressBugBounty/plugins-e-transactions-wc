@@ -45,7 +45,7 @@ class WC_Etransactions_Legacy_Encrypt {
     private function getKey() {
         if (!file_exists(WC_ETRANSACTIONS_KEY_PATH)) {
             $this->generateKey();
-            $_POST['KEY_ERROR'] = __("For some reason, the key has just been generated. please reenter the HMAC key to crypt it.", WC_ETRANSACTIONS_PLUGIN);
+            $_POST['KEY_ERROR'] = esc_html__("For some reason, the key has just been generated. please reenter the HMAC key to crypt it.", WC_ETRANSACTIONS_PLUGIN);
         }
 
         $key_content = file_get_contents(WC_ETRANSACTIONS_KEY_PATH);
@@ -59,7 +59,7 @@ class WC_Etransactions_Legacy_Encrypt {
     private function getIv() {
         if (!file_exists(WC_ETRANSACTIONS_KEY_PATH)) {
             $this->generateKey();
-            $_POST['KEY_ERROR'] = __("For some reason, the key has just been generated. please reenter the HMAC key to crypt it.", WC_ETRANSACTIONS_PLUGIN);
+            $_POST['KEY_ERROR'] = esc_html__("For some reason, the key has just been generated. please reenter the HMAC key to crypt it.", WC_ETRANSACTIONS_PLUGIN);
         }
 
         $iv_content = file_get_contents(WC_ETRANSACTIONS_KEY_PATH);

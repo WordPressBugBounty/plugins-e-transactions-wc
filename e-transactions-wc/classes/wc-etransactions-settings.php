@@ -42,8 +42,8 @@ class WC_Etransactions_Settings {
                 'ajaxUrl'   => admin_url( 'admin-ajax.php' ),
 				'nonce'     => wp_create_nonce( 'wc_etransaction_ajax_nonce' ),
 				'i18n' => array(
-					'select'    => __( 'Select Some Options', 'wc-etransactions' ),
-					'noResults' => __( 'No results found', 'wc-etransactions' ),
+					'select'    => esc_html__( 'Select Some Options', 'wc-etransactions' ),
+					'noResults' => esc_html__( 'No results found', 'wc-etransactions' ),
 				),
             ));
 
@@ -61,8 +61,8 @@ class WC_Etransactions_Settings {
     public function add_settings_menu() {
 
         add_menu_page(
-			__("Up2pay Settings", 'wc-etransactions'),
-			__("Up2pay", 'wc-etransactions'),
+			esc_html__( "Up2pay Settings", 'wc-etransactions' ),
+			esc_html__( "Up2pay", 'wc-etransactions' ),
 			'manage_options',
 			'credit-agricole-settings',
 			array( $this, 'render_settings_page' ),
@@ -72,8 +72,8 @@ class WC_Etransactions_Settings {
 
         add_submenu_page(
             'credit-agricole-settings',
-            __( 'Settings', 'wc-etransactions' ),
-            __( 'Settings', 'wc-etransactions' ),
+            esc_html__( 'Settings', 'wc-etransactions' ),
+            esc_html__( 'Settings', 'wc-etransactions' ),
             'manage_options',
             'credit-agricole-settings',
             array( $this, 'render_settings_page' )
@@ -171,7 +171,7 @@ class WC_Etransactions_Settings {
 
                     if ( empty( $account_site_number ) || empty( $account_rank ) || empty( $account_id ) || empty( $hmac ) ) {
                         add_action( 'admin_notices', function(){
-                            echo '<div class="error"><p><strong>' . __( 'Please fill in all the required fields.', 'wc-etransactions' ) . '</strong></p></div>';
+                            echo '<div class="error"><p><strong>' . esc_html__( 'Please fill in all the required fields.', 'wc-etransactions' ) . '</strong></p></div>';
                         });
                         return;
                     }
@@ -259,7 +259,7 @@ class WC_Etransactions_Settings {
 
             } else {
                 add_action( 'admin_notices', function(){
-					echo '<div class="error"><p><strong>' . __( 'Please try again.', 'wc-etransactions' ) . '</strong></p></div>';
+					echo '<div class="error"><p><strong>' . esc_html__( 'Please try again.', 'wc-etransactions' ) . '</strong></p></div>';
 				});
             }
         }
@@ -275,29 +275,29 @@ class WC_Etransactions_Settings {
             $curl_version   = $curl_info['version'];
             $ssl_version    = $curl_info['ssl_version'];
 		} elseif ( extension_loaded( 'curl' ) ) {
-            $curl_version   = __( 'cURL installed but unable to retrieve version.', 'wc-etransactions' );
-            $ssl_version    = __( 'cURL installed but unable to retrieve version.', 'wc-etransactions' );
+            $curl_version   = esc_html__( 'cURL installed but unable to retrieve version.', 'wc-etransactions' );
+            $ssl_version    = esc_html__( 'cURL installed but unable to retrieve version.', 'wc-etransactions' );
         }else {
-            $curl_version   = __( 'cURL not installed.', 'wc-etransactions' );
-            $ssl_version    = __( 'cURL not installed.', 'wc-etransactions' );
+            $curl_version   = esc_html__( 'cURL not installed.', 'wc-etransactions' );
+            $ssl_version    = esc_html__( 'cURL not installed.', 'wc-etransactions' );
         }
 
         $info = "\n=================================================";
-        $info .= "\n\t" . __( "WordPress & server configuration", 'wc-etransactions' );
+        $info .= "\n\t" . esc_html__( "WordPress & server configuration", 'wc-etransactions' );
         $info .= "\n=================================================";
-        $info .= "\n" . __( "WordPress version", 'wc-etransactions' ) . " : " . get_bloginfo('version');
-        $info .= "\n" . __( "PHP version", 'wc-etransactions' ) . " : " . phpversion();
-        $info .= "\n" . __( "Server info", 'wc-etransactions' ) . " : " . ( isset( $_SERVER['SERVER_SOFTWARE'] ) ? sanitize_text_field( wp_unslash( $_SERVER['SERVER_SOFTWARE'] ) ) : '' );
-        $info .= "\n" . __( "Plugin version", 'wc-etransactions' ) . " : " . WC_ETRANSACTIONS_VERSION;
-        $info .= "\n" . __( "cURL version", 'wc-etransactions' ) . " : " . $curl_version;
-        $info .= "\n" . __( "OpenSSL version", 'wc-etransactions' ) . " : " . $ssl_version;
-        $info .= "\n" . __( "WordPress multisite enabled", 'wc-etransactions' ) . " : " . ( is_multisite() ? __( 'Yes', 'wc-etransactions' ) : __( 'No', 'wc-etransactions' ) );
-        $info .= "\n" . __( "WordPress debug mode enabled", 'wc-etransactions' ) . " : " . ( defined( 'WP_DEBUG' ) && WP_DEBUG ? __( 'Yes', 'wc-etransactions' ) : __( 'No', 'wc-etransactions' ) );
+        $info .= "\n" . esc_html__( "WordPress version", 'wc-etransactions' ) . " : " . get_bloginfo('version');
+        $info .= "\n" . esc_html__( "PHP version", 'wc-etransactions' ) . " : " . phpversion();
+        $info .= "\n" . esc_html__( "Server info", 'wc-etransactions' ) . " : " . ( isset( $_SERVER['SERVER_SOFTWARE'] ) ? sanitize_text_field( wp_unslash( $_SERVER['SERVER_SOFTWARE'] ) ) : '' );
+        $info .= "\n" . esc_html__( "Plugin version", 'wc-etransactions' ) . " : " . WC_ETRANSACTIONS_VERSION;
+        $info .= "\n" . esc_html__( "cURL version", 'wc-etransactions' ) . " : " . $curl_version;
+        $info .= "\n" . esc_html__( "OpenSSL version", 'wc-etransactions' ) . " : " . $ssl_version;
+        $info .= "\n" . esc_html__( "WordPress multisite enabled", 'wc-etransactions' ) . " : " . ( is_multisite() ? esc_html__( 'Yes', 'wc-etransactions' ) : esc_html__( 'No', 'wc-etransactions' ) );
+        $info .= "\n" . esc_html__( "WordPress debug mode enabled", 'wc-etransactions' ) . " : " . ( defined( 'WP_DEBUG' ) && WP_DEBUG ? esc_html__( 'Yes', 'wc-etransactions' ) : esc_html__( 'No', 'wc-etransactions' ) );
 
         $info .= "\n\n\n=================================================";
-        $info .= "\n\t" . __( "Plugin configuration", 'wc-etransactions' );
+        $info .= "\n\t" . esc_html__( "Plugin configuration", 'wc-etransactions' );
         $info .= "\n=================================================";
-        $info .= "\n" . __( "Main configuration", 'wc-etransactions' );
+        $info .= "\n" . esc_html__( "Main configuration", 'wc-etransactions' );
         $info .= "\n" . "{";
         $info .= "\n\t \"environment\" : " . wc_etransactions_get_option( 'account_environment' );
         $info .= "\n\t \"demoMode\" : " . (wc_etransactions_get_option( 'account_demo_mode' ) === '1' ? 'true' : 'false');
@@ -308,7 +308,7 @@ class WC_Etransactions_Settings {
         $info .= "\n\t \"maxAmount3DS\" : " . wc_etransactions_get_option( 'account_max_amount3DS');
         $info .= "\n" . "}";
 
-        $info .= "\n\n" . __( "Contract configuration", 'wc-etransactions' );
+        $info .= "\n\n" . esc_html__( "Contract configuration", 'wc-etransactions' );
         $info .= "\n" . "{";
         $info .= "\n\t \"siteNumber\" : " . wc_etransactions_get_option( 'account_site_number');
         $info .= "\n\t \"rank\" : " . wc_etransactions_get_option( 'account_rank');
@@ -317,7 +317,7 @@ class WC_Etransactions_Settings {
         $info .= "\n\t \"hmacProd\" : " . "****";
         $info .= "\n" . "}";
 
-        $info .= "\n\n" . __( "Payment setup", 'wc-etransactions' );
+        $info .= "\n\n" . esc_html__( "Payment setup", 'wc-etransactions' );
         $info .= "\n" . "{";
         $info .= "\n\t \"display\" : " . wc_etransactions_get_option( 'payment_display');
         $info .= "\n\t \"debitType\" : " . wc_etransactions_get_option( 'payment_debit_type');
@@ -327,19 +327,19 @@ class WC_Etransactions_Settings {
         $info .= "\n\t \"displayTitle\" : " . wc_etransactions_get_option( 'payment_display_title');
         $info .= "\n" . "}";
 
-        $info .= "\n\n" . __( "Setting up payment methods", 'wc-etransactions' );
+        $info .= "\n\n" . esc_html__( "Setting up payment methods", 'wc-etransactions' );
         $info .= "\n" . json_encode(wc_etransactions_get_option( 'payment_methods_settings'), JSON_PRETTY_PRINT);
         
-        $info .= "\n\n" . __( "Configuring payment in X times", 'wc-etransactions' );
+        $info .= "\n\n" . esc_html__( "Configuring payment in X times", 'wc-etransactions' );
         $info .= "\n" . json_encode(wc_etransactions_get_option( 'instalment_settings'), JSON_PRETTY_PRINT);
 
         $info .= "\n\n\n=================================================";
-        $info .= "\n\t" . __( "Active plugins", 'wc-etransactions' );
+        $info .= "\n\t" . esc_html__( "Active plugins", 'wc-etransactions' );
         $info .= "\n=================================================";
         $info .= print_r( $this->get_active_plugins(), true );
 
         $info .= "\n\n\n=================================================";
-        $info .= "\n\t" . __( "Inactive plugins", 'wc-etransactions' );
+        $info .= "\n\t" . esc_html__( "Inactive plugins", 'wc-etransactions' );
         $info .= "\n=================================================";
         $info .= print_r( $this->get_inactive_plugins(), true );
 
@@ -423,15 +423,15 @@ class WC_Etransactions_Settings {
 
         return array(
             array(
-                'text'  => __( "PHP version", 'wc-etransactions' ),
+                'text'  => esc_html__( "PHP version", 'wc-etransactions' ),
                 'pass'  => version_compare( phpversion(), '5.6', '>=' )
             ),
             array(
-                'text'  => __( "EURO currency installed", 'wc-etransactions' ),
+                'text'  => esc_html__( "EURO currency installed", 'wc-etransactions' ),
                 'pass'  => get_woocommerce_currency() === 'EUR'
             ),
             array(
-                'text'  => __( "Up2pay account configured", 'wc-etransactions' ),
+                'text'  => esc_html__( "Up2pay account configured", 'wc-etransactions' ),
                 'pass'  => $config_class->is_account_configured()
             )
         );
@@ -469,7 +469,7 @@ class WC_Etransactions_Settings {
 
         $files = $this->get_log_files();
         if ( empty( $files ) ) {
-			wp_send_json_error( __( 'No log files found!', 'wc-etransactions' ) );
+			wp_send_json_error( esc_html__( 'No log files found!', 'wc-etransactions' ) );
 		}
 
         $files = array_filter( $files, function( $file_name ) {

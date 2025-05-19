@@ -16,7 +16,7 @@
                 $mode = $account_environment;
             }
 
-            echo sprintf( __( "Your are using the %s mode", 'wc-etransactions' ), esc_html($mode) );
+            echo sprintf( esc_html__( "Your are using the %s mode", 'wc-etransactions' ), esc_html($mode) );
         ?>
     </div>
 

@@ -26,7 +26,7 @@ abstract class WC_Etransactions_Abstract_Gateway extends WC_Payment_Gateway {
         global $wp;
 
         $supports = array();
-        if ( $this->params['one_click_enabled'] === '1' && ! is_account_page() ) {
+        if ( $this->params['one_click_enabled'] === '1' && !is_account_page() ) {
             $supports[] = 'tokenization';
         }
 
@@ -96,6 +96,8 @@ abstract class WC_Etransactions_Abstract_Gateway extends WC_Payment_Gateway {
             $order->update_meta_data( wc_etransactions_add_prefix('token_id'), null );
         }
 
+        $message = esc_html__('Customer is redirected to E-Transactions payment page', 'wc-etransactions');
+        $order->add_order_note( $message );
         $order->save();
     
         return array(
@@ -190,64 +192,90 @@ abstract class WC_Etransactions_Abstract_Gateway extends WC_Payment_Gateway {
      * Generate the payment form
      */
     private function generate_payment_form( $order, $params ) {
-
         ob_start();
 
         if ($this->params['iframe'] === '1') {
-
             $url = $this->payment_request_class->get_iframe_form_action();
-
             ?>
                 <iframe id="pbx-seamless-iframe" src="<?php echo esc_url($url) . '?' . http_build_query($params); ?>" style="border: none; width: 100%; height: 590px;"></iframe>
             <?php
-
         } else {
-
             $url = $this->payment_request_class->get_form_action();
-
             ?>
                 <form id="JS-WCE-form" method="post" action="<?php echo esc_url($url); ?>">
-
-                    <p><?php echo __('You will be redirected to the E-Transactions payment page. If not, please use the button bellow.', 'wc-etransactions'); ?></p>
+                    <p><?php echo esc_html__('You will be redirected to the E-Transactions payment page. If not, please use the button bellow.', WC_ETRANSACTIONS_PLUGIN); ?></p>
 
                     <?php foreach ($params as $name => $value) : ?>
                         <input type="hidden" name="<?php echo esc_attr($name); ?>" class="PBX" value="<?php echo esc_attr($value); ?>">
                     <?php endforeach; ?>
 
-                    <center><button type="submit"><?php echo __('Continue...', 'wc-etransactions'); ?></button></center>
+                    <center><button type="submit"><?php echo esc_html__('Continue...', WC_ETRANSACTIONS_PLUGIN); ?></button></center>
                 </form>
-            <script type="text/javascript">
-                window.addEventListener('DOMContentLoaded', function () {
+            <?php
+        }
+
+        $html_output = ob_get_clean();
+        
+        // Définir les règles pour wp_kses qui n'incluent pas les balises script
+        $allowed_html = array(
+            'form' => array(
+                'id' => array(),
+                'method' => array(),
+                'action' => array(),
+            ),
+            'p' => array(),
+            'input' => array(
+                'type' => array(),
+                'name' => array(),
+                'value' => array(),
+                'class' => array(),
+            ),
+            'center' => array(),
+            'button' => array(
+                'type' => array(),
+            ),
+            'iframe' => array(
+                'id' => array(),
+                'src' => array(),
+                'style' => array(),
+            ),
+        );
+        
+        $html_output = wp_kses($html_output, $allowed_html);
+        
+        // Ajouter le JavaScript non filtré si ce n'est pas en mode iframe
+        if ($this->params['iframe'] !== '1') {
+            $javascript = '<script type="text/javascript">
+                window.addEventListener("DOMContentLoaded", function () {
                     const inputs = document.getElementById("JS-WCE-form").getElementsByTagName("input");
 
                     // Iterate over the form controls
                     for (let i = 0; i < inputs.length; i++) {
-                        $value = inputs[i].getAttribute('name');
-                        if (!$value.includes('PBX')) {
+                        $value = inputs[i].getAttribute("name");
+                        if (!$value.includes("PBX")) {
                             document.getElementById("JS-WCE-form").removeChild(inputs[i]);
                         }
                     }
-                    document.getElementById('JS-WCE-form').submit();
+                    document.getElementById("JS-WCE-form").submit();
                 });
-            </script>
-            <?php
+            </script>';
+            
+            return $html_output . $javascript;
         }
-
-        return ob_get_clean();
+        
+        return $html_output;
     }
 
     /**
      * Generate the error message
      */
     private function generate_error_message() {
-
         ob_start();
         ?>
             <form action="<?php echo esc_url(wc_get_checkout_url()); ?>" method="get">
-                <center><button type="submit"><?php _e('Back...', 'wc-etransactions'); ?></button></center>
+                <center><button type="submit"><?php echo esc_html__('Back...', 'wc-etransactions'); ?></button></center>
             </form>
         <?php
-
         return ob_get_clean();
     }
 
@@ -304,6 +332,12 @@ abstract class WC_Etransactions_Abstract_Gateway extends WC_Payment_Gateway {
      */
     private function on_ipn() {
 
+        $message = __CLASS__ . ':' . __FUNCTION__ . ":  params for order GET(" . json_encode($_GET) . ")";
+        wc_etransactions_add_log( $message );
+        $message = __CLASS__ . ':' . __FUNCTION__ . ":  params for order POST(" . json_encode($_POST) . ")";
+        wc_etransactions_add_log( $message );
+
+
         $order_id = isset($_GET['order']) ? sanitize_text_field($_GET['order']) : 0;
         $order    = wc_get_order( $order_id );
 
@@ -314,7 +348,7 @@ abstract class WC_Etransactions_Abstract_Gateway extends WC_Payment_Gateway {
             exit;
         }
 
-        $values = $_GET;
+        $values = $_POST;
         if (isset($values['wc-api'])) {
             unset($values['wc-api']);
         }
@@ -342,7 +376,7 @@ abstract class WC_Etransactions_Abstract_Gateway extends WC_Payment_Gateway {
             exit;
         }
 
-        $params = $this->config_class->get_params($_GET);
+        $params = $this->config_class->get_params($_POST);
         if ( empty($params) ) {
 
             $message = __CLASS__ . ':' . __FUNCTION__ . ": empty params for order(" . $order_id . ")";
@@ -362,16 +396,26 @@ abstract class WC_Etransactions_Abstract_Gateway extends WC_Payment_Gateway {
         if ( wc_etransactions_get_option( 'payment_debit_type' ) === WC_Etransactions_Payment::PAYMENT_DEBIT_TYPE_DEFERRED
             && wc_etransactions_get_option( 'payment_capture_event' ) === WC_Etransactions_Payment::PAYMENT_CAPTURE_EVENT_STATUS
         ) {
-
             if ( wc_etransactions_get_option( 'payment_capture_event' ) === WC_Etransactions_Payment::PAYMENT_CAPTURE_EVENT_STATUS ) {
                 $order->update_meta_data('wc-etransactions-status', wc_etransactions_get_option('payment_capture_status'));
             }
-            
+            $message = esc_html__('Payment was authorized by E-Transactions.', 'wc-etransactions');
+            $order->add_order_note( $message );
             $order->set_status( 'wc-e-deferred' );
             $deferred = true;
 
         } else {
+                $order->set_shipping_address_1($order->get_meta(wc_etransactions_add_prefix('original_shipping_address_1')));
+                $order->set_shipping_address_2($order->get_meta(wc_etransactions_add_prefix('original_shipping_address_2')));
+                $order->set_shipping_city($order->get_meta(wc_etransactions_add_prefix('original_shipping_city')));
+                $order->set_shipping_postcode($order->get_meta(wc_etransactions_add_prefix('original_shipping_postcode')));
+                $order->set_shipping_company($order->get_meta(wc_etransactions_add_prefix('original_shipping_company')));
+                $order->set_shipping_first_name($order->get_meta(wc_etransactions_add_prefix('original_shipping_first_name')));
+                $order->set_shipping_last_name($order->get_meta(wc_etransactions_add_prefix('original_shipping_last_name')));
 
+
+            $message = esc_html__('Payment was authorized and captured by E-Transactions.', 'wc-etransactions');
+            $order->add_order_note( $message );
             $order->payment_complete( $params['transaction'] );
         }
 
@@ -394,7 +438,7 @@ abstract class WC_Etransactions_Abstract_Gateway extends WC_Payment_Gateway {
 
         if ( !is_object($order) ) {
 
-			wc_add_notice( __( 'Payment error: Please try again', 'wc-etransactions' ), 'error' );
+			wc_add_notice( esc_html__( 'Payment error: Please try again', 'wc-etransactions' ), 'error' );
 
             $message = __CLASS__ . ':' . __FUNCTION__ . ": order(" . $order_id . ") not exist.";
             wc_etransactions_add_log( $message );
@@ -406,7 +450,7 @@ abstract class WC_Etransactions_Abstract_Gateway extends WC_Payment_Gateway {
         $params = $this->config_class->get_params($_GET);
         if ( empty($params) ) {
                 
-            wc_add_notice( __( 'Payment error: Please try again', 'wc-etransactions' ), 'error' );
+            wc_add_notice( esc_html__( 'Payment error: Please try again', 'wc-etransactions' ), 'error' );
 
             $message = __CLASS__ . ':' . __FUNCTION__ . ": empty params for order(" . $order_id . ")";
             wc_etransactions_add_log( $message );
@@ -417,7 +461,7 @@ abstract class WC_Etransactions_Abstract_Gateway extends WC_Payment_Gateway {
 
         if ( $params['error'] !== '00000' ) {
 
-            wc_add_notice( __( 'Payment error: Please try again', 'wc-etransactions' ), 'error' );
+            wc_add_notice( esc_html__( 'Payment error: Please try again', 'wc-etransactions' ), 'error' );
 
             $message = __CLASS__ . ':' . __FUNCTION__ . ": payment failed for order(" . $order_id . "), error code: " . $params['e'];
             wc_etransactions_add_log( $message );
@@ -426,8 +470,10 @@ abstract class WC_Etransactions_Abstract_Gateway extends WC_Payment_Gateway {
             exit;
         }
 
-        $data = $order->get_meta( 'wc-etransactions-data', true );
-        if ( empty($data) ) {}
+        /*$data = $order->get_meta( 'wc-etransactions-data', true );
+        if ( empty($data) ) {}*/
+        $message = esc_html__('Customer is back from E-Transactions payment page.', 'wc-etransactions');
+        $order->add_order_note( $message );
 
         WC()->cart->empty_cart();
 		wp_redirect( $order->get_checkout_order_received_url() );
@@ -498,16 +544,6 @@ abstract class WC_Etransactions_Abstract_Gateway extends WC_Payment_Gateway {
 		$payment_token->set_user_id( $user_id );
 		$payment_token->set_phone_number( $phone_number  );
 		$payment_token->save();
-
-        // $payment_token = new WC_Payment_Token_CC();
-		// $payment_token->set_token($current_token);
-		// $payment_token->set_gateway_id( $gateway_id );
-		// $payment_token->set_card_type($current_card_type);
-		// $payment_token->set_last4($current_last4);
-		// $payment_token->set_expiry_month($current_expiry_month);
-		// $payment_token->set_expiry_year($current_expiry_year);
-		// $payment_token->set_user_id($user_id);
-		// $payment_token->save();
     }
 
     /**

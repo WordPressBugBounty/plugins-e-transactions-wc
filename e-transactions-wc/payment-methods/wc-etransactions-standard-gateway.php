@@ -19,8 +19,8 @@ class WC_EStd_Gw extends WC_Etransactions_Abstract_Gateway {
         $params = wp_parse_args($params, array(
             'id'                    => '',
             'sub_id'                => '',
-            'method_title'          => __( 'Up2pay e-Transactions Crédit Agricole', 'wc-etransactions' ),
-            'method_description'    => __( 'Up2pay e-Transactions est la solution de paiement à distance dans un environnement sécurisé du Crédit Agricole.', 'wc-etransactions' ),
+            'method_title'          => esc_html__( 'Up2pay e-Transactions Crédit Agricole', 'wc-etransactions' ),
+            'method_description'    => esc_html__( 'Up2pay e-Transactions est la solution de paiement à distance dans un environnement sécurisé du Crédit Agricole.', 'wc-etransactions' ),
             'title'                 => '',
             'description'           => '',
             'icon'                  => '',

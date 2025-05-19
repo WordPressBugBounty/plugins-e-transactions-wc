@@ -31,7 +31,7 @@ class WC_Etransactions_Abstract_Request {
     public function get_gateway() {
 
         $account_environment    = wc_etransactions_get_option('account_environment');
-        $use_second_gateway     = wc_etransactions_get_option('use_second_gateway');
+        $use_second_gateway     = wc_etransactions_get_option( 'use_secondary_gateway' );
 
         if ( $account_environment === WC_Etransactions_Account::ACCOUNT_ENVIRONMENT_TEST ) {
             return ($use_second_gateway === '1' ? self::SECONDARY_GATEWAY_TEST : self::GATEWAY_TEST);
@@ -46,7 +46,7 @@ class WC_Etransactions_Abstract_Request {
     public function get_endpoint() {
 
         $account_environment    = wc_etransactions_get_option('account_environment');
-        $use_second_gateway     = wc_etransactions_get_option('use_second_gateway');
+        $use_second_gateway     = wc_etransactions_get_option('use_secondary_gateway');
 
         if ( $account_environment === WC_Etransactions_Account::ACCOUNT_ENVIRONMENT_TEST ) {
             $gateway = ($use_second_gateway === '1' ? self::SECONDARY_DIRECT_GATEWAY_TEST : self::DIRECT_GATEWAY_TEST);
