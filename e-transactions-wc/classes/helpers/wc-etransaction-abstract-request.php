@@ -31,9 +31,10 @@ class WC_Etransactions_Abstract_Request {
     public function get_gateway() {
 
         $account_environment    = wc_etransactions_get_option('account_environment');
+        $account_demo_mode      = wc_etransactions_get_option( 'account_demo_mode' );
         $use_second_gateway     = wc_etransactions_get_option( 'use_secondary_gateway' );
 
-        if ( $account_environment === WC_Etransactions_Account::ACCOUNT_ENVIRONMENT_TEST ) {
+        if ( ($account_environment === WC_Etransactions_Account::ACCOUNT_ENVIRONMENT_TEST ) || ($account_demo_mode)) {
             return ($use_second_gateway === '1' ? self::SECONDARY_GATEWAY_TEST : self::GATEWAY_TEST);
         } else {
             return ($use_second_gateway === '1' ? self::SECONDARY_GATEWAY_PROD : self::GATEWAY_PROD);

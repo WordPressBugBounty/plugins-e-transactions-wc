@@ -319,13 +319,17 @@ abstract class WC_Etransactions_Abstract_Gateway_Instalments extends WC_Payment_
             exit;
         }
 
-        $order->set_shipping_address_1($order->get_meta(wc_etransactions_add_prefix('original_shipping_address_1')));
-        $order->set_shipping_address_2($order->get_meta(wc_etransactions_add_prefix('original_shipping_address_2')));
-        $order->set_shipping_city($order->get_meta(wc_etransactions_add_prefix('original_shipping_city')));
-        $order->set_shipping_postcode($order->get_meta(wc_etransactions_add_prefix('original_shipping_postcode')));
-        $order->set_shipping_company($order->get_meta(wc_etransactions_add_prefix('original_shipping_company')));
-        $order->set_shipping_first_name($order->get_meta(wc_etransactions_add_prefix('original_shipping_first_name')));
-        $order->set_shipping_last_name($order->get_meta(wc_etransactions_add_prefix('original_shipping_last_name')));
+        // Security: bind the signed payload to the target order. The order is loaded from the
+        // unsigned $_GET['order'], so the signed reference must match this order to prevent an
+        // IPN from being replayed against another order. (Amount is not checked here because the
+        // instalment/x3 flow legitimately sends partial amounts.)
+        $signed_order_id = wc_etransactions_reference_order_id( $params['reference'] ?? '' );
+        if ( $signed_order_id !== (int) $order->get_id() ) {
+
+            $message = __CLASS__ . ':' . __FUNCTION__ . ": reference mismatch for order(" . $order_id . "), signed reference: " . ( $params['reference'] ?? '' );
+            wc_etransactions_add_log( $message, 'error' );
+            exit;
+        }
 
         $this->set_order_data( $order, $params );
         $this->set_order_account( $order );

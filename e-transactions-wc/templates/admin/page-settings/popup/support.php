@@ -37,7 +37,7 @@
         </div>
         <div class="wc-etransactions__header__support__popup__content__footer">
             <!-- TODO: Add mailto -->
-            <a class="wc-etransactions__header__support__popup__content__footer__btn" href="mailto:" >
+            <a class="wc-etransactions__header__support__popup__content__footer__btn" target="_blank" href="https://www.ca-moncommerce.com/espace-client-mon-commerce/up2pay-e-transactions/assistance/" >
                 <?php esc_html_e( 'Contact support', 'wc-etransactions' ); ?>
             </a>
         </div>

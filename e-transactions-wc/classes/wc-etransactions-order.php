@@ -23,8 +23,6 @@ class WC_Etransactions_Order {
         add_action('add_meta_boxes', array($this, 'add_meta_boxes'));
 		add_action('wp_ajax_wc_etransactions_admin_single_order_submit', array( $this, 'wc_etransactions_admin_single_order_submit'));
 		add_action('wp_ajax_wc_etransactions_admin_single_order_refund', array( $this, 'wc_etransactions_admin_single_order_refund'));
-        add_action('woocommerce_new_order', array( $this, 'save_shipping_address_on_order_creation'));
-        add_action('woocommerce_order_shipping_method_changed', array( $this, 'save_shipping_address_on_shipping_method_change'));
 
     }
 
@@ -74,60 +72,6 @@ class WC_Etransactions_Order {
         $statuses[] = 'e-partial-refund';
 
         return $statuses;
-    }
-
-
-    /**
-     * Save shipping address on order creation
-     * @param $order_id
-     * @return void
-     */
-    public function save_shipping_address_on_order_creation($order_id ) {
-        $order = wc_get_order( $order_id );
-        if ( ! $order ) {
-            return;
-        }
-
-        $payment_method = $order->get_payment_method();
-        if ( strpos( $payment_method, 'etransactions' ) === false ) {
-            return;
-        }
-
-        $order->update_meta_data(wc_etransactions_add_prefix('original_shipping_address_1'), $order->get_shipping_address_1());
-        $order->update_meta_data(wc_etransactions_add_prefix('original_shipping_address_2'), $order->get_shipping_address_2());
-        $order->update_meta_data(wc_etransactions_add_prefix('original_shipping_city'), $order->get_shipping_city());
-        $order->update_meta_data(wc_etransactions_add_prefix('original_shipping_postcode'), $order->get_shipping_postcode());
-        $order->update_meta_data(wc_etransactions_add_prefix('original_shipping_company'), $order->get_shipping_company());
-        $order->update_meta_data(wc_etransactions_add_prefix('original_shipping_first_name'), $order->get_shipping_first_name());
-        $order->update_meta_data(wc_etransactions_add_prefix('original_shipping_last_name'), $order->get_shipping_last_name());
-        $order->save();
-    }
-
-
-    /**
-     *  Save shipping address on shipping method change
-     * @param $order_id
-     * @return void
-     */
-    public function save_shipping_address_on_shipping_method_change($order_id ) {
-        $order = wc_get_order( $order_id );
-        if ( ! $order ) {
-            return;
-        }
-
-        $payment_method = $order->get_payment_method();
-        if ( strpos( $payment_method, 'etransactions' ) === false ) {
-            return;
-        }
-
-        $order->update_meta_data(wc_etransactions_add_prefix('original_shipping_address_1'), $order->get_shipping_address_1());
-        $order->update_meta_data(wc_etransactions_add_prefix('original_shipping_address_2'), $order->get_shipping_address_2());
-        $order->update_meta_data(wc_etransactions_add_prefix('original_shipping_city'), $order->get_shipping_city());
-        $order->update_meta_data(wc_etransactions_add_prefix('original_shipping_postcode'), $order->get_shipping_postcode());
-        $order->update_meta_data(wc_etransactions_add_prefix('original_shipping_company'), $order->get_shipping_company());
-        $order->update_meta_data(wc_etransactions_add_prefix('original_shipping_first_name'), $order->get_shipping_first_name());
-        $order->update_meta_data(wc_etransactions_add_prefix('original_shipping_last_name'), $order->get_shipping_last_name());
-        $order->save();
     }
 
 
@@ -469,4 +413,5 @@ class WC_Etransactions_Order {
 
         return $captured_amount;
     }
+
 }

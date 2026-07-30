@@ -39,6 +39,19 @@ class WC_Etransactions_Simple_Payment_Request extends WC_Etransactions_Abstract_
         return $this->params;
     }
 
+    public function checkOpenSSL3()
+    {
+        if (preg_match('/OpenSSL\s+(\d+)\.(\d+)/', OPENSSL_VERSION_TEXT, $matches)) {
+            $major = (int)$matches[1];
+
+            if ($major >= 3) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     /**
      * Check if payment is configured
      */
@@ -70,11 +83,19 @@ class WC_Etransactions_Simple_Payment_Request extends WC_Etransactions_Abstract_
         $this->set_param( 'PBX_SITE', $account_credentials['account_site_number'] );
         $this->set_param( 'PBX_TIME', date('c') );
         $this->set_param( 'PBX_TOTAL', sprintf('%03d', round($order_amount * $amount_scale)) );
+        // Freeze the exact amount sent to Paybox so the IPN can validate it without recomputation drift.
+        $this->order->update_meta_data( '_wce_expected_amount', (int) round($order_amount * $amount_scale) );
+        $this->order->save();
         $this->set_param( 'PBX_VERSION', WC_ETRANSACTIONS_PLUGIN . "-" . WC_ETRANSACTIONS_VERSION . "_WP" . get_bloginfo('version') . "_WC" . WC()->version );
         $this->set_param( 'PBX_SOUHAITAUTHENT', $config_class->order_needs_3ds_exemption($this->order) ? "02" : "01" );
         $this->set_param( 'PBX_RETOUR', self::PBX_RETOUR );
         $this->set_param( 'PBX_SOURCE', 'RWD' );
         $this->set_param( 'PBX_RUF1', 'POST' );
+        if ($this->checkOpenSSL3()){
+            $this->set_param( 'PBX_SIGN_KEYSIZE', 2048 );
+        }
+        $this->set_param('PBX_IPNALGOSIGN','SHA_256');
+
 
 
 
@@ -93,7 +114,8 @@ class WC_Etransactions_Simple_Payment_Request extends WC_Etransactions_Abstract_
 
         if ( wc_etransactions_get_option('payment_debit_type') === WC_Etransactions_Payment::PAYMENT_DEBIT_TYPE_DEFERRED ) {
             if ( wc_etransactions_get_option('payment_capture_event') === WC_Etransactions_Payment::PAYMENT_CAPTURE_EVENT_DAYS ) {
-                $this->set_param( 'PBX_DIFF', wc_etransactions_get_option('payment_deferred_days') );
+                // Paybox requires PBX_DIFF as a 2-digit value (e.g. "02"); a single digit is ignored and the debit falls back to immediate.
+                $this->set_param( 'PBX_DIFF', sprintf('%02d', (int) wc_etransactions_get_option('payment_deferred_days')) );
             } else {
                 $this->set_param( 'PBX_AUTOSEULE', 'O' );
             }
@@ -119,6 +141,16 @@ class WC_Etransactions_Simple_Payment_Request extends WC_Etransactions_Abstract_
         if ( $is_token ) {
 
             $payment_token = WC_Payment_Tokens::get( $token_id );
+
+            // Security (defense in depth): the token must belong to the order's customer before its
+            // card reference is sent to Paybox, otherwise a forged token_id could charge another card.
+            if ( !$payment_token || (int) $payment_token->get_user_id() !== (int) $this->order->get_customer_id() ) {
+
+                wc_etransactions_add_log( __CLASS__ . ':' . __FUNCTION__ . ": token ownership mismatch for token(" . $token_id . ") on order(" . $this->order->get_id() . ")", 'error' );
+
+                return false;
+            }
+
 			$token_data = $payment_token->get_data();
             $token_expiry_month = $token_data['expiry_month'];
             $token_expiry_year  = $token_data['expiry_year'];

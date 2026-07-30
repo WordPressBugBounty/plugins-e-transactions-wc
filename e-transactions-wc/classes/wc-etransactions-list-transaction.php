@@ -45,9 +45,7 @@ class WC_Etransactions_List_Transaction
     }
 
     public function enqueue_styles() {
-        // Charger les styles de WooCommerce
-        wp_enqueue_style('woocommerce-general', WC()->plugin_url() . '/assets/css/frontend/woocommerce.css');
-        wp_enqueue_style( 'woocommerce_admin_styles', WC()->plugin_url() . '/assets/css/admin.css' );
+       wp_enqueue_style( 'woocommerce_admin_styles', WC()->plugin_url() . '/assets/css/admin.css' );
     }
 
     public function reset_filters() {

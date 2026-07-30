@@ -124,11 +124,17 @@
                                     <th><?php esc_html_e( "Days between each instalment", 'wc-etransactions' ); ?></th>
                                     <td>
                                         <select name="<?php echo esc_attr($instalment_name); ?>[daysBetweenPayments]">
-                                            <?php for ( $day=WC_Etransactions_Instalment::DAYS_BETWEEN_PAYMENTS_MIN; $day<=WC_Etransactions_Instalment::DAYS_BETWEEN_PAYMENTS_MAX; $day++ ): ?>
+                                            <?php 
+                                            // Calculer la limite maximale selon les règles de gestion
+                                            $max_days_allowed = wc_etransactions_get_max_days_for_instalment($partial_payments);
+                                            for ( $day=WC_Etransactions_Instalment::DAYS_BETWEEN_PAYMENTS_MIN; $day<=$max_days_allowed; $day++ ): ?>
                                                 <option value="<?php echo esc_attr($day); ?>" <?php selected( $days_between_payments, $day ); ?>><?php echo esc_html($day); ?></option>
                                             <?php endfor; ?>
                                         </select>
-                                        <p class="description"><?php esc_html_e( 'Number of days between each instalment. Delay between the first payment on the last instalment can\'t exceed 90 days.', 'wc-etransactions' ); ?></p>
+                                        <p class="description"><?php 
+                                        $max_days_between = wc_etransactions_get_max_days_for_instalment($partial_payments);
+                                        printf( esc_html__('Number of days between each instalment. Maximum: %d days between each payment.', 'wc-etransactions' ), $max_days_between ); 
+                                        ?></p>
                                     </td>
                                 </tr>
 

@@ -107,7 +107,6 @@ class WC_Etransactions_Updater {
 				$this->minus_3_0_3();
 			break;
 			case version_compare( $this->version, '3.0.5', '<' ):
-                wc_etransactions_add_log( 'Update to 3.0.5');
 				$this->crons_queue['3.0.5'] = 'minus_3_0_5';
 			break;
 			default:

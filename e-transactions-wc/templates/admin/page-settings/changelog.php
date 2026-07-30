@@ -22,11 +22,8 @@
             <div class="wc-etransactions__changelog__popup__content__body">
                 <h3><?php echo sprintf( esc_html__( "What's new in version %s", 'wc-etransactions' ), esc_html(WC_ETRANSACTIONS_VERSION) ); ?></h3>
                 <ul>
-                    <li><?php esc_html_e( 'Fixed: update shipping address ', 'wc-etransactions' ) ?></li>
-                    <li><?php esc_html_e( 'Add notices to the admin order page', 'wc-etransactions' ) ?></li>
-                    <li><?php esc_html_e( 'Fixed: other url production', 'wc-etransactions' ) ?></li>
-                    <li><?php esc_html_e( 'Fixed : rounding payment by instalments', 'wc-etransactions' ) ?></li>
-                    <li><?php esc_html_e( 'Changed : IPN type of call to POST', 'wc-etransactions' ) ?></li>
+                    <li><?php esc_html_e( 'Fixed number days between installments payment', 'wc-etransactions' ) ?></li>
+                    <li><?php esc_html_e( 'Updated credit card logo', 'wc-etransactions' ) ?></li>
                 </ul>
             </div>
         </div>

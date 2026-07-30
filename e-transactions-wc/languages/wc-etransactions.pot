@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: Up2pay e-Transactions 3.0.8\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/e-transactions-"
 "wc\n"
-"POT-Creation-Date: 2025-05-19 09:14+0000\n"
+"POT-Creation-Date: 2025-08-07 16:12+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -88,7 +88,7 @@ msgid ""
 "(click inside the box to automatically copy the information to the clipboard)"
 msgstr ""
 
-#: classes/helpers/wc-etransaction-order-manager.php:123
+#: classes/helpers/wc-etransaction-order-manager.php:218
 msgid "--"
 msgstr ""
 
@@ -144,19 +144,19 @@ msgstr ""
 msgid "Add a means of payment"
 msgstr ""
 
-#: templates/admin/page-settings/changelog.php:26
-msgid "Add notices to the admin order page"
+#: templates/admin/page-settings/changelog.php:25
+msgid "Add new key for Open SSL"
 msgstr ""
 
 #: templates/admin/page-settings/payment.php:30
 msgid "Advanced"
 msgstr ""
 
-#: classes/helpers/wc-etransaction-order-manager.php:150
+#: classes/helpers/wc-etransaction-order-manager.php:245
 msgid "All status"
 msgstr ""
 
-#: classes/helpers/wc-etransaction-order-manager.php:75
+#: classes/helpers/wc-etransaction-order-manager.php:170
 #: templates/admin/order/payment-info.php:194
 msgid "Amount"
 msgstr ""
@@ -183,7 +183,7 @@ msgid "Availability of services"
 msgstr ""
 
 #: payment-methods/wc-etransactions-abstract-gateway-instalments.php:230
-#: payment-methods/wc-etransactions-abstract-gateway.php:276
+#: payment-methods/wc-etransactions-abstract-gateway.php:280
 msgid "Back..."
 msgstr ""
 
@@ -213,10 +213,6 @@ msgstr ""
 
 #: templates/admin/order/payment-info.php:205
 msgid "Captured"
-msgstr ""
-
-#: templates/admin/page-settings/changelog.php:29
-msgid "Changed : IPN type of call to POST"
 msgstr ""
 
 #: templates/admin/page-settings/header.php:37
@@ -284,17 +280,17 @@ msgstr ""
 msgid "cURL version"
 msgstr ""
 
-#: payment-methods/wc-etransactions-abstract-gateway-instalments.php:398
-#: payment-methods/wc-etransactions-abstract-gateway.php:475
+#: payment-methods/wc-etransactions-abstract-gateway-instalments.php:400
+#: payment-methods/wc-etransactions-abstract-gateway.php:480
 msgid "Customer is back from E-Transactions payment page."
 msgstr ""
 
 #: payment-methods/wc-etransactions-abstract-gateway-instalments.php:69
-#: payment-methods/wc-etransactions-abstract-gateway.php:99
+#: payment-methods/wc-etransactions-abstract-gateway.php:103
 msgid "Customer is redirected to E-Transactions payment page"
 msgstr ""
 
-#: classes/helpers/wc-etransaction-order-manager.php:77
+#: classes/helpers/wc-etransaction-order-manager.php:172
 msgid "Date"
 msgstr ""
 
@@ -402,7 +398,7 @@ msgstr ""
 msgid "File types accepted for logos are: .png .gif .jpg only"
 msgstr ""
 
-#: classes/helpers/wc-etransaction-order-manager.php:158
+#: classes/helpers/wc-etransaction-order-manager.php:253
 msgid "Filter"
 msgstr ""
 
@@ -412,22 +408,10 @@ msgid ""
 "credited at every instalment."
 msgstr ""
 
-#: templates/admin/page-settings/changelog.php:28
-msgid "Fixed : rounding payment by instalments"
-msgstr ""
-
-#: templates/admin/page-settings/changelog.php:27
-msgid "Fixed: other url production"
-msgstr ""
-
-#: templates/admin/page-settings/changelog.php:25
-msgid "Fixed: update shipping address "
-msgstr ""
-
-#: classes/wc-etransactions-order.php:284
-#: classes/wc-etransactions-order.php:295
-#: classes/wc-etransactions-order.php:371
-#: classes/wc-etransactions-order.php:381
+#: classes/wc-etransactions-order.php:288
+#: classes/wc-etransactions-order.php:299
+#: classes/wc-etransactions-order.php:375
+#: classes/wc-etransactions-order.php:385
 msgid "Form data not found."
 msgstr ""
 
@@ -503,7 +487,7 @@ msgstr ""
 msgid "Integrated"
 msgstr ""
 
-#: classes/helpers/wc-etransaction-order-manager.php:76
+#: classes/helpers/wc-etransaction-order-manager.php:171
 msgid "IPN"
 msgstr ""
 
@@ -623,12 +607,12 @@ msgstr ""
 msgid "Operations history"
 msgstr ""
 
-#: classes/helpers/wc-etransaction-order-manager.php:71
+#: classes/helpers/wc-etransaction-order-manager.php:166
 msgid "Order"
 msgstr ""
 
-#: classes/wc-etransactions-order.php:301
-#: classes/wc-etransactions-order.php:387
+#: classes/wc-etransactions-order.php:305
+#: classes/wc-etransactions-order.php:391
 msgid "Order not found."
 msgstr ""
 
@@ -710,17 +694,17 @@ msgstr ""
 msgid "Payment display"
 msgstr ""
 
-#: payment-methods/wc-etransactions-abstract-gateway-instalments.php:354
-#: payment-methods/wc-etransactions-abstract-gateway-instalments.php:366
-#: payment-methods/wc-etransactions-abstract-gateway-instalments.php:378
-#: payment-methods/wc-etransactions-abstract-gateway-instalments.php:389
-#: payment-methods/wc-etransactions-abstract-gateway.php:441
-#: payment-methods/wc-etransactions-abstract-gateway.php:453
-#: payment-methods/wc-etransactions-abstract-gateway.php:464
+#: payment-methods/wc-etransactions-abstract-gateway-instalments.php:356
+#: payment-methods/wc-etransactions-abstract-gateway-instalments.php:368
+#: payment-methods/wc-etransactions-abstract-gateway-instalments.php:380
+#: payment-methods/wc-etransactions-abstract-gateway-instalments.php:391
+#: payment-methods/wc-etransactions-abstract-gateway.php:446
+#: payment-methods/wc-etransactions-abstract-gateway.php:458
+#: payment-methods/wc-etransactions-abstract-gateway.php:469
 msgid "Payment error: Please try again"
 msgstr ""
 
-#: classes/helpers/wc-etransaction-order-manager.php:74
+#: classes/helpers/wc-etransaction-order-manager.php:169
 msgid "Payment method"
 msgstr ""
 
@@ -728,13 +712,13 @@ msgstr ""
 msgid "Payment setup"
 msgstr ""
 
-#: payment-methods/wc-etransactions-abstract-gateway-instalments.php:335
-#: payment-methods/wc-etransactions-abstract-gateway-instalments.php:503
-#: payment-methods/wc-etransactions-abstract-gateway.php:417
+#: payment-methods/wc-etransactions-abstract-gateway-instalments.php:337
+#: payment-methods/wc-etransactions-abstract-gateway-instalments.php:505
+#: payment-methods/wc-etransactions-abstract-gateway.php:422
 msgid "Payment was authorized and captured by E-Transactions."
 msgstr ""
 
-#: payment-methods/wc-etransactions-abstract-gateway.php:402
+#: payment-methods/wc-etransactions-abstract-gateway.php:406
 msgid "Payment was authorized by E-Transactions."
 msgstr ""
 
@@ -824,8 +808,8 @@ msgstr ""
 msgid "Redirected"
 msgstr ""
 
-#: classes/wc-etransactions-order.php:278
-#: classes/wc-etransactions-order.php:365
+#: classes/wc-etransactions-order.php:282
+#: classes/wc-etransactions-order.php:369
 msgid "Refresh the page and try again."
 msgstr ""
 
@@ -838,11 +822,11 @@ msgstr ""
 msgid "Refund done successfully."
 msgstr ""
 
-#: classes/wc-etransactions-order.php:434
+#: classes/wc-etransactions-order.php:438
 msgid "Refund failed."
 msgstr ""
 
-#: classes/wc-etransactions-order.php:431
+#: classes/wc-etransactions-order.php:435
 msgid "Refund successful."
 msgstr ""
 
@@ -850,7 +834,7 @@ msgstr ""
 msgid "remove"
 msgstr ""
 
-#: classes/helpers/wc-etransaction-order-manager.php:160
+#: classes/helpers/wc-etransaction-order-manager.php:255
 msgid "Reset filter"
 msgstr ""
 
@@ -861,7 +845,7 @@ msgstr ""
 msgid "Save"
 msgstr ""
 
-#: payment-methods/wc-etransactions-abstract-gateway-instalments.php:518
+#: payment-methods/wc-etransactions-abstract-gateway-instalments.php:520
 msgid "Second payment was captured by E-Transactions."
 msgstr ""
 
@@ -907,7 +891,7 @@ msgstr ""
 msgid "State"
 msgstr ""
 
-#: classes/helpers/wc-etransaction-order-manager.php:73
+#: classes/helpers/wc-etransaction-order-manager.php:168
 msgid "Status"
 msgstr ""
 
@@ -916,11 +900,11 @@ msgstr ""
 msgid "Store my credit card details for future payments."
 msgstr ""
 
-#: classes/wc-etransactions-order.php:355
+#: classes/wc-etransactions-order.php:359
 msgid "Submission failed."
 msgstr ""
 
-#: classes/wc-etransactions-order.php:352
+#: classes/wc-etransactions-order.php:356
 msgid "Submission successful."
 msgstr ""
 
@@ -952,7 +936,7 @@ msgstr ""
 msgid "The minimum log level will be set to Debug."
 msgstr ""
 
-#: payment-methods/wc-etransactions-abstract-gateway-instalments.php:520
+#: payment-methods/wc-etransactions-abstract-gateway-instalments.php:522
 msgid "Third payment was captured by E-Transactions."
 msgstr ""
 
@@ -985,7 +969,7 @@ msgstr ""
 msgid "To deactivate the plugin correctly, please select if you want to:"
 msgstr ""
 
-#: classes/helpers/wc-etransaction-order-manager.php:72
+#: classes/helpers/wc-etransaction-order-manager.php:167
 #: templates/admin/order/payment-info.php:163
 msgid "Transaction"
 msgstr ""
@@ -1004,7 +988,7 @@ msgstr ""
 msgid "Transactions"
 msgstr ""
 
-#: classes/helpers/wc-etransaction-order-manager.php:113
+#: classes/helpers/wc-etransaction-order-manager.php:208
 msgid "Transactions not found"
 msgstr ""
 
@@ -1027,7 +1011,7 @@ msgstr ""
 
 #: payment-methods/wc-etransactions-threetime-gateway.php:22
 #: payment-methods/wc-etransactions-standard-gateway.php:22
-#: classes/wc-etransactions-order.php:226
+#: classes/wc-etransactions-order.php:230
 msgid "Up2pay e-Transactions Crédit Agricole"
 msgstr ""
 

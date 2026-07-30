@@ -71,9 +71,21 @@ abstract class WC_Etransactions_Abstract_Gateway extends WC_Payment_Gateway {
         $is_token		= isset( $_POST[ 'wc-' . strtolower($payment_method) . '-payment-token' ] ) && 'new' !== $_POST[ 'wc-' . strtolower($payment_method) . '-payment-token' ];
 		
 		if ( $is_token ) {
-			$token_id      = isset( $_POST['wc-etransactions_std_card_cb-payment-token'] ) ? sanitize_text_field( $_POST['wc-etransactions_std_card_cb-payment-token'] ) : '';
+			// Use the same dynamic field key as the token detection above (works for any card type, not only CB).
+			$token_field   = 'wc-' . strtolower( $payment_method ) . '-payment-token';
+			$token_id      = isset( $_POST[ $token_field ] ) ? sanitize_text_field( wp_unslash( $_POST[ $token_field ] ) ) : '';
 			require_once WC_ETRANSACTIONS_PLUGIN_PATH . '/classes/helpers/wc-etransaction-payment-token.php';
 			$payment_token = new WC_Etransactions_Payment_Token( $token_id );
+
+			// Security: reject a token that does not belong to the order's customer (prevents IDOR / using another customer's stored card).
+			if ( !$payment_token->get_id() || (int) $payment_token->get_user_id() !== (int) $order->get_customer_id() ) {
+
+				wc_etransactions_add_log( __CLASS__ . ':' . __FUNCTION__ . ": token ownership mismatch for token(" . $token_id . ") on order(" . $order_id . ")", 'error' );
+				wc_add_notice( esc_html__( 'Invalid payment method.', 'wc-etransactions' ), 'error' );
+
+				return array( 'result' => 'failure' );
+			}
+
 			$phone_number  = $payment_token->get_phone_number();
 		} else {
 			$phone_number  = $order->get_billing_phone();
@@ -216,7 +228,6 @@ abstract class WC_Etransactions_Abstract_Gateway extends WC_Payment_Gateway {
 
         $html_output = ob_get_clean();
         
-        // Définir les règles pour wp_kses qui n'incluent pas les balises script
         $allowed_html = array(
             'form' => array(
                 'id' => array(),
@@ -243,7 +254,6 @@ abstract class WC_Etransactions_Abstract_Gateway extends WC_Payment_Gateway {
         
         $html_output = wp_kses($html_output, $allowed_html);
         
-        // Ajouter le JavaScript non filtré si ce n'est pas en mode iframe
         if ($this->params['iframe'] !== '1') {
             $javascript = '<script type="text/javascript">
                 window.addEventListener("DOMContentLoaded", function () {
@@ -391,6 +401,40 @@ abstract class WC_Etransactions_Abstract_Gateway extends WC_Payment_Gateway {
             exit;
         }
 
+        // Security: bind the signed payload to the target order. The order is loaded from the
+        // unsigned $_GET['order'], so we must verify that the signed reference and amount match
+        // this order, otherwise a valid IPN could be replayed against another order/amount.
+        $signed_order_id = wc_etransactions_reference_order_id( $params['reference'] ?? '' );
+        if ( $signed_order_id !== (int) $order->get_id() ) {
+
+            $message = __CLASS__ . ':' . __FUNCTION__ . ": reference mismatch for order(" . $order_id . "), signed reference: " . ( $params['reference'] ?? '' );
+            wc_etransactions_add_log( $message, 'error' );
+            exit;
+        }
+
+        // Compare against the exact PBX_TOTAL emitted at payment time (frozen in meta) to avoid any
+        // recomputation drift (multi-currency, order total changed after payment). Fallback to a
+        // recomputation for orders paid before this meta existed.
+        $expected_amount = (int) $order->get_meta( '_wce_expected_amount', true );
+        if ( $expected_amount <= 0 ) {
+            $expected_amount = wc_etransactions_order_expected_amount( $order );
+        }
+        if ( (int) $params['amount'] !== $expected_amount ) {
+
+            $message = __CLASS__ . ':' . __FUNCTION__ . ": amount mismatch for order(" . $order_id . "), signed: " . $params['amount'] . ", expected: " . $expected_amount;
+            wc_etransactions_add_log( $message, 'error' );
+            exit;
+        }
+
+        // Anti-replay: refuse an IPN whose transaction id is already recorded on the order.
+        // Status-independent (does not rely on needs_payment(), which a third-party plugin could skew).
+        if ( wc_etransactions_transaction_already_recorded( $order, $params['transaction'] ?? '' ) ) {
+
+            $message = __CLASS__ . ':' . __FUNCTION__ . ": transaction(" . ( $params['transaction'] ?? '' ) . ") already processed for order(" . $order_id . "), ignoring IPN replay.";
+            wc_etransactions_add_log( $message );
+            exit;
+        }
+
         $deferred = false;
 
         if ( wc_etransactions_get_option( 'payment_debit_type' ) === WC_Etransactions_Payment::PAYMENT_DEBIT_TYPE_DEFERRED
@@ -405,15 +449,7 @@ abstract class WC_Etransactions_Abstract_Gateway extends WC_Payment_Gateway {
             $deferred = true;
 
         } else {
-                $order->set_shipping_address_1($order->get_meta(wc_etransactions_add_prefix('original_shipping_address_1')));
-                $order->set_shipping_address_2($order->get_meta(wc_etransactions_add_prefix('original_shipping_address_2')));
-                $order->set_shipping_city($order->get_meta(wc_etransactions_add_prefix('original_shipping_city')));
-                $order->set_shipping_postcode($order->get_meta(wc_etransactions_add_prefix('original_shipping_postcode')));
-                $order->set_shipping_company($order->get_meta(wc_etransactions_add_prefix('original_shipping_company')));
-                $order->set_shipping_first_name($order->get_meta(wc_etransactions_add_prefix('original_shipping_first_name')));
-                $order->set_shipping_last_name($order->get_meta(wc_etransactions_add_prefix('original_shipping_last_name')));
-
-
+            
             $message = esc_html__('Payment was authorized and captured by E-Transactions.', 'wc-etransactions');
             $order->add_order_note( $message );
             $order->payment_complete( $params['transaction'] );
@@ -614,5 +650,5 @@ abstract class WC_Etransactions_Abstract_Gateway extends WC_Payment_Gateway {
 
         $order->update_meta_data( 'wc-etransactions-transactions', $transactions );
     }
-
+    
 }

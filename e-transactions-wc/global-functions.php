@@ -381,6 +381,91 @@ function wc_etransactions_stringfy( $array ) {
 }
 
 /**
+ * Extract the WooCommerce order id embedded in a Paybox reference (PBX_CMD).
+ * The reference is built as "woo_<order_id>_<name>_<mdHi>".
+ *
+ * @param string $reference
+ * @return int Order id, or 0 if it cannot be extracted.
+ */
+function wc_etransactions_reference_order_id( $reference ) {
+
+    if ( !is_string($reference) ) {
+        return 0;
+    }
+
+    // Standard reference: "woo_<id>_...". Instalment (x3/x4) reference: "woo_<n>x<id>_...".
+    if ( preg_match('/^woo_(?:\d+x)?(\d+)_/', $reference, $matches) ) {
+        return (int) $matches[1];
+    }
+
+    return 0;
+}
+
+/**
+ * Compute the Paybox amount (in the smallest currency unit) expected for an order,
+ * mirroring the value sent in PBX_TOTAL at payment time.
+ *
+ * @param WC_Order $order
+ * @return int
+ */
+function wc_etransactions_order_expected_amount( $order ) {
+
+    $currency_iso_code = wc_etransactions_get_currency_iso_code( $order->get_currency() );
+    $amount_scale      = pow( 10, wc_etransactions_get_currency_decimals( $currency_iso_code ) );
+
+    return (int) round( floatval( $order->get_total() ) * $amount_scale );
+}
+
+/**
+ * Whether a Paybox transaction id has already been recorded on the order.
+ * Used as a status-independent anti-replay guard on the IPN.
+ *
+ * @param WC_Order $order
+ * @param string   $transaction_id Paybox transaction number (field S).
+ * @return bool
+ */
+function wc_etransactions_transaction_already_recorded( $order, $transaction_id ) {
+
+    if ( $transaction_id === null || $transaction_id === '' ) {
+        return false;
+    }
+
+    $transactions = $order->get_meta( 'wc-etransactions-transactions', true );
+
+    if ( !is_array($transactions) ) {
+        return false;
+    }
+
+    foreach ( $transactions as $transaction ) {
+        if ( ( isset($transaction['numtrans']) && (string) $transaction['numtrans'] === (string) $transaction_id )
+            || ( isset($transaction['auth_numtrans']) && (string) $transaction['auth_numtrans'] === (string) $transaction_id ) ) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+/**
+ * Returns the maximum time allowed between each payment according to the management rules
+ * 
+ * @param int $partial_payments Total number of deadlines
+ * @return int Maximum time allowed between each payment
+ */
+function wc_etransactions_get_max_days_for_instalment($partial_payments) {
+    switch ($partial_payments) {
+        case 2:
+            return 90;
+        case 3:
+            return 45;
+        case 4:
+            return 30;
+        default:
+            return 90;
+    }
+}
+
+/**
  * Format a value to respect specific rules
  * 
  * @param string $value

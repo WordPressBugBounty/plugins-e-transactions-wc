@@ -1,25 +1,27 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="34" height="24" viewBox="0 0 34 24" fill="none">
-<rect width="34" height="24" rx="4" fill="url(#paint0_linear)"/>
-<g clip-path="url(#clip0)">
-<rect x="4.64001" y="3.43799" width="24.4079" height="16.8766" fill="url(#pattern0)"/>
-<path d="M26.5761 9.65861C26.5761 9.37855 26.5221 9.10523 26.4141 8.83867C26.3095 8.5856 26.1543 8.35953 25.9485 8.16382C25.7224 7.94787 25.4761 7.79603 25.2061 7.7083C24.9362 7.62394 24.5684 7.58008 24.1061 7.58008H17.8705V9.65861V11.7371H24.1027C24.565 11.7371 24.9328 11.6933 25.2027 11.6089C25.4727 11.5246 25.719 11.3727 25.9451 11.1568C26.1509 10.9611 26.3061 10.735 26.4107 10.4819C26.5221 10.2086 26.5761 9.93529 26.5761 9.65861Z" fill="white"/>
-<path d="M26.5761 14.3724C26.5761 14.0923 26.5221 13.819 26.4141 13.5491C26.3095 13.2926 26.1543 13.0699 25.9485 12.8709C25.7224 12.6549 25.4761 12.5031 25.2061 12.4153C24.9362 12.3276 24.5684 12.2871 24.1061 12.2871H17.8705V14.369V16.4509H24.1027C24.565 16.4509 24.9328 16.407 25.2027 16.3227C25.4727 16.235 25.719 16.0865 25.9451 15.8672C26.1509 15.6715 26.3061 15.4454 26.4107 15.1889C26.5221 14.9258 26.5761 14.6524 26.5761 14.3724Z" fill="white"/>
-<path d="M17.3104 11.7371C17.1856 9.04783 15.2521 7.31348 12.212 7.31348C9.07393 7.31348 7.10675 9.1693 7.10675 12.0172C7.10675 14.9561 9.15154 16.7208 12.212 16.7208C15.2758 16.7208 17.189 14.9764 17.3104 12.2871H12.3739V11.7337H17.3104V11.7371Z" fill="white"/>
-</g>
-<defs>
-<pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
-<use xlink:href="#image0"/>
-</pattern>
-<linearGradient id="paint0_linear" x1="30.5" y1="-1.5" x2="3" y2="24.5" gradientUnits="userSpaceOnUse">
-<stop stop-color="#072560"/>
-<stop offset="0.289587" stop-color="#2F6D96"/>
-<stop offset="0.525807" stop-color="#4494B4"/>
-<stop offset="0.753441" stop-color="#47979D"/>
-<stop offset="1" stop-color="#4D9F65"/>
-</linearGradient>
-<clipPath id="clip0">
-<rect width="22" height="22" fill="white" transform="translate(6 1)"/>
-</clipPath>
-<image id="image0" xlink:href="data:image/jpeg;base64,/9j/4AAQSkZJRgABAgEAlgCWAAD/7AARRHVja3kAAQAEAAAAHgAA/+4AIUFkb2JlAGTAAAAAAQMA"/>
-</defs>
+<svg
+        width="24"
+        height="16"
+        viewBox="0 0 24 16"
+        xmlns="http://www.w3.org/2000/svg"
+        class="pbx-icon">
+
+    <defs>
+        <linearGradient x1="0%" y1="0%" x2="100%" y2="100%" id="cartesbancaires-a" gradientUnits="userSpaceOnUse"
+                        gradientTransform="rotate(-21)">
+            <stop stop-color="#2e2e79" offset="0%"/>
+            <stop stop-color="#2581c4" offset="40%"/>
+            <stop stop-color="#e6d6db" offset="50%"/>
+            <stop stop-color="#e3756a" offset="60%"/>
+            <stop stop-color="#c90c0f" offset="100%"/>
+        </linearGradient>
+        <clipPath id="roundedCorners" clipPathUnits="userSpaceOnUse">
+            <rect fill="blue" height="16" rx="2" width="24"/>
+        </clipPath>
+    </defs>
+    <g fill="none" fill-rule="evenodd" clip-path="url(#roundedCorners)">
+        <path fill="url(#cartesbancaires-a)" d="M0 0h32v32H0z"/>
+        <path transform="scale(0.7) translate(1, -5)"
+              d="M17.6574137 10.0085759v6.008576h9.5906116c1.6592224 0 3.0042879-1.3450656 3.0042879-3.004288 0-1.6592224-1.3450655-3.004288-3.0042879-3.004288h-9.5906116zM16.8392966 16.0171519c-.0546447-1.1818648-.3494397-2.241752-.8464212-3.1416975-.5530245-1.0014293-1.3564062-1.8048111-2.3578355-2.3578355-1.0014294-.55302447-2.2009063-.85569157-3.5461209-.85569157H8.81787407c-1.34521467 0-2.54469155.3026671-3.54612087.85569157-1.00142933.5530244-1.80481109 1.3564062-2.35783553 2.3578355-.55302443 1.0014293-.85569154 2.2009062-.85569154 3.5461209 0 1.3452146.30266711 2.5446915.85569154 3.5461208.55302444 1.0014294 1.3564062 1.8048111 2.35783553 2.3578356 1.00142932.5530244 2.2009062.8556915 3.54612087.8556915H10.088919c1.3452146 0 2.5446915-.3026671 3.5461209-.8556915 1.0014293-.5530245 1.804811-1.3564062 2.3578355-2.3578356.4969815-.8999455.7917765-1.9598326.8464212-3.1416975h-7.154801v-.8088467h7.154801zM17.6574137 16.8259986v6.008576h9.5906116c1.6592224 0 3.0042879-1.3450656 3.0042879-3.004288 0-1.6592224-1.3450655-3.004288-3.0042879-3.004288h-9.5906116z"
+              fill="#FFF"/>
+    </g>
 </svg>

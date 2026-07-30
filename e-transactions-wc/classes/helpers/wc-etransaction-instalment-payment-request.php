@@ -39,6 +39,18 @@ class WC_Etransactions_Instalment_Payment_Request extends WC_Etransactions_Abstr
         return $this->params;
     }
 
+    public function checkOpenSSL3()
+    {
+        if (preg_match('/OpenSSL\s+(\d+)\.(\d+)/', OPENSSL_VERSION_TEXT, $matches)) {
+            $major = (int)$matches[1];
+
+            if ($major >= 3) {
+                return true;
+            }
+        }
+
+        return false;
+    }
     /**
      * Check if payment is configured
      */
@@ -76,6 +88,10 @@ class WC_Etransactions_Instalment_Payment_Request extends WC_Etransactions_Abstr
         $this->set_param( 'PBX_RETOUR', self::PBX_RETOUR );
         $this->set_param( 'PBX_SOURCE', 'RWD' );
         $this->set_param( 'PBX_RUF1', 'POST' );
+        if ($this->checkOpenSSL3()){
+            $this->set_param( 'PBX_SIGN_KEYSIZE', 2048 );
+        }
+        $this->set_param('PBX_IPNALGOSIGN','SHA_256');
 
         for ( $i = 0; $i < ($partial_payments - 1); $i++ ) {
 
